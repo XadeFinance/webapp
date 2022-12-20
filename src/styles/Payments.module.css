@@ -1,0 +1,202 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    background: #020202;
+    
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    
+}
+.paymentsForm{
+    background-color: black;
+}
+body{
+   
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.carouselHolder{
+        /* display: block; */
+        max-width: 775px;
+        /* align-items: center; */
+        /* justify-content: center; */
+        max-height: 350px;
+        overflow: hidden;
+}
+
+.myActivity{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 32%;
+    padding: 25px;
+    background: #020202;
+    overflow: hidden;
+}
+
+.totalBalance {
+    color: #fff;
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    flex-direction: column;
+
+}
+.label{
+    font-size: 0.8rem;
+}
+.value {
+    font-size: 1.6rem;
+    font-weight: 900;
+}
+.activityContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 368px;
+    height: 100%;
+    color: #fff;
+}
+.utilityButtons{
+    display: flex;
+    width: 32%;
+    height: 80px;
+    justify-content: center;
+    /* border-width: 301px; */
+    border-top: 1px solid rgba(53, 53, 53, 0.7);
+    align-items: center;
+}
+.buttonHolder{
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 60px;
+    border-radius: 20px;
+}
+
+.paymentsButton{
+    
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    border-radius: 20px;
+    background:#020202;
+    box-shadow: 
+      inset 5px 5px 7px rgba(0, 0, 0, 0.1),
+      6px 5px 16px rgba(0, 0, 0, 0.3),
+      -6px -5px 16px rgba(53, 53, 53, 0.7);
+      font-size: 1.1rem;
+      color: #fff;
+      font-weight: 500;
+}
+
+.scanner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.2rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+
+@media screen and (max-width: 960px){
+    .container{
+        display: flex;
+        flex-direction: column;
+        background: #020202;
+        padding-top: 25px;
+        height: 100%;
+        justify-content: flex-start;
+        align-items: center;
+        
+        
+    }
+    .carouselHolder{
+        max-width: 380px;
+        max-height: 350px;
+    }
+    
+    .myActivity{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        padding: 25px;
+        background: #020202
+    }
+    
+    .totalBalance {
+        color: #fff;
+        display: flex;
+        width: 100%;
+        justify-content: flex-start;
+        flex-direction: column;
+    
+    }
+    .label{
+        font-size: 0.8rem;
+    }
+    .value {
+        font-size: 1.6rem;
+        font-weight: 900;
+    }
+    .activityContent{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        min-height: 368px;
+        height: 100%;
+        color: #fff;
+    }
+    .utilityButtons{
+        display: flex;
+        width: 100%;
+        height: 80px;
+        justify-content: center;
+        border-top: 1px solid rgba(53, 53, 53, 0.7);
+        align-items: center;
+    }
+    .buttonHolder{
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 60px;
+        border-radius: 20px;
+    }
+    
+    .paymentsButton{
+        
+        width: 120px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80%;
+        border-radius: 20px;
+        background:#020202;
+        box-shadow: 
+          inset 5px 5px 7px rgba(0, 0, 0, 0.1),
+          6px 5px 16px rgba(0, 0, 0, 0.3),
+          -6px -5px 16px rgba(53, 53, 53, 0.7);
+          font-size: 1.1rem;
+          color: #fff;
+          font-weight: 500;
+    }
+    
+    .scanner{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 3.2rem;
+        color: rgba(255, 255, 255, 0.7);
+    }
+}
+

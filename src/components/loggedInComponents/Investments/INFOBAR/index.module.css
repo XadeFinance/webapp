@@ -1,0 +1,89 @@
+@font-face{
+    font-family: "NeueMontreal";
+    src: url("https://app.xade.finance/fonts/NeueMontreal.otf");
+}
+
+@font-face{
+    font-family: "NeueMontreal";
+    src: url("./NeueMontreal-Medium.otf");
+  }
+
+
+  @font-face{
+    font-family: boldfont;
+    src: url("./NeueMontreal-Bold.otf");
+  }
+.infobar {
+
+    /* margin: 2%; */
+    width: 50%;
+    /* border: 1px solid rgb(240, 240, 240, 0.3);;s
+    border-radius: 10px; */
+    height: 15vh;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* background-color: rgba(15, 15, 15, 0.5);s */
+    margin-top: 3vh;
+}
+
+.horicenter {
+    width: 90%;
+    display: flex;
+    justify-content: start;
+    margin: auto;
+}
+
+.details {
+    /* width: 50%; */
+    height: 40%;
+    display: flex;
+    align-items: center;
+    /* flex-direction: column; */
+    /* justify-content: center */
+
+}
+
+.name {
+    /* text-align: center; */
+    /* height: 100%; */
+    font-size: 1.5em;
+    margin-left: 1rem;
+    font-family: NeueMontreal;
+    color: #848884;
+    font-weight: 300;
+    
+}
+
+.logo {
+    margin-left: 1rem;
+    height: 60%;
+    display: inline-block;
+}
+
+.amount {
+    margin: 0; 
+    letter-spacing: 0.02em;
+    font-weight: 800;
+    /* margin: 1em; */  
+    padding: 10px;
+    font-size: 2em;
+    /* border: 1px solid black; */
+    /* border-radius: 1rem; */
+    font-family: boldfont;
+    color: #e0e0e0;
+    text-align: start;
+}
+
+@media screen and (max-width:600px)
+{
+    .infobar {
+        width: 95%;
+    }
+
+    .amount {
+        /* font-size: 1.2rem; */
+        font-weight: 600;
+    }
+}

@@ -1,0 +1,256 @@
+@font-face{ font-family: "NeueMontreal"; src: url("https:///app.xade.finance/fonts/NeueMontreal.otf"); }
+
+.create-account-span,.sign-in-b1{
+	font-family:"NeueMontreal";
+}
+
+.main-body {
+ position:fixed;
+       	margin: 0;
+  line-height: normal;
+    position: relative;
+  background-color: black;
+  overflow: hidden;
+  text-align: left;
+  font-size: 16px;
+  color: white;
+  font-family: "Vela Sans";
+}
+.pexels-mikhail-nilov-7672255-1-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2065px;
+  height: 1377px;
+  object-fit: cover;
+}
+.secured-by-div {
+ color:white;
+       	position: absolute;
+  /*top: 5px;
+  left: 0;*/
+  font-weight: 500;
+  display: inline-block;
+  width: 88px;
+  height: 19px;
+}
+.logo-for-dark-navbar-2-1 {
+  position: absolute;
+  top: 0;
+  left: 89px;
+  width: 97px;
+  height: 32px;
+  overflow: hidden;
+}
+.web3aunth-div {
+  position: absolute;
+  /*top: 548px;
+  left: 109px;
+  */
+  width: 186px;
+  height: 32px;
+  opacity: 0.4;
+}
+.or-continue-with,
+.social-media-icon {
+  position: absolute;
+  top: 322px;
+  left: 0;
+  width: 284.67px;
+  height: 42px;
+}
+.or-continue-with {
+  top: 279px;
+  display: inline-block;
+  width: 149px;
+  height: 19px;
+}
+.connect-your-wallet {
+color:white;
+	position: relative;
+  line-height: 122.5%;
+  display: inline-block;
+}
+.sign-in-text{ color:black;
+        position: relative;
+  line-height: 122.5%;
+  display: inline-block;
+}
+.connect-wallet-button,
+.sign-in-button {
+  position: absolute;
+  top: 182px;
+  border-radius: 100px;
+  display: flex;
+  flex-direction: row;
+  padding: 24px 37px;
+  box-sizing: border-box;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: center;
+  font-size: 14px;
+}
+
+.socialsImg{
+	filter: brightness(0%)
+}
+
+.connect-wallet-button {
+  left: 132px;
+  background:transparent;
+  border: 1px solid white;
+}
+.sign-in-button {
+  left: 0;
+  background-color: white;
+  color: black;
+}
+.your-email-div {
+ color:white;
+       	position: absolute;
+  top: 0;
+  left: 0;
+  font-weight: 500;
+  display: inline-block;
+  opacity: 0.3;
+  background: transparent;
+  border: 0;
+}
+.email-field-div,
+.rectangle-div {
+  position: absolute;
+  left: 0;
+  width: 343px;
+}
+.rectangle-div {
+  top: 36px;
+  background-color: #d9d9d9;
+  height: 2px;
+}
+.email-field-div {
+  top: 120px;
+  height: 38px;
+}
+.create-account-span {
+  color: #ff537c;
+}
+.or-create-account {
+       	position: absolute;
+  left: 0;
+  color:white;
+  display: inline-block;
+}
+.or-create-account {
+  top: 57px;
+  font-size: 20px;
+  font-weight: 500;
+}
+.sign-in-button{
+	color:black;
+}
+.sign-in-b1 {
+color:white;
+	top: 0;
+  font-size: 36px;
+}
+.sign-in-form {
+  position: absolute;
+  top: 150px;
+  left: 930px;
+  width: 500px;
+  height: 364px;
+}
+.were-all-explorers {
+ color:white;
+       	margin-block-start: 0;
+  margin-block-end: 0;
+}
+.has-come-p {
+	color:white;
+  margin: 0;
+}
+.were-all-explorers-and-now-y {
+  position: absolute;
+  top: 208px;
+  left: 109px;
+  font-size: 48px;
+  line-height: 122.5%;
+  display: inline-block;
+  color: transparent;
+}
+.xade-icon {
+  position: absolute;
+  top: 41px;
+  left: 109px;
+  width: 83px;
+  height: 25px;
+}
+
+
+.socials2{
+  transition: transform .2s;
+    margin: 0.2 auto;
+    border: 0.3px solid black;
+    border-radius: 40%;
+     padding: 7px;
+      text-decoration: none;
+    background-color: #fff;
+      text-align: center;
+color: white;
+}
+.socials2:hover,
+.socials2:focus,
+.socials2:active {
+  cursor: pointer;
+}
+.socials2:hover{
+  transform: scale(1.1); 
+}
+/*.socialsDiv{
+  transition: transform .2s;
+    margin: 0.2 auto;
+    border: 0;
+    border-radius: 10px;
+      text-decoration: none;
+    background-color: #000;
+      text-align: center;
+      display: flex;
+color: white;
+text-align: center;
+}
+.socialsDiv:hover,
+.socialsDiv:focus,
+.socialsDiv:active {
+  cursor: pointer;
+}
+.socialsDiv:hover{
+  transform: scale(1.1); 
+}*/
+.socialsDiv2{
+    position: absolute;
+  top: 322px;
+  left: 0;
+  width: 284.67px;
+  height: 42px;
+}
+@media screen and (max-width: 1200px) {
+  .sign-in-form {
+      position: absolute;
+  top: 208px;
+  left: 250px;
+  }
+ /* .web3aunth-div{
+    visibility: hidden;
+  }*/
+}
+@media screen and (max-width: 500px) {
+  .sign-in-form {
+     position: absolute;
+  top: 208px;
+
+  left: 25px;
+  }
+    /*.web3aunth-div{
+    visibility: hidden;
+  }*/
+}

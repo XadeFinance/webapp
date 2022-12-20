@@ -1,0 +1,326 @@
+@font-face {
+  font-family: LemonMilk;
+  src: url("https://www.xade.finance/fonts/Lemonmilk.otf");
+}
+
+.announcement{
+	  position: fixed;
+  top: 0;
+  left: 0;
+  height: 1.5px;
+  line-height: 40px;
+  width: 100%;
+  background: #444444;
+  text-align: center;
+  color: #FFFFFF;
+  font-family: sans-serif;
+  font-weight: lighter;
+  font-size: 1rem;
+
+}
+
+.announcement:hover{
+	color:#fff;
+	background-color:#444444;
+border:none
+}
+
+.announcement b:hover{
+color:white;
+border:none;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@200&display=swap");
+.navbar {
+  --angle: 0deg;
+  background-color: #000;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  /* border-bottom: 5px solid red; */
+  color: white;
+  /*  border-image/: linear-gradient(var(--angle), #c3092d, #7400c3, #222221) 1;*/
+  animation: 10s rotate linear infinite;
+}
+
+@keyframes rotate {
+  to {
+    --angle: -180deg;
+  }
+}
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.navbar-container {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  max-width: 1500px;
+}
+
+.navbar-logo:hover {
+  color: white;
+}
+
+.navbar-logo {
+  color: #fff;
+  justify-self: start;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  background: none;
+  font-family: LemonMilk;
+  margin-left: 3rem;
+}
+
+.fa-typo3 {
+  margin-left: 0.5rem;
+  font-size: 1.8rem;
+}
+
+.nav-menu {
+  width: 25%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 1%;
+  left: 60vw;
+  transition: 850ms;
+  opacity: 1;
+}
+
+.goBack {
+  display: none;
+}
+
+.nav-menu.navActive {
+  background: #000;
+  left: 0;
+  opacity: 1;
+  transition: all 0.5s ease;
+  z-index: 1;
+}
+
+.nav-item {
+  color: #fff;
+  height: 80px;
+}
+
+.nav-links {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  height: 100%;
+}
+.button-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-links:hover {
+  border-bottom: 4px solid #fff;
+  transition: all 0.2s ease-out;
+}
+
+.fa-bars {
+  color: #fff;
+}
+
+.nav-links-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 960px) {
+  .NavbarItems {
+    position: relative;
+  }
+
+  .gASsLm {
+    background: #000 !important;
+  }
+  .gkusDK {
+    background-color: #000 !important;
+    border: 2px solid #fff !important;
+    border-radius: 10px !important;
+    width: 200px !important;
+    height: 50px !important;
+  }
+
+  .dEpYOZ {
+    font-family: "Sora" !important;
+    color: #fff !important;
+  }
+
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    height: 90vh;
+    position: absolute;
+    top: 80px;
+    left: -100%;
+    opacity: 1;
+    transition: all 0.5s ease;
+  }
+
+  .nav-menu.navActive {
+    background: #000;
+    left: 0;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 1;
+  }
+  .button-item {
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav-links {
+    text-align: center;
+    padding: 2rem;
+    width: 100%;
+    display: table;
+  }
+
+  .nav-links:hover {
+    background-color: #fff;
+    color: #242424;
+    border-radius: 0;
+  }
+
+  .navbar-logo {
+    margin-top: 3vw;
+    margin-left: 37vw;
+    text-align: center;
+    font-family: LemonMilk;
+  }
+
+  .menu-icon {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 50px;
+    transform: translate(-100%, 80%);
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+  .fas {
+    background: none !important;
+  }
+
+  .fa-times {
+    color: #fff;
+    font-size: 2rem;
+  }
+
+  .nav-links-mobile {
+    display: block;
+    text-align: center;
+    margin: 2rem auto;
+    border-radius: 4px;
+    width: 80%;
+    text-decoration: none;
+    font-size: 1.5rem;
+    background-color: transparent;
+    color: #fff;
+    padding: 14px 20px;
+    border: 1px solid #fff;
+    transition: all 0.3s ease-out;
+  }
+
+  .nav-links-mobile:hover {
+    background: #fff;
+    color: #242424;
+    transition: 250ms;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .desktopstuff {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    height: 90vh;
+    position: absolute;
+    top: 80px;
+    left: -100%;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 100;
+    background-color: #080808;
+    width: 25%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    transition: 850ms;
+  }
+
+  .nav-menu.navActive {
+    background: #000;
+    left: 0;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 1;
+  }
+  .nav-menu {
+    width: 100% !important ;
+  }
+
+  .goBack {
+    display: block;
+    margin-top: -97%;
+    margin-left: 4%;
+    color: #fff;
+    height: 100%;
+  }
+}
+
+.nav-item:hover {
+  color: white;
+}
+
+.nav-links:hover {
+  color: white;
+}
+
+.nav-desktop {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  height: 90vh;
+  position: absolute;
+  top: 80px;
+  opacity: 1;
+  transition: all 0.5s ease;
+}
