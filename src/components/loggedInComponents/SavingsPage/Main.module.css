@@ -1,0 +1,131 @@
+@font-face {
+    font-family: savingstext;
+    src: url('./font/NeueMontreal-Medium.otf');
+}
+
+@font-face {
+    font-family: savingsother;
+    src: url('./font/NeueMontreal-Bold.otf');
+}
+
+.heading {
+    font-size: 3rem;
+    padding: 2rem;
+    padding-left: 0;
+    font-family: savingsother;
+}
+
+.boxWrap {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 90vw;
+    margin: auto;
+}
+
+.firstWrap {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+    justify-content: space-between;
+    height: 32rem;
+}
+
+.boxA {
+    position: relative;
+    height: 15rem;
+    width: 99%;
+    background-color: #5566FF;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.boxB {
+    height: 15rem;
+    width: 99%;
+    background: #E24949;
+    border-radius: 1rem;
+    padding: 1rem;
+    position: relative;
+    background: linear-gradient(115.37deg, #FF5555 33.91%, #FF5555 111.37%);
+}
+
+.boxC {
+    height: 32rem;
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1rem;
+    position: relative;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #808080;
+border: 1px solid #000000;
+}
+
+.topSection {
+    font: savingstext;
+    padding: 1rem;
+    font-size: 1.5rem;
+
+}
+
+
+.amountDep, .amountInterest {
+    padding-left: 1rem;
+    font-size: 2rem;
+    font-family: savingsother;
+}
+
+.rightBottom {
+    position: absolute;
+    bottom: 1rem;
+    right: 1.5rem;
+    padding: 1rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    font-size: 0.7em;
+    background-color: white; 
+    border-radius: 2rem;
+    border: none;
+    font-family: savingstext;
+}
+
+.yieldAmount {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.first {
+    font-size: 8rem;
+    font-family: savingsother;
+}
+
+.second {
+    font-size: 1.5rem;
+    font-family: savingsother;
+}
+
+.savingsRate span {
+    position: absolute;
+    max-width: 95%;
+    bottom: 1rem;
+    right: 2.5%;
+}
+
+
+@media screen and (max-width: 800px) {
+    .firstWrap, .boxC {
+        width: 100%;
+    }
+    
+    .boxC {
+        margin-bottom: 1.5rem;
+    }
+
+    .boxWrap {
+        flex-direction: column-reverse;
+    }
+
+}

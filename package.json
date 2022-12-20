@@ -1,0 +1,97 @@
+{
+  "name": "react-test",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@biconomy/mexa": "^3.0.5",
+    "@biconomy/smart-account": "^0.0.2",
+    "@celo/contractkit": "^3.0.1",
+    "@craco/craco": "^7.0.0",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@livechat/widget-react": "^1.2.1",
+    "@mui/material": "^5.10.4",
+    "@onramper/widget": "^2.2.20",
+    "@transak/transak-sdk": "^1.2.2",
+    "@types/express": "^4.17.13",
+    "@types/mongoose": "^5.11.97",
+    "@types/node-fetch": "^2.6.1",
+    "@types/react-slick": "^0.23.10",
+    "@walletconnect/qrcode-modal": "^1.8.0",
+    "@web3auth/base": "^0.8.2",
+    "@web3auth/modal": "^3.2.0",
+    "@web3auth/openlogin-adapter": "^0.8.2",
+    "@web3auth/ui": "^3.0.3",
+    "@web3auth/web3auth": "^0.8.2",
+    "axios": "^0.27.2",
+    "browserify-zlib": "^0.2.0",
+    "express": "^4.17.3",
+    "html5-qrcode": "^2.2.1",
+    "mongodb": "^4.5.0",
+    "mongoose": "^6.4.0",
+    "net": "^1.0.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.4.0",
+    "react-loader-spinner": "^6.0.0-0",
+    "react-qr-reader": "^3.0.0-beta-1",
+    "react-router-dom": "^6.3.0",
+    "react-slick": "^0.29.0",
+    "react-ts-tradingview-widgets": "^1.0.11",
+    "reactjs-popup": "^2.0.5",
+    "redstone-api": "^0.4.11",
+    "slick-carousel": "^1.8.1",
+    "util": "^0.12.5",
+    "web3": "^1.8.1"
+  },
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "lint": "eslint --fix 'src/**/*.ts' 'src/**/*.tsx'",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.22",
+    "@types/react": "^17.0.39",
+    "@types/react-dom": "^17.0.11",
+    "assert": "^2.0.0",
+    "autoprefixer": "^10.4.4",
+    "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.0",
+    "hardhat": "^2.12.4",
+    "https-browserify": "^1.0.0",
+    "os-browserify": "^0.3.0",
+    "postcss": "^8.4.12",
+    "process": "^0.11.10",
+    "react-app-rewired": "^2.2.1",
+    "react-scripts": "5.0.0",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "tailwindcss": "^3.0.23",
+    "typescript": "^4.5.5",
+    "url": "^0.11.0"
+  }
+}
