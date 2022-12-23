@@ -14,12 +14,12 @@ import DW from "./loggedInComponents/SettingsPage/DW";
 import Login from "./unloggedInComponents/Login/Component";
 import Landing from "./unloggedInComponents/Landing/Component";
 import DepositWithdraw from "./loggedInComponents/DepositWithdraw/Component";
-import HomePage from "./loggedInComponents/HomePage/";
+import HomePage from "./loggedInComponents/HomePage/Component";
 import QrCodePage from "./loggedInComponents/QrCodePage/Component";
 // import Test from "./loggedInComponents/QRScanner/Component";
 import Send from "./loggedInComponents/SendPhnEmail/Component";
 import SendQR from "./loggedInComponents/SendQR/Component";
-import TxHistory from "./loggedInComponents/TxHistory/Component";
+// import TxHistory from "./loggedInComponents/TxHistory/Component";
 import Savings from "./loggedInComponents/SavingsPage/Component";
 
 import styles3 from "../styles/send.module.css";
@@ -660,10 +660,10 @@ const Main = () => {
               />
               <Route path="/send" element={<Send />} />
               <Route path="/sendQR/:user" element={<SendQR />} />
-              <Route
+              {/*}    <Route
                 path="/history"
                 element={<TxHistory account={mainAccount} />}
-              />
+              />{*/}
               <Route
                 path="/"
                 element={
