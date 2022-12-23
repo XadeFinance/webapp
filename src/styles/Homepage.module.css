@@ -132,11 +132,11 @@ text-align:center;
 }
 
 .divider{
-    background-color:#bfff38;
+    background-color:#bfff38 !important;
 width:22rem;
 margin: auto;
     margin-top:0.8rem;
-    border-color:#bfff38;
+    border-color:#bfff38 !important;
 }
 
 .value{
