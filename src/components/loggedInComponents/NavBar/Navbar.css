@@ -265,7 +265,7 @@ border:none;
 
 @media screen and (max-width: 800px) {
   .announcement b {
-    font-size: 1rem;
+    font-size: 0.7rem;
   }
   .nav-menu {
     display: flex;
