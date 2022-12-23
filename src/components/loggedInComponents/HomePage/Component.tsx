@@ -197,7 +197,7 @@ const HomePage = (props) => {
                     )}
                   </div>
                 </div>
-                <hr className={home.divider} />
+                <hr style={{backgroundColor:"#bfff38", borderColor:"#bfff38"}} className={home.divider} />
               </div>
             ))}
           </div>
