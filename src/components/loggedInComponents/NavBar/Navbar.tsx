@@ -26,7 +26,7 @@ const Navbar = (props: Props) => {
   }, []);
 
     function hideAnnouncement() {
-    document.getElementById("announcement").style.display = "none";
+    document.getElementById("announce").style.display = "none";
   }
   
   window.addEventListener("resize", showButton);
