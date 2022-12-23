@@ -37,7 +37,7 @@ const Navbar = (props: Props) => {
           </div>
       <nav className="navbar">
  <div className="vela announcement" id="announce">
-<b>📢 RemmiteX V2 and DeriveX V1 will go live on Testnet on 5th January 2023 <button onClick={hideAnnouncement} style={{fontSize:"0.8rem",backgroundColor:"black",color:"white"}}><ImCross style={{backgroundColor:"white"}}/></button> </b>
+<b>📢 RemmiteX V2 and DeriveX V1 will go live on Testnet on 5th January 2023 <button onClick={hideAnnouncement} style={{fontSize:"0.8rem",backgroundColor:"black",color:"white"}}><ImCross /></button> </b>
 </div>
          
 <div className="navbar-container">
