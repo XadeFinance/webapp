@@ -25,6 +25,10 @@ const Navbar = (props: Props) => {
     showButton();
   }, []);
 
+    function hideAnnouncement() {
+    document.getElementById("announce").style.color = "black";
+  }
+  
   window.addEventListener("resize", showButton);
   return (
     <>
@@ -32,8 +36,8 @@ const Navbar = (props: Props) => {
             <ImCross />
           </div>
       <nav className="navbar">
- <div className="vela announcement">
-<b>📢 RemmiteX V2 and DeriveX V1 will go live on Testnet on 5th January 2023</b>
+ <div className="vela announcement" id="announce">
+<b>📢 RemmiteX V2 and DeriveX V1 will go live on Testnet on 5th January 2023 <button onClick={hideAnnouncement} style={{fontSize:"2rem"}}><ImCross /></button> </b>
 </div>
          
 <div className="navbar-container">
