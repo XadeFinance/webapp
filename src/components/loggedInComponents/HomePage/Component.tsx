@@ -1,29 +1,62 @@
-import { useEffect, useState } from "react";
-import { useWeb3Auth } from "../../../services/web3auth";
-import styles3 from '../../../styles/send.module.css'
-import styles from "../../../styles/Home.module.css";
-import tickStyles from '../../../styles/tickStyles.module.css';
-import tickStyles2 from "../../../styles/tickStyles2.module.css";
-import "../../../styles/qrscan.css"
-import "../../../styles/QrPage.css"
-import "../../../styles/HomePage.css"
-import { FaCopy, FaExternalLinkAlt } from "react-icons/fa";
-import CarouselCard1 from "../CarouselCard/CarouselCard1";
-import CarouselCard3 from "../CarouselCard/CarouselCard3";
-import CarouselCard4 from "../CarouselCard/CarouselCard4";
-import CarouselCard2 from "../CarouselCard/CarouselCard2";
-import Slider from "react-slick";
-import { useNavigate, Link } from "react-router-dom";
-//import { getNormalTransactionsByAddress } from "../../../services/celoScan";
+import home from "../../../styles/Homepage.module.css";
 import { TbQrcode } from "react-icons/tb";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { useEffect, useState } from "react";
 
 const HomePage = (props) => {
+  const [balance, setBalance] = useState(0);
+  var xhr2 = new XMLHttpRequest();
+  var donezo = false;
   const mainAccount = props.account;
-  const [price, setPrice] = useState(0);
+  async function getNormalTransactionsByAddress(address) {
+    try {
+      const response = await fetch(
+        `https://explorer.celo.org/alfajores/api?module=account&action=tokentx&address=${address}&contractaddress=0x874069fa1eb16d44d622f2e0ca25eea172369bc1`
+      );
+      return await response.json();
+    } catch (error) {
+      return [];
+    }
+  }
+  const [transactionHistory, setTransactionHistory] = useState([]);
+  const isReady = () => {
+    return mainAccount !== "";
+  };
 
-  const addressShortner = (transaction: any) => {
+  useEffect(() => {
+    if (isReady()) {
+      handleGetNormalTransactionByAddress();
+    }
+  }, [mainAccount]);
+  const handleGetNormalTransactionByAddress = async () => {
+    let transactions = await getNormalTransactionsByAddress(mainAccount);
+    setTransactionHistory(transactions.result);
+  };
+
+  useEffect(() => {
+    for (var i = 0; i < transactionHistory.length; i++) {
+      var currentTransac =
+        transactionHistory[i].to.toString().toLowerCase() ===
+        mainAccount.toString().toLowerCase()
+          ? transactionHistory[i].from
+          : transactionHistory[i].to;
+      //var currentTransac = "0xa13414fa08c8ae49a9cceabdae4ff8d2d82ec139";
+      var finalVal =
+        currentTransac.substring(0, 6) +
+        "..." +
+        currentTransac.substring(currentTransac.length - 3);
+      //console.log(finalVal);
+      if (
+        transactionHistory[i].to.toString().toLowerCase() ===
+        mainAccount.toString().toLowerCase()
+      ) {
+        transactionHistory[i].from = finalVal;
+      } else {
+        transactionHistory[i].to = finalVal;
+      }
+    }
+  }, []);
+
+  const addressShortner = (transaction) => {
     const address =
       transaction.to.toString().toLowerCase() ===
       mainAccount.toString().toLowerCase()
@@ -34,73 +67,17 @@ const HomePage = (props) => {
     return addressShortened;
   };
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    autoplay: true,
-    autoplaySpeed: 2000,
-    speed: 800,
-    slidesToShow: 2,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    arrows: false,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          initialSlide: 1,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-
-  const [amount, setAmt] = useState(0);
-  const { provider } = useWeb3Auth();
-
-  useEffect(() => {
-    const handleGetBalance = async () => {
-      const bal = await provider?.getBalance();
-      setAmt(bal);
-    };
-    if (provider) {
-      handleGetBalance();
-    }
-  }, [provider, amount]);
-  const amountStr = amount.toString();
-
-  var donezo = false;
-  var xhr2 = new XMLHttpRequest();
-  let balCUSD;
-
   useEffect(() => {
     xhr2.onreadystatechange = async function () {
       if (xhr2.readyState == XMLHttpRequest.DONE) {
         try {
           if (xhr2.status == 200) {
             try {
-              const usdJson = await JSON.parse(xhr2.responseText);
+              const responseJSON = await JSON.parse(xhr2.responseText);
 
-              setPrice(usdJson["result"]);
+              setBalance(responseJSON["result"]);
               donezo = true;
-            } catch (e: any) {
+            } catch (e) {
               console.log("xhr2.status", e + xhr2.status);
             }
           }
@@ -115,99 +92,74 @@ const HomePage = (props) => {
       `https://explorer.celo.org/alfajores/api?module=account&action=tokenbalance&contractaddress=0x874069fa1eb16d44d622f2e0ca25eea172369bc1&address=${mainAccount}`
     );
     xhr2.send();
-  }, [, price, balCUSD]);
+  }, [, balance]);
 
-  const usdBal = (parseFloat(price) / Math.pow(10, 18)).toFixed(2);
-
-  function returnUser(walletAddr: any) {
-    var finalVal = "";
-    var xhr = new XMLHttpRequest();
-
-    xhr.onreadystatechange = function () {
-      if (xhr.status == 200) {
-        finalVal = xhr.responseText;
-      } else {
-        finalVal = walletAddr;
-      }
-    };
-
-    xhr.open("GET", `https://user.api.xade.finance?address=${walletAddr}`);
-    xhr.send(null);
-
-    return finalVal;
-  }
-//  const [transactionHistory, setTransactionHistory] = useState<any[]>([]);
-//const [TxTop, setTxTop] = useState<any[]>([]);
- /* const handleGetNormalTransactionByAddress = async () => {
-    let transactions = await getNormalTransactionsByAddress(mainAccount);
-    setTransactionHistory(transactions.result);
-//setTxTop(transactionHistory.slice(0,3));  
-};
-
-  const isReady = () => {
-    return mainAccount !== "";
-  };
-
-  useEffect(() => {
-    if (isReady()) {
-      handleGetNormalTransactionByAddress();
-//setTxTop(transactionHistory.slice(0,3));  
-  }
-  }, [mainAccount]);
-*/  
-//const TxTop = [];
-/*var txtopVar;
-try{
- txtopVar = transactionHistory.slice(0,3);
-}
-catch(error){
-txtopVar = []
-console.log(error)
-}
-setTxTop(txtopVar);
-*/
-let navigate = useNavigate();
+  const myBalance = (parseFloat(balance) / Math.pow(10, 18)).toFixed(2);
   return (
-    <div className="container">
-      <div className="carouselHolder text-center">
-        <Slider {...settings}>
-          <CarouselCard1 />
-
-          <CarouselCard2 />
-
-          <CarouselCard3 />
-
-          <CarouselCard4 />
-        </Slider>
-      </div>
-      <div className="myActivity">
-        <div className="totalBalance">
-          <p className="label">Checking Account</p>
-          <p className="value">${usdBal}</p>
+    <div className={home.mainDiv}>
+      <div>
+        <div className={home.balanceView}>
+          <div className={home.amount}>${myBalance}</div>
+          <div className={home.yourCurrent}>Your current checking balance</div>
         </div>
-
-        <div className="activityContent">
-          {/* <br />
-            <br />
-            <br />
-            <br />
-            <br /> */}
-  {/*}        {TxTop.map((transaction, index) => (
-            <div key={index} className="transactionHistory-pills">
-              <div className="rightHalf-pill">
-                <div className="transactionIndicator-arrows">
+        <div className={home.utilityButtons}>
+          <button className={home.paymentsButton}>
+            <svg
+              stroke="currentColor"
+              fill="#ffdf38"
+              stroke-width="0"
+              viewBox="0 0 16 16"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M0 8a8 8 0 1 0 16 0A8 8 0 0 0 0 8zm5.904 2.803a.5.5 0 1 1-.707-.707L9.293 6H6.525a.5.5 0 1 1 0-1H10.5a.5.5 0 0 1 .5.5v3.975a.5.5 0 0 1-1 0V6.707l-4.096 4.096z"></path>
+            </svg>
+            &nbsp;&nbsp;
+            <a href="/send" className={home.paymentText} >Send</a>
+          </button>
+          <button className={home.paymentsButton}>
+            <svg
+              stroke="currentColor"
+              fill="#bfff38"
+              stroke-width="0"
+              viewBox="0 0 16 16"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-5.904-2.803a.5.5 0 1 1 .707.707L6.707 10h2.768a.5.5 0 0 1 0 1H5.5a.5.5 0 0 1-.5-.5V6.525a.5.5 0 0 1 1 0v2.768l4.096-4.096z"></path>
+            </svg>{" "}
+            &nbsp;&nbsp;
+            <a href="/institutional-ramps" className={home.paymentText}>Deposit</a>
+          </button>
+          <button style={{textAlign:"center"}} className={home.qrBtn}>
+            <a href="/qr"><TbQrcode className={home.qrIcon}/></a>
+          </button>
+        </div>
+        <div className={home.txHistory}>
+          <div className={home.historyHeader}>
+            <span>Recent Activity</span>
+            <a className={home.seeAll} href="/history">
+              See all
+            </a>
+          </div>
+          <div className={home.transactions}>
+            {transactionHistory.map((transaction, index) => (
+              <div key={index} className={home.transactionBox}>
+                <div className={home.transactionDetails}>
                   <svg
                     stroke="currentColor"
                     fill={
                       transaction.to.toString().toLowerCase() ===
                       mainAccount.toString().toLowerCase()
-                        ? "green"
-                        : "red"
+                        ? "#bfff38"
+                        : "#ffdf38"
                     }
                     stroke-width="0"
                     viewBox="0 0 16 16"
-                    height="2em"
-                    width="2em"
+                    height="1em"
+                    width="1em"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -217,99 +169,37 @@ let navigate = useNavigate();
                           ? "M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-5.904-2.803a.5.5 0 1 1 .707.707L6.707 10h2.768a.5.5 0 0 1 0 1H5.5a.5.5 0 0 1-.5-.5V6.525a.5.5 0 0 1 1 0v2.768l4.096-4.096z"
                           : "M0 8a8 8 0 1 0 16 0A8 8 0 0 0 0 8zm5.904 2.803a.5.5 0 1 1-.707-.707L9.293 6H6.525a.5.5 0 1 1 0-1H10.5a.5.5 0 0 1 .5.5v3.975a.5.5 0 0 1-1 0V6.707l-4.096 4.096z"
                       }
-                    ></path>
-                  </svg>
-                </div>
-              </div>
-              <div className="leftHalf-pill">
-                <div className="transaction-history-line1">
-                  &nbsp;&nbsp;
-                  <div className="address-styling">
-                    {addressShortner(transaction)}
-                  </div>
-                  <div>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ></path>{" "}
+                  </svg>{" "}
+                  <div className={home.addrDate}>
                     <a
                       href={`https://explorer.celo.org/alfajores/tx/${transaction.hash}`}
                       target="_blank"
                       rel="noopener noreferrer"
+                      style={{ color: "white", textDecoration: "none" }}
                     >
-                      {" "}
-                      <FaExternalLinkAlt />
+                      {addressShortner(transaction)}
                     </a>
+                    <br />
+                    <div className={home.date}>
+                      {new Date(transaction.timeStamp * 1000)
+                        .toString()
+                        .substring(4, 21)}
+                    </div>
                   </div>
-                </div>
-                <div className="transaction-history-line2">
-                  &nbsp;&nbsp;
-                  <div className="amount-time-stlying">
+                  <div className={home.value}>
+                    $
                     {(parseFloat(transaction.value) / Math.pow(10, 18)).toFixed(
                       2
                     )}
                   </div>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <div className="amount-time-stlying">
-                    {new Date(transaction.timeStamp * 1000)
-                      .toString()
-                      .substring(4, 21)}
-                  </div>
-                  &nbsp;&nbsp;
                 </div>
+                <hr className={home.divider} />
               </div>
-            </div>
-          ))} {*/}
-        </div>
-        <button
-          className="txBtn"
-          style={{ backgroundColor: "#000" }}
-          onClick={() => {
-            navigate(`/history`);
-          }}
-        >
-          <Link
-            to="/history"
-            style={{
-              color: "#fff",
-              textDecoration: "none",
-              backgroundColor: "#000",
-            }}
-          >
-         
-              <div>
-                View Transaction History &nbsp;&nbsp; <FaExternalLinkAlt />
-              </div>
-            
-          </Link>
-        </button>
-        <br />
-        <br />
-<br />
-<br />      
-</div>
-      <br />
-      <br />
-      <br />
-      <div className="utilityButtons">
-        <div className="buttonHolder">
-          <div className="paymentsButton">
-            <Link to="/send">
-              <a style={{ color: "#fff", textDecoration: "none" }}>Send</a>
-            </Link>
+            ))}
           </div>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <div className="paymentsButton">
-            <Link to="/qr">
-              <a style={{ color: "#fff", textDecoration: "none" }}>Request</a>
-            </Link>
-          </div>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <Link to="/qr">
-            <div className="scanner">
-              <TbQrcode />
-            </div>
-          </Link>
         </div>
       </div>
-      <br />
     </div>
   );
 };
