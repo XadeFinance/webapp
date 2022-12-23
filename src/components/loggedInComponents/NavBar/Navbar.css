@@ -62,10 +62,11 @@ border:none;
 .navbar-container {
   display: flex;
 
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   height: 80px;
   max-width: 1500px;
+  width: 100vw;
 }
 
 .navbar-logo:hover {
@@ -210,7 +211,7 @@ border:none;
 
   .navbar-logo {
     margin-top: 3vw;
-    margin-left: 37vw;
+    /* margin-left: 37vw; */
     text-align: center;
     font-family: LemonMilk;
   }
@@ -219,7 +220,7 @@ border:none;
     display: block;
     position: absolute;
     top: 0;
-    left: 50px;
+    right: 25px;
     transform: translate(-100%, 80%);
     font-size: 1.8rem;
     cursor: pointer;
@@ -262,6 +263,9 @@ border:none;
 }
 
 @media screen and (max-width: 800px) {
+  .announcement b {
+    font-size: 1rem;
+  }
   .nav-menu {
     display: flex;
     flex-direction: column;

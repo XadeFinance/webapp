@@ -1,0 +1,140 @@
+@font-face{
+    font-family: "NeueMontreal";
+    src: url("https://app.xade.finance/fonts/NeueMontreal.otf");
+}
+
+@font-face{
+    font-family: "VelaSans";
+    src: url("https://app.xade.finance/fonts/VelaSans.otf");
+  }
+
+.balanceView{
+    color:white;
+    text-align:center;
+    margin-top:5rem;
+}
+
+.balanceView .amount{
+    font-family:"NeueMontreal";
+    font-size:4rem;
+}
+
+.balanceView .yourCurrent{
+    margin-top:0.5rem;
+    font-size:0.75rem;
+font-family:"VelaSans";
+color:#949494;
+}
+
+.utilityButtons {
+    display: flex;
+    width: 40%;
+    height: 80px;
+    justify-content: center;
+    /* border-width: 301px; */
+    align-items: center;
+    position: relative;
+    margin-top:1.5rem;
+    left: 30%;
+  }
+
+  .paymentsButton {
+    width: 10rem;
+    border:1px solid transparent;
+    display: flex;
+    padding: 10px 20px;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    border-radius: 100px;
+    background: #0c0c0c;
+    font-size: 2.5rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .qrBtn{
+    border-radius: 100px;
+    background: #0c0c0c;
+    font-size: 2.9rem;
+    color: #fff;
+    /* width:10%;
+    height:10%; */
+    width:4rem;
+    border:1px solid transparent;
+    border-radius: 100%;
+    display: inline-block;
+    text-align:center;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .qrIcon{
+    margin-bottom:0.5rem;
+  }
+
+  .paymentText{
+      color:white;
+    font-size:0.85rem;
+    font-family:"VelaSans";
+    text-align:left
+  }
+.txHistory{
+    margin-top:3rem;
+}
+.historyHeader{
+text-align:center;
+   display:flex;
+   justify-content: space-evenly;
+   font-family: "VelaSans";
+   color:white;
+}
+
+.historyHeader .seeAll{
+    color:#616161;
+    text-decoration: none;
+}
+
+.transactions{
+    margin-top:3rem;
+    text-align:center;
+}
+
+
+
+.transactionDetails{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.transactionDetails svg{
+    font-size:2rem;
+}
+
+.date{
+    color:#616161;
+}
+
+.addrDate{
+    color:white;
+    font-family:"VelaSans";
+    font-size:0.8rem;
+    margin-left:2rem;
+    margin-right:8rem;
+    text-align:left;
+}
+
+.divider{
+    background-color:#bfff38;
+width:22rem;
+margin: auto;
+    margin-top:0.8rem;
+    border-color:#bfff38;
+}
+
+.value{
+    color:white;
+    font-family:"VelaSans"
+}

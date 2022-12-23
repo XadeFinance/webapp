@@ -9,7 +9,7 @@ Send payments globally with close to zero fees instantly in multiple stablecoins
 - Arav Budhiraja (@arav06)
 - Andrew Alisa (@andrewalisa)
 - Harsh Shaw (@harshshaw)
-- Arnav Jhajharia (@Arnav-Jhajharia)
+- Arnav Jhajharia (@Arnav-Jhajharia) 
 
 ## Tech Stack
 

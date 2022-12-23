@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useWeb3Auth } from "../services/web3auth";
 import { FormEvent } from "react";
 import { WALLET_ADAPTERS } from "@web3auth/base";
-
+import { Link } from 'react-router-dom'
 import { Layout } from "./Layout";
 import Settings from "./loggedInComponents/SettingsPage/Navigation";
 import FAQs from "./loggedInComponents/SettingsPage/FAQs";
@@ -14,9 +14,9 @@ import DW from "./loggedInComponents/SettingsPage/DW";
 import Login from "./unloggedInComponents/Login/Component";
 import Landing from "./unloggedInComponents/Landing/Component";
 import DepositWithdraw from "./loggedInComponents/DepositWithdraw/Component";
-import HomePage from "./loggedInComponents/HomePage/Component";
+import HomePage from "./loggedInComponents/HomePage/";
 import QrCodePage from "./loggedInComponents/QrCodePage/Component";
-import QRScanner from "./loggedInComponents/QRScanner/Component";
+// import Test from "./loggedInComponents/QRScanner/Component";
 import Send from "./loggedInComponents/SendPhnEmail/Component";
 import SendQR from "./loggedInComponents/SendQR/Component";
 import TxHistory from "./loggedInComponents/TxHistory/Component";
@@ -29,12 +29,101 @@ import tickStyles2 from "../styles/tickStyles2.module.css";
 import "../styles/qrscan.css";
 import "../styles/QrPage.css";
 import "../styles/HomePage.css";
-
+import QrReader  from 'react-qr-scanner'
+import { ImCross } from 'react-icons/im'
+import { FiShare } from 'react-icons/fi'
+import { RiCameraSwitchFill } from 'react-icons/ri'
 import countries from "./regCountries";
 import { Country, PhoneNumber } from "./regCountries";
-
+interface MyObjLayout {
+  delay: number;
+  result: string;
+  camera: string;
+}
 window.alert = function () {};
+class Test extends React.Component<any, MyObjLayout> {
+  constructor(props:any){
+    super(props)
+    this.state =  {
+      delay: 100,
+      result: 'No result',
+      camera: 'rear',
+    }
 
+    this.handleScan = this.handleScan.bind(this)
+  }
+  handleScan(data:any){
+    this.setState({
+      result: data,
+    })
+    var url = "https://explorer.celo.org/address/"+data+"/transactions/";
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url);
+        xhr.send();
+        xhr.onload = function () {
+        if(xhr.status == 200)
+          window.location.href = `/sendQR/${data}`     
+    }
+
+  }
+  handleError(err:any){
+    console.error(err)
+  }
+  render(){
+    const previewStyle = {
+      height: '50%',
+      width: '50%',
+      // visibility: ''
+    }
+
+    return(
+      <>
+      <div style = {{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+      <Link to="/" >
+          <div className="goBack2" style = {{position: 'absolute',left: '1rem',marginTop: '3rem'}}>
+            <ImCross />
+          </div>
+        </Link>
+            <div style={{ position: "relative"}} className="topBar">
+
+        <div className="buttonHolderQrPage">
+          <div
+            className={"qrButtonLeft " + "active"}
+            onClick={() => (window.location.href = "/qr")}
+          >
+            My Code
+          </div>
+          <div
+            className={"qrButtonRight " + "inActive"}
+            onClick={() => (window.location.href = "/scan")}
+          >
+            Scan
+          </div>
+        </div>
+
+        <div style={{ visibility: "hidden" }} className="share">
+          <FiShare />
+        </div>
+      </div>
+      <div style={{marginTop: '1.5rem',
+    textAlign: 'center'}}>
+        <QrReader
+          delay={100}
+          style={previewStyle}
+          onError={this.handleError}
+          onScan={this.handleScan}
+          facingMode = {this.state.camera}
+          />
+        <p onClick = {() => {
+          if(this.state.camera == 'front') this.setState({...this.state, camera: 'back'})
+          else this.setState({...this.state, camera: 'front'})
+        }}><RiCameraSwitchFill/></p>
+      </div>
+      </div>
+      </>
+    )
+  }
+}
 var secret = "";
 var characters =
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -520,7 +609,7 @@ const Main = () => {
                   </Layout>
                 }
               />
-              <Route path="/scan" element={<QRScanner />} />
+              <Route path="/scan" element={<Test />} />
               <Route
                 path="/faqs"
                 element={
