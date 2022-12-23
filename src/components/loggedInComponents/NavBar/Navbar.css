@@ -75,6 +75,7 @@ border:none;
 
 .navbar-logo {
   color: #fff;
+  position:fixed;
   justify-self: start;
   cursor: pointer;
   text-decoration: none;
