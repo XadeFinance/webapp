@@ -19,11 +19,11 @@
 
 }
 
-/* .announcement:hover{
-	color:#fff;
-	background-color:#444444;
+ .announcement:hover{
+	color:#000;
+	background-color:#000;
 border:none
-} */
+} 
 
 .announcement b:hover{
 color:white;
