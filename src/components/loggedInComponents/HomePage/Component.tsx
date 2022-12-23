@@ -1,9 +1,12 @@
 import home from "../../../styles/Homepage.module.css";
 import { TbQrcode } from "react-icons/tb";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 const HomePage = (props) => {
   const [balance, setBalance] = useState(0);
+  let navigate = useNavigate();
   var xhr2 = new XMLHttpRequest();
   var donezo = false;
   const mainAccount = props.account;
@@ -133,16 +136,16 @@ const HomePage = (props) => {
             &nbsp;&nbsp;
             <a href="/institutional-ramps" className={home.paymentText}>Deposit</a>
           </button>
-          <button style={{textAlign:"center"}} className={home.qrBtn}>
-            <a href="/qr"><TbQrcode className={home.qrIcon}/></a>
+          <button style={{textAlign:"center"}} className={home.qrBtn} onClick = {() => {navigate("/qr")}}>
+            <TbQrcode className={home.qrIcon}/>
           </button>
         </div>
         <div className={home.txHistory}>
           <div className={home.historyHeader}>
             <span>Recent Activity</span>
-            <a className={home.seeAll} href="/history">
-              See all
-            </a>
+            <span className={home.seeAll}>
+              Sort by
+            </span>
           </div>
           <div className={home.transactions}>
             {transactionHistory.map((transaction, index) => (
