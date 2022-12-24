@@ -7,10 +7,10 @@ import { FormEvent } from "react";
 import { WALLET_ADAPTERS } from "@web3auth/base";
 import { Link } from 'react-router-dom'
 import { Layout } from "./Layout";
-import Settings from "./loggedInComponents/SettingsPage/Navigation";
-import FAQs from "./loggedInComponents/SettingsPage/FAQs";
+import Settings from "./loggedInComponents/SettingsPage/Navigation/Component";
+import FAQs from "./loggedInComponents/SettingsPage/FAQs/Component";
 import Investments from "./loggedInComponents/Investments/index";
-import DW from "./loggedInComponents/SettingsPage/DW";
+import DW from "./loggedInComponents/SettingsPage/DW/Component";
 import Login from "./unloggedInComponents/Login/Component";
 import Landing from "./unloggedInComponents/Landing/Component";
 import DepositWithdraw from "./loggedInComponents/DepositWithdraw/Component";
