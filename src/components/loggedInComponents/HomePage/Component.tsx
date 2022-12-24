@@ -155,7 +155,7 @@ const HomePage = (props) => {
               style={{ border: "none" }}
               xmlns="http://www.w3.org/2000/svg"
             >
-              <a xlink:href="/qr" style={{ cursor: "pointer" }} target="_blank">
+              <a xlinkHref="/qr" style={{ cursor: "pointer" }} target="_blank">
                 <rect
                   x="4"
                   y="4"
