@@ -15,11 +15,21 @@ async function main() {
 
   const Lock = await hre.ethers.getContractFactory("Lock");
   const lock = await Lock.deploy(unlockTime, { value: lockedAmount });
+  const Balancesheet=await hre.ethers.getContractFactory("balanceSheet");
+  const LiquidityPool=await hre.ethers.getContractFactory("liquidityPool");
+
+  const balancesheet= await Balancesheet.deploy();
+
+  const liquidityPool= await LiquidityPool.deploy();
 
   await lock.deployed();
+  await balancesheet.deployed();
+  await liquidityPool.deployed();
 
   console.log(
-    `Lock with 1 ETH and unlock timestamp ${unlockTime} deployed to ${lock.address}`
+    `Lock with 1 ETH and unlock timestamp ${unlockTime} deployed to ${lock.address}`,
+    `BalanceSheet deployed to ${balancesheet.address} `,
+    `liquidityPool deployed to ${liquidityPool.address}`
   );
 }
 

@@ -4,7 +4,7 @@ import "contracts/liquidityPool.sol";
 import "contracts/ILiquidityPool.sol";
 import "contracts/IMaturity.sol";
 
-contract  BalanceSheet  {
+contract  balanceSheet  {
     uint256 I=8; //I is the annual CPI of the region provided by the oracles
     uint256 precision=100; //10^6
     uint256 SX=1.3*100*I; // 10^6 SX=1.3*I *Note solditiy doesnt support float hence for testing uint is used
