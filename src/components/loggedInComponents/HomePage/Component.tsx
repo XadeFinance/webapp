@@ -1,8 +1,7 @@
 import home from "../../../styles/Homepage.module.css";
-import { TbQrcode } from "react-icons/tb";
+// import { TbQrcode } from "react-icons/tb";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 
 const HomePage = (props) => {
   const [balance, setBalance] = useState(0);
@@ -119,7 +118,9 @@ const HomePage = (props) => {
               <path d="M0 8a8 8 0 1 0 16 0A8 8 0 0 0 0 8zm5.904 2.803a.5.5 0 1 1-.707-.707L9.293 6H6.525a.5.5 0 1 1 0-1H10.5a.5.5 0 0 1 .5.5v3.975a.5.5 0 0 1-1 0V6.707l-4.096 4.096z"></path>
             </svg>
             &nbsp;&nbsp;
-            <a href="/send" className={home.paymentText} >Send</a>
+            <a href="/send" className={home.paymentText}>
+              Send
+            </a>
           </button>
           <button className={home.paymentsButton}>
             <svg
@@ -134,18 +135,75 @@ const HomePage = (props) => {
               <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-5.904-2.803a.5.5 0 1 1 .707.707L6.707 10h2.768a.5.5 0 0 1 0 1H5.5a.5.5 0 0 1-.5-.5V6.525a.5.5 0 0 1 1 0v2.768l4.096-4.096z"></path>
             </svg>{" "}
             &nbsp;&nbsp;
-            <a href="/institutional-ramps" className={home.paymentText}>Deposit</a>
+            <a href="/institutional-ramps" className={home.paymentText}>
+              Deposit
+            </a>
           </button>
-          <button style={{textAlign:"center"}} className={home.qrBtn} onClick = {() => {navigate("/qr")}}>
-            <TbQrcode className={home.qrIcon}/>
+          <button
+            style={{ textAlign: "center" }}
+            className={home.qrBtn}
+            onClick={() => {
+              navigate("/qr");
+            }}
+          >
+            <svg
+              className={home.qrIcon}
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              style={{ border: "none" }}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <a xlink:href="/qr" style={{ cursor: "pointer" }} target="_blank">
+                <rect
+                  x="4"
+                  y="4"
+                  width="6"
+                  height="6"
+                  rx="1"
+                  stroke="white"
+                  stroke-width="2"
+                  stroke-linejoin="round"
+                />
+                <rect
+                  x="4"
+                  y="14"
+                  width="6"
+                  height="6"
+                  rx="1"
+                  stroke="white"
+                  stroke-width="2"
+                  stroke-linejoin="round"
+                />
+                <rect
+                  x="14"
+                  y="14"
+                  width="6"
+                  height="6"
+                  rx="1"
+                  stroke="white"
+                  stroke-width="2"
+                  stroke-linejoin="round"
+                />
+                <rect
+                  x="14"
+                  y="4"
+                  width="6"
+                  height="6"
+                  rx="1"
+                  stroke="white"
+                  stroke-width="2"
+                  stroke-linejoin="round"
+                />
+              </a>
+            </svg>
           </button>
         </div>
         <div className={home.txHistory}>
           <div className={home.historyHeader}>
             <span>Recent Activity</span>
-            <span className={home.seeAll}>
-              Sort by
-            </span>
+            <span className={home.seeAll}>Sort by</span>
           </div>
           <div className={home.transactions}>
             {transactionHistory.map((transaction, index) => (
@@ -197,7 +255,10 @@ const HomePage = (props) => {
                     )}
                   </div>
                 </div>
-                <hr style={{backgroundColor:"#bfff38", borderColor:"#bfff38"}} className={home.divider} />
+                <hr
+                  style={{ backgroundColor: "#bfff38", borderColor: "#bfff38" }}
+                  className={home.divider}
+                />
               </div>
             ))}
           </div>
