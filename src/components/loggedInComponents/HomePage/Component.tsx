@@ -3,6 +3,7 @@ import home from "../../../styles/Homepage.module.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 const HomePage = (props) => {
   const [balance, setBalance] = useState(0);
   let navigate = useNavigate();
