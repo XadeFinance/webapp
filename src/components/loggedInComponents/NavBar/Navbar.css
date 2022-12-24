@@ -3,20 +3,19 @@
   src: url("https://www.xade.finance/fonts/Lemonmilk.otf");
 }
 
-.announcement{
-	  position: fixed;
+.announcement {
+  /* position: fixed; */
   top: 0;
   left: 0;
-  height: 1.5px;
-  line-height: 40px;
+  /* height: 1.5px; */
+  /* line-height: 40px; */
   width: 100%;
-  background: #222222;
+  /* background: #222222; */
   text-align: center;
   color: #FFFFFF;
   font-family: sans-serif;
   font-weight: lighter;
   font-size: 1rem;
-
 }
 
  .announcement:hover{
@@ -58,14 +57,12 @@ border:none;
   initial-value: 0deg;
   inherits: false;
 }
-
 .navbar-container {
   display: flex;
-
-  /* justify-content: center; */
+  /* justify-content: spac; */
   align-items: center;
-  height: 80px;
-  max-width: 1500px;
+  /* height: 80px; */
+  /* max-width: 1500px; */
   width: 100vw;
 }
 
@@ -211,21 +208,20 @@ border:none;
   }
 
   .navbar-logo {
-    margin-top: 3vw;
-    /* margin-left: 37vw; */
+    /* margin-top: 3vw; */
+    margin-left: 37vw;
     text-align: center;
     font-family: LemonMilk;
-  }
-
-  .menu-icon {
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 25px;
-    transform: translate(-100%, 80%);
-    font-size: 1.8rem;
-    cursor: pointer;
-  }
+}
+.menu-icon {
+  display: block;
+  /* position: absolute; */
+  /* top: 0; */
+  right: 25px;
+  /* transform: translate(-100%, 80%); */
+  font-size: 1.8rem;
+  cursor: pointer;
+}
   .fas {
     background: none !important;
   }
