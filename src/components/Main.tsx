@@ -6,29 +6,12 @@ import { useWeb3Auth } from "../services/web3auth";
 import { FormEvent } from "react";
 import { WALLET_ADAPTERS } from "@web3auth/base";
 
-import { Layout } from "./Layout";
-import Settings from "./loggedInComponents/SettingsPage/Navigation";
-import FAQs from "./loggedInComponents/SettingsPage/FAQs";
-import Investments from "./loggedInComponents/Investments/index";
-import DW from "./loggedInComponents/SettingsPage/DW";
-import Login from "./unloggedInComponents/Login/Component";
+import CountDown from "./loggedInComponents/CountDown/Component";
 import Landing from "./unloggedInComponents/Landing/Component";
-import DepositWithdraw from "./loggedInComponents/DepositWithdraw/Component";
-import HomePage from "./loggedInComponents/HomePage/Component";
-import QrCodePage from "./loggedInComponents/QrCodePage/Component";
-import QRScanner from "./loggedInComponents/QRScanner/Component";
-import Send from "./loggedInComponents/SendPhnEmail/Component";
-import SendQR from "./loggedInComponents/SendQR/Component";
-import TxHistory from "./loggedInComponents/TxHistory/Component";
-import Savings from "./loggedInComponents/SavingsPage/Component";
+import Login from "./unloggedInComponents/Login/Component";
 
-import styles3 from "../styles/send.module.css";
 import styles from "../styles/Home.module.css";
-import tickStyles from "../styles/tickStyles.module.css";
-import tickStyles2 from "../styles/tickStyles2.module.css";
-import "../styles/qrscan.css";
-import "../styles/QrPage.css";
-import "../styles/HomePage.css";
+import "../styles/NewLogin.css"
 
 import countries from "./regCountries";
 import { Country, PhoneNumber } from "./regCountries";
@@ -459,144 +442,29 @@ const Main = () => {
   };
   const [username, setUsername] = useState("");
 
-  useEffect(() => {
-    const handleGetUser = async () => {
-      const user = await userData();
-      setUsername(user);
-    };
-    if (provider) {
-      handleGetUser();
-    }
-  }, [provider, username]);
-
-  const [img, setImg] = useState("");
-
-  useEffect(() => {
-    const handleGetImg = async () => {
-      const pic = await userPic();
-      setImg(pic);
-    };
-    if (provider) {
-      handleGetImg();
-    }
-  }, [provider, img]);
-
-  const [mainAccount, setMainAccount] = useState("");
-
-  useEffect(() => {
-    const handleGetAccount = async () => {
-      const account = await provider?.readAddress();
-      setMainAccount(account);
-    };
-    if (provider) {
-      handleGetAccount();
-    }
-  }, [provider, mainAccount]);
-
   const loggedInView =
     (getUserInfo(secret),
     (
       <>
         <div className="App">
           <BrowserRouter>
-            <Routes>
-              <Route
-                path="/investments/:addr"
-                element={
-                  <Layout>
-                    <Investments />
-                  </Layout>
-                }
-              />
-              <Route
-                path="/investments"
-                element={<Navigate to="/investments/1" />}
-              />
-              <Route
-                path="/investments/:addr"
-                element={
-                  <Layout>
-                    <Investments />
-                  </Layout>
-                }
-              />
-              <Route path="/scan" element={<QRScanner />} />
-              <Route
-                path="/faqs"
-                element={
-                  <Layout>
-                    <FAQs />
-                  </Layout>
-                }
-              />
-              <Route
-                path="/deposits"
-                element={
-                  <Layout>
-                    <DW />
-                  </Layout>
-                }
-              />
-              <Route path="/payments" element={<></>} />
-
-              <Route
-                path="/qr"
-                element={
-                  <QrCodePage account={mainAccount} username={username} />
-                }
-              />
-              <Route
-                path="/savings"
-                element={
-                  <Layout>
-                    <Savings />
-                  </Layout>
-                }
-              />
-              <Route
-                path="/institutional-ramps"
-                element={
-                  <Layout>
-                    <DepositWithdraw />
-                  </Layout>
-                }
-              />
-              <Route
-                path="/settings"
-                element={
-                  <Layout>
-                    <Settings />
-                  </Layout>
-                }
-              />
-              <Route path="/send" element={<Send />} />
-              <Route path="/sendQR/:user" element={<SendQR />} />
-              <Route
-                path="/history"
-                element={<TxHistory account={mainAccount} />}
-              />
+          <Routes>
               <Route
                 path="/"
                 element={
-                  <Layout>
-                    <HomePage account={mainAccount} />
-                  </Layout>
+                  <CountDown />
                 }
               />
               <Route
                 path="/register"
                 element={
-                  <Layout>
-                    <HomePage />
-                  </Layout>
+                  <CountDown />
                 }
               />
               <Route
                 path="/login"
                 element={
-                  <Layout>
-                    <HomePage />
-                  </Layout>
+                  <CountDown />
                 }
               />
             </Routes>

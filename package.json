@@ -31,6 +31,7 @@
     "mongoose": "^6.4.0",
     "net": "^1.0.2",
     "react": "^17.0.2",
+    "react-announcement-bar": "^0.0.1",
     "react-dom": "^17.0.2",
     "react-icons": "^4.4.0",
     "react-loader-spinner": "^6.0.0-0",
