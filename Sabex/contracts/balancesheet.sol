@@ -40,7 +40,7 @@ contract  balanceSheet  {
     //Function to calculate the Svaing Interest rate for the lender
     //VR=(1-u(t)).SX% (
     //S%=SX%-VR
-    function savingInterestModel () public returns(uint256 ){
+    function savingInterestModel () public view returns(uint256 ){
         uint256 utilisationRatioAmount=utilisationRatio();
         variableRate=((1*precision)-utilisationRatioAmount)*SX;
         savingRate=((SX*precision)-variableRate);
@@ -58,7 +58,7 @@ contract  balanceSheet  {
         return BY;
     }
 
-    function checkMaturity() public {
+    function checkMaturity()  public {
         maturity= mlc.tenMinutesHavePassed();
     }
 
