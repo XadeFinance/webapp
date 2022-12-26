@@ -24,8 +24,9 @@
 border:none
 } 
 
-.announcement b:hover{
-color:white;
+.announcement button:hover{
+color:#000;
+background:#000;
 border:none;
 }
 

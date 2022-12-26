@@ -136,7 +136,8 @@ text-align:center;
     background-color:#bfff38 !important;
 width:22rem;
 margin: auto;
-    margin-top:0.8rem;
+margin-bottom:0.5rem; 
+margin-top:0.8rem;
     border-color:#bfff38 !important;
 }
 

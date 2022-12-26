@@ -1,11 +1,11 @@
 @font-face {
     font-family: savingstext;
-    src: url('./font/NeueMontreal-Medium.otf');
+    src: url('./../font/NeueMontreal-Medium.otf');
 }
 
 @font-face {
     font-family: savingsother;
-    src: url('./font/NeueMontreal-Bold.otf');
+    src: url('./../font/NeueMontreal-Bold.otf');
 }
 
 .heading {
@@ -33,12 +33,15 @@
 }
 
 .boxA {
+    justify-content: space-between;
     position: relative;
     height: 15rem;
     width: 99%;
     background-color: #5566FF;
     border-radius: 1rem;
     padding: 1rem;
+    display: flex;
+    flex-direction: column;;
 }
 
 .boxB {
@@ -76,10 +79,11 @@ border: 1px solid #000000;
 }
 
 .rightBottom {
-    position: absolute;
+    /* position: absolute; */
     bottom: 1rem;
     right: 1.5rem;
     padding: 1rem;
+    margin-left: 0.5rem;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
     font-size: 0.7em;

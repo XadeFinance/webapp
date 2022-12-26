@@ -207,7 +207,7 @@ const HomePage = (props) => {
             <span className={home.seeAll}>Sort by</span>
           </div>
           <div className={home.transactions}>
-            {transactionHistory?((transactionHistory).map((transaction, index) => (
+             {transactionHistory?((transactionHistory).map((transaction, index) => (
               <div key={index} className={home.transactionBox}>
                 <div className={home.transactionDetails}>
                   <svg
