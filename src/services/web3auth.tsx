@@ -28,6 +28,9 @@ export interface IWeb3AuthContext {
   loginWithWalletConnect: ()=> Promise<void>;
     signAndSendTransaction: (toAddress: string, amount: string) => Promise<any>;
     readAddress: () => Promise<any>;
+    getSavingInterestRate: () => Promise<any>;
+    provideLiquidityToContract: (fromAddress: string, amount: string) => Promise<any>;
+
 userData: () => Promise<any>;
 userPic: () => Promise<any>;
 userEmail: () => Promise<any>;
@@ -41,12 +44,14 @@ export const Web3AuthContext = createContext<IWeb3AuthContext>({
   loginWithWalletConnect: async ()=> {},
   login: async (adapter: WALLET_ADAPTER_TYPE, provider?: LOGIN_PROVIDER_TYPE, login_hint?: string) => {},
   logout: async () => {},
+  provideLiquidityToContract: async (fromAddress: string, amount: string) => {},
   getUserInfo: async () => {},
   signMessage: async () => {},
   getAccounts: async () => {},
   getBalance: async () => {},
     signAndSendTransaction: async () => {},
     readAddress: async () => {},
+    getSavingInterestRate: async () => {},
 userData: async() => {},
 userPic: async() => {},
 userEmail: async() => {},
@@ -187,6 +192,8 @@ const signAndSendTransaction = async (toAddress: string, amount: string) => {
     provider.signAndSendTransaction(toAddress, amount);
   }
 
+
+  
 const userData = async() => {
     if (!web3Auth) {
       console.log("web3auth not initialized yet");

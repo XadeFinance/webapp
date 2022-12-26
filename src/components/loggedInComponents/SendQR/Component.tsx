@@ -40,6 +40,7 @@ const addr = userInfo.split("@")[1]
       });
       return;
     }
+    document.getElementById("sendBtnQR").style.display = "none";
     alert(`Address: ${addr} | Amt: ${amount}`);
     const account = await provider?.signAndSendTransaction(
       addr,
@@ -177,7 +178,7 @@ const addr = userInfo.split("@")[1]
             <br />
 
             <div className={styles3.submitSection}>
-              <button type="submit" className={styles3.submitButton2}>
+              <button id="sendBtnQR" type="submit" className={styles3.submitButton2}>
                 Confirm transaction
               </button>
             </div>

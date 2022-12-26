@@ -11,6 +11,7 @@ import Withdraw from './Modals/Withdraw'
 import { ImCross } from 'react-icons/im'
 import Web3 from "web3"
 import { useWeb3Auth } from "../../../services/web3auth"
+import { useEffect, useState } from "react";
 
 const stylex = {
     position: 'absolute' as 'absolute',
@@ -27,9 +28,9 @@ const stylex = {
   const SavingsPage = () => {
     const [open, setOpen] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
-    const { provider } = useWeb3Auth();
-    const web3 = new Web3(provider as any);
-    const balanceSheetAddr = web3.utils.toChecksumAddress("0x667719F1D1717f1233D5D68aB77FEF947Da4E733")
+    const { getSavingInterestRate, provider } = useWeb3Auth();
+    // const web3 = new Web3(provider as any);
+    // const balanceSheetAddr = web3.utils.toChecksumAddress("0x667719F1D1717f1233D5D68aB77FEF947Da4E733")
     const handleOpen = () => setOpen(true);
     const handleOpen2 = () => setOpen2(true);
 
@@ -231,12 +232,23 @@ const stylex = {
         "linkReferences": {},
         "deployedLinkReferences": {}
       }
-    
+    console.log(provider as any);
+
 //const balanceSheet = new web3.eth.Contract(balanceSheetABI.abi, balanceSheetAddr);
 //const savingInterestRate = balanceSheet.methods.savingInterestModel().call().then(function(result){
   //  console.log(result)
 //});
 
+const [savingInterestRate, setSavingInterestRate] = useState(0);
+useEffect(() => {
+  const handleGetRate = async () => {
+    const rate = await provider?.getSavingInterestRate();
+    setSavingInterestRate(rate);
+  };
+  if (provider) {
+    handleGetRate();
+  }
+}, [provider, savingInterestRate]);
     const date = month + " " + day + ", " + year;
     
     return (

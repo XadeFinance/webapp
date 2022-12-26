@@ -41,6 +41,8 @@ const Send = () => {
       });
       return;
     }
+    document.getElementById("sendCUSDBtn").style.display = "none";
+
     alert(`Address: ${address} | Amt: ${amount}`);
     const account = await provider?.signAndSendTransaction(
       address,
@@ -389,7 +391,7 @@ const Send = () => {
             <br />
 
             <div className={styles3.submitSection}>
-              <button type="submit" className={styles3.submitButton2}>
+              <button id="sendCUSDBtn" type="submit" className={styles3.submitButton2}>
                 Confirm transaction
               </button>
             </div>

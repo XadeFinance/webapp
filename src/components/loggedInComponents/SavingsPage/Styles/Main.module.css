@@ -11,8 +11,8 @@
 .heading {
     font-size: 3rem;
     padding: 2rem;
-    padding-left: 0;
     font-family: savingsother;
+margin-left:2.5rem;
 }
 
 .boxWrap {
@@ -122,6 +122,12 @@ border: 1px solid #000000;
 @media screen and (max-width: 800px) {
     .firstWrap, .boxC {
         width: 100%;
+    }
+
+    .heading{
+        font-size:2.5rem;
+        margin-top:1.5rem;
+        margin-left:3rem;
     }
     
     .boxC {

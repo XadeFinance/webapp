@@ -1,15 +1,30 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styles from './../Styles/Modal.module.css'
 import { style } from '@mui/system';
 import styles3 from './../Styles/send.module.css'
 import tickStyles from './../Styles/tickStyles.module.css';
 import tickStyles2 from './../Styles/tickStyles2.module.css';
+import { useWeb3Auth } from '../../../../services/web3auth';
+import { useEffect, useState } from "react";
 
 export default function Deposit()
 {
     const [state, setState] = useState(0);
     const [amount, setAmount] = useState(0);
     const [receipt, setReceipt] = useState<any>({'error': false})
+    const { provider } = useWeb3Auth();
+    const [mainAccount, setMainAccount] = useState("");
+
+    useEffect(() => {
+      const handleGetAccount = async () => {
+        const account = await provider?.readAddress();
+        setMainAccount(account);
+      };
+      if (provider) {
+        handleGetAccount();
+      }
+    }, [provider, mainAccount]);
+  
     const handleChange = (e:any) => {
             if(amount < 0) return false;
             
@@ -18,20 +33,23 @@ export default function Deposit()
             // backend code (if needed) goes here -> instantaneous amount change
             
         }
-
-    const handleSubmit = (e:any) => {
+        const [verifySubmit, setSubmit] = useState(false)
+        const handleSubmit = async(e:any) => {
             if(amount < 0) return false;
-            
+            document.getElementById("depositButton").style.display = "none";
             // backend code goes here
 
             // Check if there is an error 
-            let error = true;
-            
+           const depositFunds = await provider?.provideLiquidityToContract(mainAccount, amount);
 
-            if(!(error)) {
+
+            setReceipt(depositFunds)
+
+            if(depositFunds) {
             // 1. If success. save the receipt in variable receipt ( JSON format )
             // Make sure all values are cordially updated
             // For Example: setReceipt({'error': false, 'a': 'b', 'c': 'd'})
+
             setState(1)
             return
             }
@@ -60,7 +78,7 @@ export default function Deposit()
             <br />
             <section className = {styles.wrapInput}>
                 <p>$</p>
-                <input autoFocus type = "number" min = {0} step = "any" name = "iamount" className = {styles.inputEl}/>
+                <input onChange={(e) => setAmount(e.target.value)} autoFocus type = "number" min = {0} step = "any" name = "iamount" className = {styles.inputEl}/>
             </section>
             <br />
 {/*             
@@ -71,7 +89,7 @@ export default function Deposit()
         </div>
     </div> */}
     <br />
-            <button type = "submit" className = {styles.amountSubmit}>
+            <button id="depositButton" type = "submit" className = {styles.amountSubmit} onClick={handleSubmit}>
                 Continue
             </button>
 
@@ -89,23 +107,21 @@ export default function Deposit()
 
                
         <div className = {styles3.contentWrapper}>
-<div className={tickStyles.and}>Transaction successful! </div>
+        <a href={`https://explorer.celo.org/alfajores/tx/${receipt.transactionHash}`} style={{color:"white"}} className={tickStyles.and}> Transaction successful! </a>
       </div>
 <br />
 <br />
 
 
-
-     {/* <br /> */}
+{/* 
  
-     <div className = {styles3.contentWrapper}>
-        <div className = {styles3.information}>
-          <p className = {styles3.informationInformation}>Recipient(Name)</p>
-          <p className = {styles3.informationInformation}>{'get'}</p>
+     <div style={{textAlign:"center"}} className = {styles3.contentWrapper}>
+        <div style={{textAlign:"center"}} className = {styles3.information}>
+          <p style={{textAlign:"center"}} className = {styles3.informationInformation}>Transaction Hash</a></p>
+ <p className = {styles3.informationInformation}>{receipt.transactionHash}</p> 
         </div>
     </div>
 
-     {/* <br /> */}
      <div className = {styles3.contentWrapper}>
         <div className = {styles3.information}>
           <p className = {styles3.informationInformation}>Recipient(Name)</p>
@@ -114,7 +130,6 @@ export default function Deposit()
     </div>
 
   
-     {/* <br /> */}
 
      
      <div className = {styles3.contentWrapper}>
@@ -122,7 +137,7 @@ export default function Deposit()
           <p className = {styles3.informationInformation}>Recipient(Name)</p>
           <p className = {styles3.informationInformation}>{'get'}</p>
         </div>
-    </div>
+    </div> */}
 
  
      {/* <br /> */}
