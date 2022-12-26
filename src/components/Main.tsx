@@ -21,7 +21,7 @@ import Send from "./loggedInComponents/SendPhnEmail/Component";
 import SendQR from "./loggedInComponents/SendQR/Component";
 // import TxHistory from "./loggedInComponents/TxHistory/Component";
 import Savings from "./loggedInComponents/SavingsPage/Component";
-
+import { useNavigate } from "react-router-dom";
 import styles3 from "../styles/send.module.css";
 import styles from "../styles/Home.module.css";
 import tickStyles from "../styles/tickStyles.module.css";
@@ -141,6 +141,7 @@ function storenum(c, n) {
 }
 
 const Main = () => {
+  const navigate = useNavigate();
   const { provider, getUserInfo, userData, isLoading, userPic } = useWeb3Auth();
   const Register = () => {
     const [state, setState] = React.useState(2);
@@ -587,7 +588,7 @@ const Main = () => {
     (
       <>
         <div className="App">
-          <BrowserRouter>
+          {/* <BrowserRouter> */}
             <Routes>
               <Route
                 path="/investments/:addr"
@@ -689,7 +690,7 @@ const Main = () => {
                 }
               />
             </Routes>
-          </BrowserRouter>
+          {/* </BrowserRouter> */}
         </div>
       </>
     ));
@@ -697,13 +698,13 @@ const Main = () => {
   const unloggedInView = (
     <div>
       <h1 className={styles.title}>XADE</h1>
-      <BrowserRouter>
+      {/* <BrowserRouter> */}
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
         </Routes>
-      </BrowserRouter>
+      {/* </BrowserRouter> */}
     </div>
   );
   return isLoading ? (

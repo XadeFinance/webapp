@@ -10,7 +10,7 @@
   /* height: 1.5px; */
   /* line-height: 40px; */
   width: 100%;
-  /* background: #222222; */
+  background: #222222;
   text-align: center;
   color: #FFFFFF;
   font-family: sans-serif;
@@ -31,6 +31,7 @@ border:none;
 
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@200&display=swap");
 .navbar {
+  left: 0;
   --angle: 0deg;
   background-color: #000;
   height: 80px;
@@ -38,7 +39,7 @@ border:none;
   justify-content: center;
   align-items: center;
   font-size: 1.2rem;
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 999;
   /* border-bottom: 5px solid red; */

@@ -5,8 +5,9 @@ import { useNavigate } from "react-router-dom";
 
 
 const HomePage = (props) => {
+  const navigate = useNavigate();
   const [balance, setBalance] = useState(0);
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
   var xhr2 = new XMLHttpRequest();
   var donezo = false;
   const mainAccount = props.account;
@@ -106,7 +107,7 @@ const HomePage = (props) => {
           <div className={home.yourCurrent}>Your current checking balance</div>
         </div>
         <div className={home.utilityButtons}>
-          <button className={home.paymentsButton}>
+          <button onClick = {() => navigate('/send')}className={home.paymentsButton}>
             <svg
               stroke="currentColor"
               fill="#ffdf38"
@@ -119,11 +120,11 @@ const HomePage = (props) => {
               <path d="M0 8a8 8 0 1 0 16 0A8 8 0 0 0 0 8zm5.904 2.803a.5.5 0 1 1-.707-.707L9.293 6H6.525a.5.5 0 1 1 0-1H10.5a.5.5 0 0 1 .5.5v3.975a.5.5 0 0 1-1 0V6.707l-4.096 4.096z"></path>
             </svg>
             &nbsp;&nbsp;
-            <a href="/send" className={home.paymentText}>
+            <p className={home.paymentText}>
               Send
-            </a>
+            </p>
           </button>
-          <button className={home.paymentsButton}>
+          <button onClick = {() => navigate('/institutional-ramps')} className={home.paymentsButton}>
             <svg
               stroke="currentColor"
               fill="#bfff38"
@@ -136,9 +137,9 @@ const HomePage = (props) => {
               <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-5.904-2.803a.5.5 0 1 1 .707.707L6.707 10h2.768a.5.5 0 0 1 0 1H5.5a.5.5 0 0 1-.5-.5V6.525a.5.5 0 0 1 1 0v2.768l4.096-4.096z"></path>
             </svg>{" "}
             &nbsp;&nbsp;
-            <a href="/institutional-ramps" className={home.paymentText}>
+            <p  className={home.paymentText}>
               Deposit
-            </a>
+            </p>
           </button>
           <button
             style={{ textAlign: "center" }}

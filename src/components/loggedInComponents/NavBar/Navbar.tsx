@@ -32,12 +32,12 @@ const Navbar = (props: Props) => {
   window.addEventListener("resize", showButton);
   return (
     <>
-    <div className="goBack2" style = {{position: 'absolute',left: '1rem',marginTop: '3rem'}}>
+    {/* <div className="goBack2" style = {{position: 'absolute',left: '1rem',marginTop: '3rem'}}>
             <ImCross />
-          </div>
+          </div> */}
       <nav className="navbar">
  <div className="vela announcement" id="announce">
-<b><button onClick={hideAnnouncement} style={{fontSize:"0.8rem",backgroundColor:"black",color:"white",border:"none"}}><ImCross id="hideAnnounce" /></button> RemmiteX V2 and DeriveX V1 will go live on Testnet on 5th January 2023 </b>
+<b><button onClick={hideAnnouncement} style={{fontSize:"0.8rem",backgroundColor:"inherit",color:"white",border:"none"}}><ImCross id="hideAnnounce" /></button> RemmiteX V2 and DeriveX V1 will go live on Testnet on 5th January 2023 </b>
 </div>
          
 <div className="navbar-container">
