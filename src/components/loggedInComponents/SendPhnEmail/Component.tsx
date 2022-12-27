@@ -48,22 +48,17 @@ const Send = () => {
       address,
       amount.toString()
     );
-    console.log(account);
-    if (account == false) {
-      setReceipt({ message: "Invalid parameters, please try again." });
-      setCurrent(3);
-    } else if (account.status == false) {
+    if (account.status == "0x1" || account.status == 1) {
       setReceipt(account);
-      setCurrent(3);
-    } else if (account.status == true) {
       console.log("yeahh");
       account.effectiveGasPrice = Web3.utils.fromWei(
         account.effectiveGasPrice?.toString() || "",
         "ether"
       );
-      setReceipt(account);
       setCurrent(2);
-    } else {
+    } 
+ else {
+  setCurrent(3);
       console.log("fuck");
     }
   };
@@ -470,9 +465,10 @@ const Send = () => {
           <div className={styles3.contentWrapper}>
             <div className={styles3.information}>
               <p className={styles3.informationInformation}>
-                Transaction Index
+                Transaction Hash
               </p>
               <a
+              style={{color:"white"}}
                 target="_blank"
                 className={styles3.linkage}
                 href={`https://alfajores-blockscout.celo-testnet.org/tx/${receipt.transactionHash}/token-transfers`}

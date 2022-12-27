@@ -46,21 +46,17 @@ const addr = userInfo.split("@")[1]
       addr,
       amount.toString()
     );
-    if (account == false) {
-      setReceipt({ message: "Invalid parameters, please try again." });
-      setCurrent(3);
-    } else if (account.status == false) {
+    if (account.status == "0x1" || account.status == 1) {
       setReceipt(account);
-      setCurrent(3);
-    } else if (account.status == true) {
       console.log("yeahh");
       account.effectiveGasPrice = Web3.utils.fromWei(
         account.effectiveGasPrice?.toString() || "",
         "ether"
       );
-      setReceipt(account);
       setCurrent(2);
-    } else {
+    } 
+ else {
+  setCurrent(3);
       console.log("fuck");
     }
   };

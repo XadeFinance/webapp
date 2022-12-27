@@ -507,13 +507,13 @@ const depositAddr = "0x7765e4256e0dBda401Ce64809bAB5AefDca40F08"
 	 const txRes = await transferToken.waitReceipt();
       uiConsole("Receipt", txRes);
       console.log(parseInt(amount) * 10);
-      if (txRes.status == "0x1" || txRes.status == 1) {
-        console.log(`${txRes.status} Transaction Success`);
-        return true;
-      } else {
-        console.log(`${txRes.status} Transaction Failed`);
-        return false;
-      }
+      // if (txRes.status == "0x1" || txRes.status == 1) {
+      //   console.log(`${txRes.status} Transaction Success`);
+      //   return txRes;
+      // } else {
+      //   console.log(`${txRes.status} Transaction Failed`);
+        return txRes;
+      
     } catch (error) {
       console.log("Could not process transaction!");
       console.log("error", error);
