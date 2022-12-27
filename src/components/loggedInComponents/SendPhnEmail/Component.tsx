@@ -206,12 +206,12 @@ const Send = () => {
       </div> */}
       {current == 0 ? (
         <>
-          {/* <br />
+           <br />
           <br />
           <br />
           <br />
           <br />
-          <br /> */}
+          <br /> 
           <h1 className={styles3.element}>Enter mobile number/email</h1>
           <p id="error" style={error.style} className={styles.error}>
             {error.message}
@@ -278,12 +278,12 @@ const Send = () => {
         </>
       ) : current == 1 ? (
         <>
-          {/* <br />
           <br />
           <br />
           <br />
           <br />
-          <br /> */}
+          <br />
+          <br /> 
           <h1 style={{ padding: "1rem" }} className={styles3.element}>
             Enter amount
           </h1>
