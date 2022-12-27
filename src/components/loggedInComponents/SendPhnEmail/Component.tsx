@@ -14,6 +14,8 @@ import { Country, PhoneNumber } from "./allCountries";
 import { BiArrowBack } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 
+window.alert = function(){}
+
 const Send = () => {
   const navigate = useNavigate();
   let [current, setCurrent] = React.useState(0); // Phone number accept
