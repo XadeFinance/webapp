@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from './Trade.module.css'
 import './leverage.css'
 import Popup from 'reactjs-popup';
@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom'
 import { openPosition } from '../../../functions'
 import { Slide } from "@mui/material";
 import { BiArrowBack } from 'react-icons/bi'
+import Web3 from "web3"
 // import Button from '@mui/material/Button';
 
 const style = {
@@ -44,41 +45,112 @@ export default function Trade() {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    var xhr2 = new XMLHttpRequest();
-    xhr2.onreadystatechange=function(){
-    if(xhr2.readyState==XMLHttpRequest.DONE){
-    setExchange(xhr2.responseText)
-    }
-    }
+    // var xhr2 = new XMLHttpRequest();
+    // xhr2.onreadystatechange=function(){
+    // if(xhr2.readyState==XMLHttpRequest.DONE){
+    // setExchange(xhr2.responseText)
+    // }
+    // }
 
     function valuetext(value: number) {
         setLeverage(value);
         return `${value}°C`;
     }
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-          var xhr3 = new XMLHttpRequest();
-          xhr3.onreadystatechange=function(){
-            if(xhr3.readyState==XMLHttpRequest.DONE){
-              let yes;
-              try {
-                yes = parseFloat(xhr3.responseText);
-            } catch {
-                yes = false;
-            }
-              if(yes != false) {
-                setExchange(xhr3.responseText)
-              }
-            }
-              }
-          xhr3.open('GET', `https://price.api.xade.finance/${options[addr-1]}`)
-          xhr3.send()
-        }, 20000);
-        return () => clearInterval(interval);
-      }, []);
-    xhr2.open('GET', `https://price.api.xade.finance/${options[addr-1]}`)
-    xhr2.send()
+    const web3 = new Web3("https://rpc.ankr.com/eth")
+    const aggregatorV3InterfaceABI = [
+      {
+        inputs: [],
+        name: "decimals",
+        outputs: [{ internalType: "uint8", name: "", type: "uint8" }],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "description",
+        outputs: [{ internalType: "string", name: "", type: "string" }],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [{ internalType: "uint80", name: "_roundId", type: "uint80" }],
+        name: "getRoundData",
+        outputs: [
+          { internalType: "uint80", name: "roundId", type: "uint80" },
+          { internalType: "int256", name: "answer", type: "int256" },
+          { internalType: "uint256", name: "startedAt", type: "uint256" },
+          { internalType: "uint256", name: "updatedAt", type: "uint256" },
+          { internalType: "uint80", name: "answeredInRound", type: "uint80" },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "latestRoundData",
+        outputs: [
+          { internalType: "uint80", name: "roundId", type: "uint80" },
+          { internalType: "int256", name: "answer", type: "int256" },
+          { internalType: "uint256", name: "startedAt", type: "uint256" },
+          { internalType: "uint256", name: "updatedAt", type: "uint256" },
+          { internalType: "uint80", name: "answeredInRound", type: "uint80" },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "version",
+        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+        stateMutability: "view",
+        type: "function",
+      },
+    ]
+ 
+ var options = ["0xF4030086522a5bEEa4988F8cA5B36dbC97BeE88c","0x1ceDaaB50936881B3e449e47e40A2cDAF5576A4a","0x214eD9Da11D2fbe465a6fc601a91E62EbEc1a0D6","0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419","0xb49f677943BC038e9857d61E7d053CaA2C1734C1"] 
+  // let contra
+  const priceFeed = new web3.eth.Contract(aggregatorV3InterfaceABI, options[addr-1])
+
+  const [price,setPrice] = useState(0)
+  const roundData = priceFeed.methods
+  .latestRoundData()
+  .call()
+  .then((roundData) => {
+    // Do something with roundData
+    var price2;
+
+    price2 = parseFloat(roundData[1])/10**8
+
+    price2 = (price2.toFixed(2)).toString()
+
+    setExchange(price2.toString())
+
+  })
+
+    // useEffect(() => {
+    //     const interval = setInterval(() => {
+    //       var xhr3 = new XMLHttpRequest();
+    //       xhr3.onreadystatechange=function(){
+    //         if(xhr3.readyState==XMLHttpRequest.DONE){
+    //           let yes;
+    //           try {
+    //             yes = parseFloat(xhr3.responseText);
+    //         } catch {
+    //             yes = false;
+    //         }
+    //           if(yes != false) {
+    //             setExchange(xhr3.responseText)
+    //           }
+    //         }
+    //           }
+    //       xhr3.open('GET', `https://price.api.xade.finance/${options[addr-1]}`)
+    //       xhr3.send()
+    //     }, 20000);
+    //     return () => clearInterval(interval);
+    //   }, []);
+    // xhr2.open('GET', `https://price.api.xade.finance/${options[addr-1]}`)
+    // xhr2.send()
 
     function setPosition() {
         // location.reload()

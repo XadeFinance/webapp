@@ -3,7 +3,7 @@ let contracts = [
         id: '1',
         symbol: 'BTC',
         ticker: 'bitcoin.png',
-        chart: 'BTC1!', 
+        chart: 'BITSTAMP:BTCUSD', 
         address: '0x'
     },
         {
@@ -15,23 +15,23 @@ let contracts = [
     },
         {
         id: '3',
-        symbol: 'Gold',
-        ticker: 'gold.jpg',
-        chart: 'GOLD',
+        symbol: 'XAU',
+        ticker: 'gold.png',
+        chart: 'FOREXCOM:XAUUSD',
         address: '0x'
     },
         {
         id: '4',
         symbol: 'ETH',
         ticker: 'ethereum.png',
-        chart: 'ETH1!',
+        chart: 'BITSTAMP:ETHUSD',
         address: '0x'
     },
         {
         id: '5',
         symbol: 'EURO',
         ticker: 'Euro.png',
-        chart: 'Euro',
+        chart: 'HUOBI:EUROCUSDC',
         address: '0x'
     }
 ]
