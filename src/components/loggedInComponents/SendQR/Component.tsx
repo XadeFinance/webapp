@@ -16,9 +16,9 @@ const SendQR = (props) => {
   let [current, setCurrent] = React.useState(0); // Phone number accept
   const userInfo = params.user;
 
-const userQR = userInfo.split("@")[0]
+const userQR = userInfo.split("-xade-")[0]
 
-const addr = userInfo.split("@")[1]
+const addr = userInfo.split("-xade-")[1]
 
   let [receipt, setReceipt] = React.useState<any>(null);
   let [amount, setAmount] = React.useState(0);
@@ -68,7 +68,7 @@ const addr = userInfo.split("@")[1]
           <br />
           <br />
           <br />
-          <h1 className={styles3.element}>Enter amount</h1>
+          <h1 className={styles3.element} style={{fontSize:"2rem"}}>Enter amount</h1>
           <p id="error" style={error.style} className={styles.error}>
             {error.message}
           </p>
@@ -112,10 +112,6 @@ const addr = userInfo.split("@")[1]
             <br />
             {/* <h3 className={styles3.element2}>Transaction Details</h3> */}
             <br />
-            <br />
-            <br />
-            <br />
-
             <div className={styles3.contentWrapper}>
               <div className={styles3.information}>
                 <p className={styles3.informationInformation}>
@@ -169,12 +165,12 @@ const addr = userInfo.split("@")[1]
               </div>
             </div>
 
+            {/* <br />
             <br />
-            <br />
-            <br />
+            <br /> */}
 
             <div className={styles3.submitSection}>
-              <button id="sendBtnQR" type="submit" className={styles3.submitButton2}>
+              <button id="sendBtnQR" type="submit" style={{width:"100%"}} className={styles3.submitButton2}>
                 Confirm transaction
               </button>
             </div>

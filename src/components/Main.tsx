@@ -17,7 +17,7 @@ import DepositWithdraw from "./loggedInComponents/DepositWithdraw/Component";
 import HomePage from "./loggedInComponents/HomePage/Component";
 import QrCodePage from "./loggedInComponents/QrCodePage/Component";
 // import Test from "./loggedInComponents/QRScanner/Component";
-import Send from "./loggedInComponents/SendPhnEmail/Component";
+// import Send from "./loggedInComponents/SendPhnEmail/Component";
 import SendQR from "./loggedInComponents/SendQR/Component";
 // import TxHistory from "./loggedInComponents/TxHistory/Component";
 import Savings from "./loggedInComponents/SavingsPage/Component";
@@ -40,7 +40,7 @@ interface MyObjLayout {
   result: string;
   camera: string;
 }
-window.alert = function () {};
+// window.alert = function () {};
 class Test extends React.Component<any, MyObjLayout> {
   constructor(props:any){
     super(props)
@@ -583,6 +583,18 @@ const Main = () => {
     }
   }, [provider, mainAccount]);
 
+  const [balance, setBalance] = useState("");
+
+  useEffect(() => {
+    const handleGetBalance = async () => {
+      const bal = await provider?.getBalance();
+      setBalance(bal);
+    };
+    if (provider) {
+      handleGetBalance();
+    }
+  }, [provider, balance]);
+
   const loggedInView =
     (getUserInfo(secret),
     (
@@ -639,7 +651,7 @@ const Main = () => {
                 path="/savings"
                 element={
                   <Layout>
-                    <Savings account={mainAccount} />
+                    <Savings />
                   </Layout>
                 }
               />
@@ -659,7 +671,7 @@ const Main = () => {
                   </Layout>
                 }
               />
-              <Route path="/send" element={<Send />} />
+              {/* <Route path="/send" element={<Send />} /> */}
               <Route path="/sendQR/:user" element={<SendQR />} />
               {/*}    <Route
                 path="/history"
@@ -669,7 +681,7 @@ const Main = () => {
                 path="/"
                 element={
                   <Layout>
-                    <HomePage account={mainAccount} />
+                    <HomePage account={mainAccount} balance={balance} />
                   </Layout>
                 }
               />
@@ -677,7 +689,7 @@ const Main = () => {
                 path="/register"
                 element={
                   <Layout>
-                    <HomePage />
+                    <HomePage account={mainAccount} balance={balance} />
                   </Layout>
                 }
               />
@@ -685,7 +697,7 @@ const Main = () => {
                 path="/login"
                 element={
                   <Layout>
-                    <HomePage />
+                    <HomePage account={mainAccount} balance={balance}/>
                   </Layout>
                 }
               />

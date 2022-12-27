@@ -106,8 +106,8 @@ html {
     src: url("https://www.xade.finance/fonts/static/Inter-Regular.ttf");
   }
   @font-face {
-    font-family: Montreal;
-    src: url("https://www.xade.finance/fonts/Neue-montreal-free-demo_pangram-pangram_030418/NeueMontreal-Medium.otf");
+    font-family: "Montreal";
+    src: url("https:///app.xade.finance/fonts/NeueMontreal.otf");
   }
   @font-face {
     font-family: Vela;
@@ -10883,13 +10883,9 @@ html {
 
   @font-face {
     font-family: "Vela";
-    src: url("https://www.xade.finance/Styles/Fonts/VelaSans/Static/OTF/VelaSans-Light.otf");
+    src: url("https://app.xade.finance/fonts/VelaSans.otf");
   }
-  
-  @font-face {
-    font-family: "NeueMontreal";
-    src: url("https:///app.xade.finance/fonts/NeueMontreal.otf");
-  }
+
   
   @font-face {
     font-family: "VelaSansB";

@@ -191,8 +191,8 @@ const Send = () => {
   }
 
   return (
-    <div style={{ margin: "5px" }}>
-      <div
+    <div style={{ margin: "5px"}}>
+      {/* <div
         onClick={() => {
           navigate("/");
         }}
@@ -201,15 +201,15 @@ const Send = () => {
           <br />
           <BiArrowBack size={32} />
         </div>
-      </div>
+      </div> */}
       {current == 0 ? (
         <>
+          {/* <br />
           <br />
           <br />
           <br />
           <br />
-          <br />
-          <br />
+          <br /> */}
           <h1 className={styles3.element}>Enter mobile number/email</h1>
           <p id="error" style={error.style} className={styles.error}>
             {error.message}
@@ -263,9 +263,9 @@ const Send = () => {
                   </div>
                 </section>
               </div>
+              {/* <br />
               <br />
-              <br />
-              <br />
+              <br /> */}
               <div className={styles3.submitSection}>
                 <button type="submit" className={styles3.submitButton}>
                   Proceed
@@ -276,12 +276,12 @@ const Send = () => {
         </>
       ) : current == 1 ? (
         <>
+          {/* <br />
           <br />
           <br />
           <br />
           <br />
-          <br />
-          <br />
+          <br /> */}
           <h1 style={{ padding: "1rem" }} className={styles3.element}>
             Enter amount
           </h1>
@@ -300,7 +300,7 @@ const Send = () => {
               className={styles.phoneNumber}
               style={{ backgroundColor: "#000" }}
             >
-              <div className={styles.flexContainerCountry}>
+              <div style={{"marginTop":"-2rem"}} className={styles.flexContainerCountry}>
                 <section className={styles.callingCodeTitle}>
                   <div className={styles.inputForAmt}>
                     <a
@@ -339,7 +339,7 @@ const Send = () => {
             <br />
             <br />
             {/* <h3 className={styles3.element2}>Transaction Details</h3> */}
-
+<div className={styles3.transactionDetails}>
             <div className={styles3.contentWrapper}>
               <div className={styles3.information}>
                 <p className={styles3.informationInformation}>
@@ -380,13 +380,12 @@ const Send = () => {
                 </p>
               </div>
             </div>
+            </div>
 
-            <br />
-            <br />
-            <br />
+  
 
             <div className={styles3.submitSection}>
-              <button id="sendCUSDBtn" type="submit" className={styles3.submitButton2}>
+              <button id="sendCUSDBtn" type="submit" className={styles3.submitButton}>
                 Confirm transaction
               </button>
             </div>
@@ -505,7 +504,7 @@ const Send = () => {
             </svg>
           </div>
 
-          <div className={styles3.contentWrapper}>
+          <div className={styles3.contentWrapper} >
             <div className={tickStyles2.and}>Transaction unsuccessful! </div>
           </div>
           <br />

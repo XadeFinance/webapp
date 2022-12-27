@@ -1,16 +1,16 @@
 import OnramperWidget from "@onramper/widget";
 import React from "react";
-import styles3 from '../../../styles/send.module.css'
-import styles from "../../../styles/Home.module.css";
-import tickStyles from '../../../styles/tickStyles.module.css';
-import tickStyles2 from "../../../styles/tickStyles2.module.css";
+// import styles3 from '../../../styles/send.module.css'
+// import styles from "../../../styles/Home.module.css";
+// import tickStyles from '../../../styles/tickStyles.module.css';
+// import tickStyles2 from "../../../styles/tickStyles2.module.css";
 import "../../../styles/qrscan.css"
 import "../../../styles/QrPage.css"
 import "../../../styles/HomePage.css"
 
 const DepositWithdraw = () => {
       return (
-        <div className="container">
+        <div className="container" >
           <div
             style={{
               width: "400px",

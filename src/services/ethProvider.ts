@@ -46,8 +46,10 @@ const ethProvider = (
   const getBalance = async () => {
     try {
       const web3 = new Web3(provider as any);
-      const accounts = await web3.eth.getAccounts();
-      const balance = await web3.eth.getBalance(accounts[0]);
+      const contractAddress = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1";
+      const contract = new web3.eth.Contract(Token.abi, contractAddress);
+      let accounts = await web3.eth.getAccounts();
+      const balance = await contract.methods.balanceOf(accounts[0]).call();
       return balance;
     } catch (error) {
       console.error("Error", error);

@@ -20,7 +20,7 @@ const QrCodePage = (props) => {
   function displayAddr() {
     alert(mainAccount);
   }
-  const QRCodeValue = `${username}@${mainAccount}`;
+  const QRCodeValue = `${username}-xade-${mainAccount}`;
   let navigate = useNavigate();
 
   function copyAddr() {
@@ -69,11 +69,11 @@ const QrCodePage = (props) => {
             <br />
             <br />
             <div>
-              <h2>{username}</h2>
+              <h2 className="montreal">{username}</h2>
             </div>
             <div>
               <button className="blackBtn" onClick={displayAddr}>
-                <h4 style={{ fontSize: "20px", fontFamily: "Arial" }}>
+                <h4 className="vela" style={{ fontSize: "20px", color:"#d9d9d9"}}>
                   {mainAccount.substring(0, 6)}...
                   {mainAccount.substring(mainAccount.length - 3)}
                 </h4>
@@ -84,7 +84,7 @@ const QrCodePage = (props) => {
             </div>
             <br />
             <div>
-              <button className="pillBtn">🟢 Celo Testnet</button>
+              <button className="pillBtn vela">🟢 Celo Alfajores Testnet</button>
             </div>
             <br />
           </div>

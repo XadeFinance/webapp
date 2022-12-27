@@ -243,7 +243,7 @@ const MainComponent = () => {
             </li>
             <div className="bar"></div>
 
-            <li className="nav-text vela">🟢 Celo Testnet</li>
+            <li className="nav-text vela">🟢 Celo Alfajores Testnet</li>
 
             <li className="nav-text vela">Chain ID: 0xa4ec (42220)</li>
             <div className="bar"></div>
