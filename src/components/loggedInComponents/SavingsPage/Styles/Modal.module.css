@@ -23,6 +23,8 @@
 }
 
 .amountSubmit {
+    background-color: #1c1d1e !important;
+    color:#fff !important;
     border: none;
     border-radius: 1rem;
     padding: 0.5rem 1rem;

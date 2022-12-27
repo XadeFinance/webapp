@@ -1,10 +1,14 @@
 .wrapper {
-    height: 30vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: scale(1);
-}
+    /* transform: scale(3); */
+  }
+  
+  .wrapper svg{
+    height: 10rem;
+    width:10rem;
+  }
 
 .checkmark__circle {
     stroke-dasharray: 166;

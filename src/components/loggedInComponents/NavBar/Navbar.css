@@ -10,7 +10,7 @@
   /* height: 1.5px; */
   /* line-height: 40px; */
   width: 100%;
-  background: #222222;
+  background: #222;
   text-align: center;
   color: #FFFFFF;
   font-family: sans-serif;
@@ -19,8 +19,8 @@
 }
 
  .announcement:hover{
-	color:#000;
-	background-color:#000;
+	color:#fff !important;
+	background-color:#222 !important;
 border:none
 } 
 

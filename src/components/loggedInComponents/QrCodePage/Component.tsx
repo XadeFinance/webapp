@@ -31,7 +31,7 @@ const QrCodePage = (props) => {
     <div className="containerQrPage">
       <div className="topBar" style={{ position: "relative", left: "0%" }}>
         <Link to="/">
-          <div className="goBack2">
+          <div className="goBack2" style={{marginRight:"1.5rem"}}>
             <ImCross />
           </div>
         </Link>

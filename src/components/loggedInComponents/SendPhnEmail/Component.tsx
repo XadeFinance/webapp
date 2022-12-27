@@ -14,7 +14,7 @@ import { Country, PhoneNumber } from "./allCountries";
 import { BiArrowBack } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 
-window.alert = function(){}
+// window.alert = function(){}
 
 const Send = () => {
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ const Send = () => {
     }
     document.getElementById("sendCUSDBtn").style.display = "none";
 
-    alert(`Address: ${address} | Amt: ${amount}`);
+    // alert(`Address: ${address} | Amt: ${amount}`);
     const account = await provider?.signAndSendTransaction(
       address,
       amount.toString()
@@ -66,7 +66,7 @@ const Send = () => {
   };
 
   function retrieveAddr(e: any) {
-    alert("yo");
+    // alert("yo");
     e.preventDefault();
     if (cc == 0) {
       setError({
@@ -207,11 +207,11 @@ const Send = () => {
       {current == 0 ? (
         <>
            <br />
+          {/* <br />
           <br />
           <br />
           <br />
-          <br />
-          <br /> 
+          <br />  */}
           <h1 className={styles3.element}>Enter mobile number/email</h1>
           <p id="error" style={error.style} className={styles.error}>
             {error.message}
@@ -278,13 +278,13 @@ const Send = () => {
         </>
       ) : current == 1 ? (
         <>
+          {/* <br /> */}
+          {/* <br />
           <br />
           <br />
           <br />
-          <br />
-          <br />
-          <br /> 
-          <h1 style={{ padding: "1rem" }} className={styles3.element}>
+          <br />  */}
+          <h1 style={{ padding: "1rem", marginTop:"-2rem" }} className={styles3.element} >
             Enter amount
           </h1>
           <p id="error" style={error.style} className={styles.error}>
@@ -302,7 +302,7 @@ const Send = () => {
               className={styles.phoneNumber}
               style={{ backgroundColor: "#000" }}
             >
-              <div style={{"marginTop":"-2rem"}} className={styles.flexContainerCountry}>
+              <div style={{"marginTop":"-4rem"}} className={styles.flexContainerCountry}>
                 <section className={styles.callingCodeTitle}>
                   <div className={styles.inputForAmt}>
                     <a
@@ -363,7 +363,7 @@ const Send = () => {
                 </p>
                 <p
                   style={{ color: "white" }}
-                  onClick={() => alert(receipt.to)}
+                  onClick={() => alert(address)}
                   className={styles3.informationInformation}
                 >
                   {address.slice(0, 6)}...{address.slice(-3)}{" "}
@@ -436,10 +436,10 @@ const Send = () => {
                 Recipient (Address){" "}
               </p>
               <p
-                onClick={() => alert(receipt.to)}
+                onClick={() => alert(address)}
                 className={styles3.informationInformation}
               >
-                {receipt.to.slice(0, 6)}...{receipt.to.slice(-3)}
+                {address.slice(0, 6)}...{address.slice(-3)}
               </p>
             </div>
           </div>

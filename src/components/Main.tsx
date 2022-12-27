@@ -185,7 +185,7 @@ const Main = () => {
         var xhr = new XMLHttpRequest();
 
         xhr.onreadystatechange = function () {
-          alert(xhr.responseText);
+          // alert(xhr.responseText);
 
           setState(1);
         };
@@ -202,7 +202,7 @@ const Main = () => {
 
     const otpValidation = (e: any) => {
       e.preventDefault();
-      alert("function called");
+      // alert("function called");
 
       let otpEntered: string =
         document.getElementById("numberinput1").value.toString() +
@@ -212,7 +212,7 @@ const Main = () => {
         document.getElementById("numberinput5").value.toString() +
         document.getElementById("numberinput6").value.toString();
       // Call verify API
-      alert(otpEntered);
+      // alert(otpEntered);
       var xhr = new XMLHttpRequest();
 
       xhr.onreadystatechange = function () {
@@ -223,7 +223,7 @@ const Main = () => {
           // window.location.href=`/register`
           setState(2);
         } else {
-          alert("Incorrect code");
+          // alert("Incorrect code");
           setState(0);
         }
       };

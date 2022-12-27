@@ -31,7 +31,11 @@ const stylex = {
     const { getSavingInterestRate, provider } = useWeb3Auth();
     // const web3 = new Web3(provider as any);
     // const balanceSheetAddr = web3.utils.toChecksumAddress("0x667719F1D1717f1233D5D68aB77FEF947Da4E733")
-    const handleOpen = () => setOpen(true);
+function handleOpen(){
+setOpen(true);
+document.getElementById("modalDeposit").style.display = "inline";
+}    
+//const handleOpen = () => setOpen(true);
     const handleOpen2 = () => setOpen2(true);
 
     const handleClose = () => setOpen(false);
@@ -250,15 +254,15 @@ useEffect(() => {
   }
 }, [provider, savingInterestRate]);
     const date = month + " " + day + ", " + year;
-    
     return (
         <>
         <Modal
             open = {open}
-            onClose={handleClose}
+id="modalDeposit"            
+onClose={handleClose}
             >
-        <Box sx={stylex}>
-        <div onClick={() => {setOpen(false)}>
+        <Box id="modalDeposit" sx={stylex}>
+        <div id="modalDeposit"  onClick={handleClose}>
               <div style={{ marginTop: "0", color: "#fff", height: "100%" }}>
                 <br />
                 <ImCross size={26}/>

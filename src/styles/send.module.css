@@ -16,6 +16,7 @@
     font-size:1.5rem;
     text-align:center;
     margin-bottom:4rem;
+    margin-top:3rem;
 }
 
 .element2 {
@@ -52,7 +53,7 @@ margin-left:1.5rem;
 
 .submitButton {
 
-    background-color: #fff;
+    background-color: #1c1d1e;
     width: 90%;
     height: 100%;
     font-size: 1.5rem;
@@ -61,7 +62,7 @@ margin-left:1.5rem;
     /* background-color: #3385ff; */
     border-radius: 1rem;
     border: 0;
-    color: #000;
+    color: #fff;
     font-weight:700;
 }
 

@@ -14,7 +14,9 @@ export default function Deposit()
     const [receipt, setReceipt] = useState<any>({'error': false})
     const { provider } = useWeb3Auth();
     const [mainAccount, setMainAccount] = useState("");
-
+    function hideIt(){
+document.getElementById("modalDeposit").style.display = "none";
+}
     useEffect(() => {
       const handleGetAccount = async () => {
         const account = await provider?.readAddress();
@@ -74,7 +76,7 @@ export default function Deposit()
             <>
             <div className = {styles.centrify}>
 
-            <p className = {styles.amounth}>Enter amount</p>
+            <p className = {styles3.element}>Enter amount</p>
             <br />
             <section className = {styles.wrapInput}>
                 <p>$</p>
@@ -100,17 +102,63 @@ export default function Deposit()
 
             (state == 1)?
             <>
-          
-            <div className={tickStyles.wrapper}> <svg className={tickStyles.checkmark} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"> <circle className={tickStyles.checkmark__circle} cx="26" cy="26" r="25" fill="none" /> <path className={tickStyles.checkmark__check} fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
-            </svg>
-            </div>
-
-               
-        <div className = {styles3.contentWrapper}>
-        <a href={`https://explorer.celo.org/alfajores/tx/${receipt.transactionHash}`} style={{color:"white"}} className={tickStyles.and}> Transaction successful! </a>
+      <div className={tickStyles.wrapper}><svg className={tickStyles.checkmark} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"> <circle className={tickStyles.checkmark__circle} cx="26" cy="26" r="25" fill="none" /> <path className={tickStyles.checkmark__check} fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+      </svg>
       </div>
+        <div className = {styles3.contentWrapper}>
+        <p className = {tickStyles.and}> Transaction successful! </p>
+      </div>
+            
 <br />
 <br />
+
+<div className={styles3.contentWrapper}>
+            <div className={styles3.information}>
+              <p className={styles3.informationInformation}>
+                Recipient (Address){" "}
+              </p>
+              <p
+                onClick={() => alert("0x7765e4256e0dBda401Ce64809bAB5AefDca40F08")}
+                className={styles3.informationInformation}
+              >
+                {"0x7765e4256e0dBda401Ce64809bAB5AefDca40F08".slice(0, 6)}...{"0x7765e4256e0dBda401Ce64809bAB5AefDca40F08".slice(-3)}
+              </p>
+            </div>
+          </div>
+
+          <div className={styles3.contentWrapper}>
+            <div className={styles3.information}>
+              <p className={styles3.informationInformation}>Amount Sent</p>
+              <p className={styles3.informationInformation}>{amount}</p>
+            </div>
+          </div>
+
+          <div className={styles3.contentWrapper}>
+            <div className={styles3.information}>
+              <p className={styles3.informationInformation}>Gas Fees</p>
+              <p className={styles3.informationInformation}>
+                {receipt.effectiveGasPrice}
+              </p>
+            </div>
+          </div>
+
+          
+          <div className={styles3.contentWrapper}>
+            <div className={styles3.information}>
+              <p className={styles3.informationInformation}>
+                Transaction Hash
+              </p>
+              <a
+              style={{color:"white"}}
+                target="_blank"
+                className={styles3.linkage}
+                href={`https://alfajores-blockscout.celo-testnet.org/tx/${receipt.transactionHash}/token-transfers`}
+              >
+                {receipt.transactionHash.slice(0, 6)}...
+                {receipt.transactionHash.slice(-3)}
+              </a>
+            </div>
+          </div>
 
 
 {/* 

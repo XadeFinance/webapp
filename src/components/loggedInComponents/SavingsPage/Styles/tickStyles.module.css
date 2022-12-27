@@ -1,11 +1,14 @@
 .wrapper {
-  height: 30vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: scale(3);
+  /* transform: scale(3); */
 }
 
+.wrapper svg{
+  height: 10rem;
+  width:10rem;
+}
 .checkmark__circle {
   stroke-dasharray: 166;
   stroke-dashoffset: 166;
@@ -37,10 +40,16 @@
   animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
 }
 
+@font-face {
+  font-family: NeueMontreal-Bold;
+  src: url('https://app.xade.finance/fonts/NeueMontreal.otf');
+}
+
 .and {
   font-size: 1.5rem;
   font-weight: 2rem;
   color: #fff;
+  font-family: NeueMontreal-Bold;
 }
 
 @keyframes stroke {

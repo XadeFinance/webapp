@@ -2,15 +2,38 @@ import home from "../../../styles/Homepage.module.css";
 // import { TbQrcode } from "react-icons/tb";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
+import Send from "../SendPhnEmail/Component";
+import { ImCross } from 'react-icons/im'
 
 const HomePage = (props) => {
+  const stylex = {
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 470,
+    bgcolor: '#000',
+    border: '0px solid #000',
+    boxShadow: 24,
+    p: 4,
+    height:"90%"
+  };
+
+  const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleOpen2 = () => setOpen2(true);
+  const handleClose = () => setOpen(false);
+  const handleClose2 = () => setOpen2(false);
   const navigate = useNavigate();
-  const [balance, setBalance] = useState(0);
   // let navigate = useNavigate();
   var xhr2 = new XMLHttpRequest();
   var donezo = false;
   const mainAccount = props.account;
+  const balance = (props.balance/(10**18)).toFixed(2);
+  // console.log(cusdBalance);
   async function getNormalTransactionsByAddress(address) {
     try {
       const response = await fetch(
@@ -71,43 +94,32 @@ const HomePage = (props) => {
     return addressShortened;
   };
 
-  useEffect(() => {
-    xhr2.onreadystatechange = async function () {
-      if (xhr2.readyState == XMLHttpRequest.DONE) {
-        try {
-          if (xhr2.status == 200) {
-            try {
-              const responseJSON = await JSON.parse(xhr2.responseText);
-
-              setBalance(responseJSON["result"]);
-              donezo = true;
-            } catch (e) {
-              console.log("xhr2.status", e + xhr2.status);
-            }
-          }
-        } catch (e) {
-          console.log("xhr2.onreadystatechange", e + xhr2.onreadystatechange);
-        }
-      }
-      return null;
-    };
-    xhr2.open(
-      "GET",
-      `https://explorer.celo.org/alfajores/api?module=account&action=tokenbalance&contractaddress=0x874069fa1eb16d44d622f2e0ca25eea172369bc1&address=${mainAccount}`
-    );
-    xhr2.send();
-  }, [, balance]);
-
-  const myBalance = (parseFloat(balance) / Math.pow(10, 18)).toFixed(2);
   return (
+    <>
+            <Modal
+            id = "paymentsModal"
+            open = {open}
+            onClose={handleClose}
+            >
+        <Box sx={stylex}>
+        <div onClick={handleClose}>
+              <div style={{ marginTop: "0", color: "#fff", height: "100%" }}>
+                <br />
+                <ImCross size={26}/>
+              </div>
+            </div>
+
+            <Send />
+        </Box>  
+        </Modal>
     <div className={home.mainDiv}>
       <div>
         <div className={home.balanceView}>
-          <div className={home.amount}>${myBalance}</div>
+          <div className={home.amount}>${balance}</div>
           <div className={home.yourCurrent}>Your current checking balance</div>
         </div>
         <div className={home.utilityButtons}>
-          <button onClick = {() => navigate('/send')} className={home.paymentsButton}>
+          <button onClick = {handleOpen} className={home.paymentsButton}>
             <svg
               stroke="currentColor"
               fill="#ffdf38"
@@ -266,6 +278,7 @@ const HomePage = (props) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
