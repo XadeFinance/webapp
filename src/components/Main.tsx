@@ -17,7 +17,7 @@ import DepositWithdraw from "./loggedInComponents/DepositWithdraw/Component";
 import HomePage from "./loggedInComponents/HomePage/Component";
 import QrCodePage from "./loggedInComponents/QrCodePage/Component";
 // import Test from "./loggedInComponents/QRScanner/Component";
-// import Send from "./loggedInComponents/SendPhnEmail/Component";
+import Send from "./loggedInComponents/SendPhnEmail/Component";
 import SendQR from "./loggedInComponents/SendQR/Component";
 // import TxHistory from "./loggedInComponents/TxHistory/Component";
 import Savings from "./loggedInComponents/SavingsPage/Component";
@@ -608,6 +608,12 @@ const Main = () => {
                   <Layout>
                     <Investments />
                   </Layout>
+                }
+              />
+                            <Route
+                path="/send"
+                element={
+                    <Send />
                 }
               />
               <Route
