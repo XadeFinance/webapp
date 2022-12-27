@@ -258,7 +258,7 @@ useEffect(() => {
             onClose={handleClose}
             >
         <Box sx={stylex}>
-        <div onClick={handleClose}>
+        <div onClick={() => {setOpen(false)}>
               <div style={{ marginTop: "0", color: "#fff", height: "100%" }}>
                 <br />
                 <ImCross size={26}/>
