@@ -263,7 +263,7 @@ async function getAmountDeposited(address) {
     const response = await fetch(
       `https://deposit.api.xade.finance?address=${address}`
       );
-    return await response;
+    return await response.json();
   } catch (error) {
     return 0.00;
   }
