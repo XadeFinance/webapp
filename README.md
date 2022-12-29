@@ -1,8 +1,4 @@
-# RemmiteX by XADE
-
-## Introduction
-
-Send payments globally with close to zero fees instantly in multiple stablecoins through blockchain technology
+# Xade Webapp
 
 ## Team 
 
