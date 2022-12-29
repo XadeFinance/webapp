@@ -51,10 +51,6 @@ document.getElementById("modalDeposit").style.display = "none";
             // 1. If success. save the receipt in variable receipt ( JSON format )
             // Make sure all values are cordially updated
             // For Example: setReceipt({'error': false, 'a': 'b', 'c': 'd'})
-receipt.effectiveGasPrice = Web3.utils.fromWei(
-        receipt.effectiveGasPrice?.toString() || "",
-        "ether"
-      );
             setState(1)
             return
             }
