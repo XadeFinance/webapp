@@ -1,11 +1,11 @@
-# RemmiteX by XADE
+# Xade Webapp
 
 ## Team 
 
 - Arav Budhiraja (@arav06)
 - Andrew Alisa (@andrewalisa)
 - Harsh Shaw (@harshshaw)
-- Arnav Jhajharia (@Arnav-Jhajharia)
+- Arnav Jhajharia (@Arnav-Jhajharia) 
 
 ## Tech Stack
 
