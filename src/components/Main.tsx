@@ -657,7 +657,7 @@ const Main = () => {
                 path="/savings"
                 element={
                   <Layout>
-                    <Savings />
+                    <Savings account={mainAccount}/>
                   </Layout>
                 }
               />
