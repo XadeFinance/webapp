@@ -48,7 +48,7 @@ const CountDown = () => {
     <>
       <div className={count.center}>
         <div className={count.heading}>
-          Xade Mainnet V1 is launching on 25th December 2022 at 10 PM UTC
+          Xade Mainnet V1 is launching on 5th January 2023 at 10 PM UTC
 <br />
           <br />
         </div>
