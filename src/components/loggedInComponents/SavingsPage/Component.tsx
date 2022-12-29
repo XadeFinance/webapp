@@ -25,9 +25,10 @@ const stylex = {
     p: 4,
   };
 
-  const SavingsPage = () => {
+  const SavingsPage = (props) => {
     const [open, setOpen] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
+    const mainAccount = props.account
     const { getSavingInterestRate, provider } = useWeb3Auth();
     // const web3 = new Web3(provider as any);
     // const balanceSheetAddr = web3.utils.toChecksumAddress("0x667719F1D1717f1233D5D68aB77FEF947Da4E733")
@@ -253,6 +254,36 @@ useEffect(() => {
     handleGetRate();
   }
 }, [provider, savingInterestRate]);
+
+
+const [deposited, setDeposited] = useState("");
+
+async function getAmountDeposited(address) {
+  try {
+    const response = await fetch(
+      `https://deposit.api.xade.finance?address=${address}`
+      );
+    return await response.json();
+  } catch (error) {
+    return 0.00;
+  }
+}
+
+const isReady = () => {
+  return mainAccount !== "";
+};
+
+useEffect(() => {
+  if (isReady()) {
+    handleGetAmountDeposited();
+  }
+}, [mainAccount]);
+
+const handleGetAmountDeposited = async () => {
+  let deposit = await getAmountDeposited(mainAccount);
+  setDeposited(deposit);
+};
+
     const date = month + " " + day + ", " + year;
     return (
         <>
@@ -299,7 +330,7 @@ onClose={handleClose}
                     </div>
 
                     <div className = {styles.amountDep}>
-                        $0.0
+                        ${deposited}
                     </div>
                     </div>
                     <div style = {{'alignSelf': 'flex-end', 'margin': '1rem'}}>
