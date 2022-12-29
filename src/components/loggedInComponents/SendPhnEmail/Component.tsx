@@ -16,8 +16,9 @@ import { useNavigate } from "react-router-dom";
 
 // window.alert = function(){}
 
-const Send = () => {
+const Send = (props) => {
   const navigate = useNavigate();
+  const balance = props.balance;
   let [current, setCurrent] = React.useState(0); // Phone number accept
   let [address, setAddress] = React.useState("");
   let [receipt, setReceipt] = React.useState<any>(null);
@@ -34,7 +35,7 @@ const Send = () => {
 
   const handleSendAmountToAddress = async (e: any) => {
     e.preventDefault();
-    if (amount <= 0) {
+    if (amount <= 0 || amount > balance) {
       setError({
         ...error,
         message: "Please enter a valid amount",
@@ -45,7 +46,6 @@ const Send = () => {
     }
     document.getElementById("sendCUSDBtn").style.display = "none";
 
-    // alert(`Address: ${address} | Amt: ${amount}`);
     const account = await provider?.signAndSendTransaction(
       address,
       amount.toString()
@@ -58,9 +58,8 @@ const Send = () => {
         "ether"
       );
       setCurrent(2);
-    } 
- else {
-  setCurrent(3);
+    } else {
+      setCurrent(3);
       console.log("fuck");
     }
   };
@@ -193,7 +192,7 @@ const Send = () => {
   }
 
   return (
-    <div style={{ margin: "5px"}}>
+    <div style={{ margin: "5px" }}>
       {/* <div
         onClick={() => {
           navigate("/");
@@ -206,7 +205,7 @@ const Send = () => {
       </div> */}
       {current == 0 ? (
         <>
-           <br />
+          <br />
           {/* <br />
           <br />
           <br />
@@ -284,7 +283,10 @@ const Send = () => {
           <br />
           <br />
           <br />  */}
-          <h1 style={{ padding: "1rem", marginTop:"-2rem" }} className={styles3.element} >
+          <h1
+            style={{ padding: "1rem", marginTop: "-2rem" }}
+            className={styles3.element}
+          >
             Enter amount
           </h1>
           <p id="error" style={error.style} className={styles.error}>
@@ -302,7 +304,10 @@ const Send = () => {
               className={styles.phoneNumber}
               style={{ backgroundColor: "#000" }}
             >
-              <div style={{"marginTop":"-4rem"}} className={styles.flexContainerCountry}>
+              <div
+                style={{ marginTop: "-4rem" }}
+                className={styles.flexContainerCountry}
+              >
                 <section className={styles.callingCodeTitle}>
                   <div className={styles.inputForAmt}>
                     <a
@@ -341,53 +346,55 @@ const Send = () => {
             <br />
             <br />
             {/* <h3 className={styles3.element2}>Transaction Details</h3> */}
-<div className={styles3.transactionDetails}>
-            <div className={styles3.contentWrapper}>
-              <div className={styles3.information}>
-                <p className={styles3.informationInformation}>
-                  Recipient (Name) &nbsp;&nbsp;
-                </p>
-                <p
-                  className={styles3.informationInformation}
-                  style={{ color: "white" }}
-                >
-                  {username}
-                </p>
+            <div className={styles3.transactionDetails}>
+              <div className={styles3.contentWrapper}>
+                <div className={styles3.information}>
+                  <p className={styles3.informationInformation}>
+                    Recipient (Name) &nbsp;&nbsp;
+                  </p>
+                  <p
+                    className={styles3.informationInformation}
+                    style={{ color: "white" }}
+                  >
+                    {username}
+                  </p>
+                </div>
+              </div>
+
+              <div className={styles3.contentWrapper}>
+                <div className={styles3.information}>
+                  <p className={styles3.informationInformation}>
+                    Recipient (Address)
+                  </p>
+                  <p
+                    style={{ color: "white" }}
+                    onClick={() => alert(address)}
+                    className={styles3.informationInformation}
+                  >
+                    {address.slice(0, 6)}...{address.slice(-3)}{" "}
+                  </p>
+                </div>
+              </div>
+
+              <div className={styles3.contentWrapper}>
+                <div className={styles3.information}>
+                  <p className={styles3.informationInformation}>Amount</p>
+                  <p
+                    className={styles3.informationInformation}
+                    style={{ color: "white" }}
+                  >
+                    {amount}
+                  </p>
+                </div>
               </div>
             </div>
-
-            <div className={styles3.contentWrapper}>
-              <div className={styles3.information}>
-                <p className={styles3.informationInformation}>
-                  Recipient (Address)
-                </p>
-                <p
-                  style={{ color: "white" }}
-                  onClick={() => alert(address)}
-                  className={styles3.informationInformation}
-                >
-                  {address.slice(0, 6)}...{address.slice(-3)}{" "}
-                </p>
-              </div>
-            </div>
-
-            <div className={styles3.contentWrapper}>
-              <div className={styles3.information}>
-                <p className={styles3.informationInformation}>Amount</p>
-                <p
-                  className={styles3.informationInformation}
-                  style={{ color: "white" }}
-                >
-                  {amount}
-                </p>
-              </div>
-            </div>
-            </div>
-
-  
 
             <div className={styles3.submitSection}>
-              <button id="sendCUSDBtn" type="submit" className={styles3.submitButton}>
+              <button
+                id="sendCUSDBtn"
+                type="submit"
+                className={styles3.submitButton}
+              >
                 Confirm transaction
               </button>
             </div>
@@ -465,11 +472,9 @@ const Send = () => {
 
           <div className={styles3.contentWrapper}>
             <div className={styles3.information}>
-              <p className={styles3.informationInformation}>
-                Transaction Hash
-              </p>
+              <p className={styles3.informationInformation}>Transaction Hash</p>
               <a
-              style={{color:"white"}}
+                style={{ color: "white" }}
                 target="_blank"
                 className={styles3.linkage}
                 href={`https://alfajores-blockscout.celo-testnet.org/tx/${receipt.transactionHash}/token-transfers`}
@@ -506,7 +511,7 @@ const Send = () => {
             </svg>
           </div>
 
-          <div className={styles3.contentWrapper} >
+          <div className={styles3.contentWrapper}>
             <div className={tickStyles2.and}>Transaction unsuccessful! </div>
           </div>
           <br />
