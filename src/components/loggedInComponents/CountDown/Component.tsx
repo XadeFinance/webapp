@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
-import count from "../../../styles/countdown.module.css";
+import count from "../../../styles/CountDown.module.css";
 
 const CountDown = () => {
   function addZero(a: number) {
