@@ -177,6 +177,7 @@ export const Web3AuthProvider: FunctionComponent<IWeb3AuthState> = ({ children, 
     }
     await web3Auth.logout();
     setProvider(null);
+    window.location.href="/";
   };
   
 /*  function getIp(url){
