@@ -36,7 +36,7 @@
     "react-icons": "^4.4.0",
     "react-loader-spinner": "^6.0.0-0",
     "react-qr-reader": "^3.0.0-beta-1",
-    "react-router-dom": "^6.3.0",
+    "react-router-dom": "^6.4.5",
     "react-slick": "^0.29.0",
     "react-ts-tradingview-widgets": "^1.0.11",
     "reactjs-popup": "^2.0.5",
