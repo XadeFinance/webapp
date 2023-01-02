@@ -11,7 +11,7 @@
     "@emotion/styled": "^11.10.5",
     "@livechat/widget-react": "^1.2.1",
     "@mui/material": "^5.10.4",
-    "@onramper/widget": "^2.2.20",
+    "@onramper/widget": "^2.2.31",
     "@transak/transak-sdk": "^1.2.2",
     "@types/express": "^4.17.13",
     "@types/mongoose": "^5.11.97",
