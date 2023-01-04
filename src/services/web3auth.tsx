@@ -120,7 +120,7 @@ export const Web3AuthProvider: FunctionComponent<IWeb3AuthState> = ({ children, 
         });
         subscribeAuthEvents(web3AuthInstance);
         const networkUi = new NetworkSwitch()
-        const adapter = new OpenloginAdapter({ adapterSettings: { network: web3AuthNetwork, clientId } });
+        const adapter = new OpenloginAdapter({ adapterSettings: { uxMode:"redirect", network: web3AuthNetwork, clientId } });
         const wcAdapter = new WalletConnectV1Adapter({ adapterSettings: { qrcodeModal: QRCodeModal } });
         web3AuthInstance.configureAdapter(adapter);
         web3AuthInstance.configureAdapter(wcAdapter);
