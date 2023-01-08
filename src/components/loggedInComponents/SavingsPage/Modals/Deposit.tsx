@@ -79,7 +79,7 @@ document.getElementById("modalDeposit").style.display = "none";
             <br />
             <section className = {styles.wrapInput}>
                 <p>$</p>
-                <input onChange={(e) => setAmount(e.target.value)} autoFocus type = "number" min = {0} step = "any" name = "iamount" className = {styles.inputEl}/>
+                <input onChange={(e:any) => setAmount(e.target.value)} autoFocus type = "number" min = {0} step = "any" name = "iamount" className = {styles.inputEl}/>
             </section>
             <br />
 {/*             

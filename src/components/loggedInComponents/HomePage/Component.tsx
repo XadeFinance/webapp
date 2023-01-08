@@ -156,9 +156,7 @@ const HomePage = (props) => {
           <button
             style={{ textAlign: "center" }}
             className={home.qrBtn}
-            onClick={() => {
-              navigate("/qr");
-            }}
+            onClick = {() => navigate('/institutional-ramps')}
           >
             <svg
               className={home.qrIcon}
@@ -209,7 +207,7 @@ const HomePage = (props) => {
                   stroke-width="2"
                   stroke-linejoin="round"
                 />
-                <use xlinkHref="/qr" />
+          
             </svg>
           </button>
         </div>

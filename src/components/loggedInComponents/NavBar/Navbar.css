@@ -97,7 +97,7 @@ border:none;
 
 .nav-menu {
   width: 25%;
-  height: 100vh;
+  /* height: 100vh; */
   display: flex;
   justify-content: center;
   position: fixed;
@@ -120,8 +120,13 @@ border:none;
 }
 
 .nav-item {
+  list-style-type: none;
   color: #fff;
   height: 80px;
+}
+
+.menu-icon {
+  display: none;
 }
 
 .nav-links {
@@ -304,8 +309,9 @@ border:none;
   }
 
   .goBack {
-    display: block;
-    margin-top: -97%;
+    top: 0;
+    position: absolute;
+    display: block;                                                                                                                                                   
     margin-left: 4%;
     color: #fff;
     height: 100%;

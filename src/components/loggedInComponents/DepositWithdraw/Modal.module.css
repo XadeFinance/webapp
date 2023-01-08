@@ -1,0 +1,35 @@
+.centrify {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    height: 60vh;
+    justify-content: center;
+}
+
+.amounth {
+    font-size: 2rem;
+    color: white;
+}
+
+.wrapInput {
+    display: flex;
+}
+
+.inputEl {
+    background: inherit;
+    border: none;
+    height: 5rem;
+    color: white;
+    max-width: 10rem;
+    font-size: 4rem;
+}
+
+.amountSubmit {
+    background-color: #1c1d1e !important;
+    color:#fff !important;
+    border: none;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+    width: 10rem;
+}

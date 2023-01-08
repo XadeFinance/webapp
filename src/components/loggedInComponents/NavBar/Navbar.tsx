@@ -46,7 +46,7 @@ const Navbar = (props: Props) => {
             XADE
           </Link>
           <div onClick={handleClick} className="menu-icon">
-            <i className={"fas fa-bars desktopstuff"} id={"3bars"}></i>
+            <i className={"fas fa-bars"} id={"3bars"}></i>
           </div>
           <div className="nav-menu">
             <ul className={click ? "nav-menu navActive" : "nav-menu"}>
