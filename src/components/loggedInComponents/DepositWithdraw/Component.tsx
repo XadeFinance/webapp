@@ -35,14 +35,16 @@ const DepositWithdraw = () => {
         <>
             {(state == 0)?
             <>
-            <div className = {styles.centrify}>
+            <div style = {{
+                  'height': '60vh'
+                }}className = {styles.centrify}>
               
             <p id="error" style={error.style} className={styles4.error}>
             {error.message}
           </p>
 <div className={styles4.number_input} id="phonenums">
             <form
-              // onSubmit={(e) => retrieveAddr(e)}
+              onSubmit={handleChange}
               className={styles4.number_form}
             >
               <div className={styles4.flexContainer}>
@@ -134,14 +136,24 @@ const DepositWithdraw = () => {
             :
             (state == 1)?
             <>
-                <div className = {styles.centrify}>
+                <div 
+                style = {{
+                  'height': '60vh'
+                }}
+                className = {styles.centrify}>
 
 <p className = {styles3.element}>Choose a Ramp</p>
 <br />
-<section className = {styles.wrapInput}>
-    <p>$</p>
-    <input onChange={(e:any) => setAmount(e.target.value)} autoFocus type = "number" min = {0} step = "any" name = "iamount" className = {styles.inputEl}/>
-</section>
+  <div className = {styles.centrify}>   
+      {Ramps.forEach((key,value) => {
+        
+      })}
+        <div className = {styles.box}>
+          <div>
+            <div></div>
+          </div>
+        </div>
+  </div>
 <br />
 
 <br />
@@ -149,7 +161,7 @@ const DepositWithdraw = () => {
     Continue 
 </button>
 
-</div>
+        </div>
             </>
             :
             (state == 2)?

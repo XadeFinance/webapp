@@ -1,8 +1,4 @@
-export type Ramp = {
-    "transak": {
-        "api": string
-    },
-  }
+
   
 export type Currency = {
     "symbol": string,
@@ -16,7 +12,7 @@ export type Currency = {
 //     valid: boolean 
 //   }
   
-  const Ramps: Ramp = {
+  const Ramps = {
     "transak": {
         "api":""
     }   
