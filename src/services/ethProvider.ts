@@ -310,7 +310,7 @@ const depositAddr = "0xDB353605Da4EF570756d98A31e1b1352B620EE4C"
 
       const contract = await kit.contracts.getStableToken();
       // const contract = new web3.eth.Contract(CUSD.abi, cusdAddress);
-	const contractDeposit= web3.eth.Contract(depositABI, depositAddr);
+	const contractDeposit= new web3.eth.Contract(depositABI, depositAddr);
       // Send transaction to smart contract to update message and wait to finish
       const depositFunds = await contractDeposit.depositERC20Token( kit.web3.utils.toBN(Web3.utils.toWei(amount, "ether")))
         ({
