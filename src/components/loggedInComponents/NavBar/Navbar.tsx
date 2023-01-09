@@ -36,7 +36,7 @@ const Navbar = (props: Props) => {
             <ImCross />
           </div> */}
       <nav className="navbar">
- <div className="vela announcement" id="announce">
+ <div style = {{'display':'none'}} className="vela announcement" id="announce">
 <b><button onClick={hideAnnouncement} style={{fontSize:"0.8rem",backgroundColor:"inherit",color:"white",border:"none"}}><ImCross id="hideAnnounce" /></button> RemmiteX V2 and DeriveX V1 will go live on Testnet on 5th January 2023 </b>
 </div>
          
@@ -46,7 +46,7 @@ const Navbar = (props: Props) => {
             XADE
           </Link>
           <div onClick={handleClick} className="menu-icon">
-            <i className={"fas fa-bars"} id={"3bars"}></i>
+            
           </div>
           <div className="nav-menu">
             <ul className={click ? "nav-menu navActive" : "nav-menu"}>
