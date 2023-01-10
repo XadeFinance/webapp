@@ -145,14 +145,14 @@ const DepositWithdraw = () => {
 <p className = {styles3.element}>Choose a Ramp</p>
 <br />
   <div className = {styles.centrify}>   
-      {Ramps.forEach((key,value) => {
-        
-      })}
+      {
+        Object.values(Ramps).forEach((key) => {
         <div className = {styles.box}>
           <div>
             <div></div>
           </div>
         </div>
+      })}
   </div>
 <br />
 
