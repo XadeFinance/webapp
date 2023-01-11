@@ -6,6 +6,7 @@ import tickStyles from './../Styles/tickStyles.module.css';
 import tickStyles2 from './../Styles/tickStyles2.module.css';
 import { useWeb3Auth } from '../../../../services/web3auth';
 import { useEffect, useState } from "react";
+import { Player, Controls } from '@lottiefiles/react-lottie-player';
 
 export default function Deposit()
 {
@@ -101,8 +102,15 @@ document.getElementById("modalDeposit").style.display = "none";
 
             (state == 1)?
             <>
-      <div className={tickStyles.wrapper}><svg className={tickStyles.checkmark} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"> <circle className={tickStyles.checkmark__circle} cx="26" cy="26" r="25" fill="none" /> <path className={tickStyles.checkmark__check} fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
-      </svg>
+      <div className={tickStyles.wrapper}>
+      <Player
+          keepLastFrame = {true}
+                autoplay
+                src="https://assets1.lottiefiles.com/private_files/lf30_pzulxwyk.json"
+                style={{ height: '300px', width: '300px' }}
+          >
+  <Controls visible={false} buttons={[]} />
+</Player>
       </div>
         <div className = {styles3.contentWrapper}>
         <p className = {tickStyles.and}> Transaction successful! </p>
