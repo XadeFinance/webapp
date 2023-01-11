@@ -6,7 +6,7 @@ import styles from "./styles/Home.module.css";
 import { Web3AuthProvider } from "./services/web3auth";
 import Setting from "./components/Setting";
 import Main from "./components/Main";
-
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   const [web3AuthNetwork, setWeb3AuthNetwork] = useState<WEB3AUTH_NETWORK_TYPE>("mainnet");
@@ -15,7 +15,9 @@ function App() {
   return (
     <div className={styles.container}>
       <Web3AuthProvider chain={chain} web3AuthNetwork={web3AuthNetwork}>
+        <BrowserRouter>
         <Main />
+        </BrowserRouter>
       </Web3AuthProvider>
       <br/>
       <Setting setNetwork={setWeb3AuthNetwork} setChain={setChain} />

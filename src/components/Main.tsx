@@ -5,19 +5,125 @@ import { useEffect, useState } from "react";
 import { useWeb3Auth } from "../services/web3auth";
 import { FormEvent } from "react";
 import { WALLET_ADAPTERS } from "@web3auth/base";
-
-import CountDown from "./loggedInComponents/CountDown/Component";
-import Landing from "./unloggedInComponents/Landing/Component";
+import { Link } from 'react-router-dom'
+import { Layout } from "./Layout";
+import Settings from "./loggedInComponents/SettingsPage/Navigation/Component";
+import FAQs from "./loggedInComponents/SettingsPage/FAQs/Component";
+import Investments from "./loggedInComponents/Investments/index";
+import DW from "./loggedInComponents/SettingsPage/DW/Component";
 import Login from "./unloggedInComponents/Login/Component";
-
+import Landing from "./unloggedInComponents/Landing/Component";
+import DepositWithdraw from "./loggedInComponents/DepositWithdraw/Component";
+import HomePage from "./loggedInComponents/HomePage/Component";
+import QrCodePage from "./loggedInComponents/QrCodePage/Component";
+// import Test from "./loggedInComponents/QRScanner/Component";
+import Send from "./loggedInComponents/SendPhnEmail/Component";
+import SendQR from "./loggedInComponents/SendQR/Component";
+// import TxHistory from "./loggedInComponents/TxHistory/Component";
+import Savings from "./loggedInComponents/SavingsPage/Component";
+import { useNavigate } from "react-router-dom";
+import styles3 from "../styles/send.module.css";
 import styles from "../styles/Home.module.css";
-import "../styles/NewLogin.css"
-
+import tickStyles from "../styles/tickStyles.module.css";
+import tickStyles2 from "../styles/tickStyles2.module.css";
+import "../styles/qrscan.css";
+import "../styles/QrPage.css";
+import "../styles/HomePage.css";
+import QrReader  from 'react-qr-scanner'
+import { ImCross } from 'react-icons/im'
+import { FiShare } from 'react-icons/fi'
+import { RiCameraSwitchFill } from 'react-icons/ri'
 import countries from "./regCountries";
 import { Country, PhoneNumber } from "./regCountries";
+interface MyObjLayout {
+  delay: number;
+  result: string;
+  camera: string;
+}
+// window.alert = function () {};
+class Test extends React.Component<any, MyObjLayout> {
+  constructor(props:any){
+    super(props)
+    this.state =  {
+      delay: 100,
+      result: 'No result',
+      camera: 'rear',
+    }
 
-window.alert = function () {};
+    this.handleScan = this.handleScan.bind(this)
+  }
+  handleScan(data:any){
+    this.setState({
+      result: data,
+    })
+    var url = "https://explorer.celo.org/address/"+data+"/transactions/";
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url);
+        xhr.send();
+        xhr.onload = function () {
+        if(xhr.status == 200)
+          window.location.href = `/sendQR/${data}`     
+    }
 
+  }
+  handleError(err:any){
+    console.error(err)
+  }
+  render(){
+    const previewStyle = {
+      height: '50%',
+      width: '50%',
+      // visibility: ''
+    }
+
+    return(
+      <>
+      <div style = {{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+      <Link to="/" >
+          <div className="goBack2" style = {{position: 'absolute',left: '1rem',marginTop: '3rem'}}>
+            <ImCross />
+          </div>
+        </Link>
+            <div style={{ position: "relative"}} className="topBar">
+
+        <div className="buttonHolderQrPage">
+          <div
+            className={"qrButtonLeft " + "active"}
+            onClick={() => (window.location.href = "/qr")}
+          >
+            My Code
+          </div>
+          <div
+            className={"qrButtonRight " + "inActive"}
+            onClick={() => (window.location.href = "/scan")}
+          >
+            Scan
+          </div>
+        </div>
+
+        <div style={{ visibility: "hidden" }} className="share">
+          <FiShare />
+        </div>
+      </div>
+      <div style={{marginTop: '1.5rem',
+    textAlign: 'center'}}>
+        <QrReader
+          delay={100}
+          style={previewStyle}
+          onError={this.handleError}
+          onScan={this.handleScan}
+          facingMode = {this.state.camera}
+          />
+        <p onClick = {() => {
+          if(this.state.camera == 'front') this.setState({...this.state, camera: 'back'})
+          else this.setState({...this.state, camera: 'front'})
+        }}><RiCameraSwitchFill/></p>
+      </div>
+      </div>
+      </>
+    )
+  }
+}
 var secret = "";
 var characters =
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -30,11 +136,12 @@ function storenum(c, n) {
   var phone = c.replace("+", "") + "" + n;
   var data = `{"phone":"${phone}","id":"${secret}"}`;
   var s = new XMLHttpRequest();
-  s.open("POST", "https://mongo.api.xade.finance");
+  s.open("POST", "https://shardeum.mongo.api.xade.finance");
   s.send(data);
 }
 
 const Main = () => {
+  const navigate = useNavigate();
   const { provider, getUserInfo, userData, isLoading, userPic } = useWeb3Auth();
   const Register = () => {
     const [state, setState] = React.useState(2);
@@ -78,7 +185,7 @@ const Main = () => {
         var xhr = new XMLHttpRequest();
 
         xhr.onreadystatechange = function () {
-          alert(xhr.responseText);
+          // alert(xhr.responseText);
 
           setState(1);
         };
@@ -95,7 +202,7 @@ const Main = () => {
 
     const otpValidation = (e: any) => {
       e.preventDefault();
-      alert("function called");
+      // alert("function called");
 
       let otpEntered: string =
         document.getElementById("numberinput1").value.toString() +
@@ -105,7 +212,7 @@ const Main = () => {
         document.getElementById("numberinput5").value.toString() +
         document.getElementById("numberinput6").value.toString();
       // Call verify API
-      alert(otpEntered);
+      // alert(otpEntered);
       var xhr = new XMLHttpRequest();
 
       xhr.onreadystatechange = function () {
@@ -116,7 +223,7 @@ const Main = () => {
           // window.location.href=`/register`
           setState(2);
         } else {
-          alert("Incorrect code");
+          // alert("Incorrect code");
           setState(0);
         }
       };
@@ -442,33 +549,166 @@ const Main = () => {
   };
   const [username, setUsername] = useState("");
 
+  useEffect(() => {
+    const handleGetUser = async () => {
+      const user = await userData();
+      setUsername(user);
+    };
+    if (provider) {
+      handleGetUser();
+    }
+  }, [provider, username]);
+
+  const [img, setImg] = useState("");
+
+  useEffect(() => {
+    const handleGetImg = async () => {
+      const pic = await userPic();
+      setImg(pic);
+    };
+    if (provider) {
+      handleGetImg();
+    }
+  }, [provider, img]);
+
+  const [mainAccount, setMainAccount] = useState("");
+
+  useEffect(() => {
+    const handleGetAccount = async () => {
+      const account = await provider?.readAddress();
+      setMainAccount(account);
+    };
+    if (provider) {
+      handleGetAccount();
+    }
+  }, [provider, mainAccount]);
+
+  const [balance, setBalance] = useState("");
+
+  useEffect(() => {
+    const handleGetBalance = async () => {
+      const bal = await provider?.getBalance();
+      setBalance(bal);
+    };
+    if (provider) {
+      handleGetBalance();
+    }
+  }, [provider, balance]);
+
   const loggedInView =
     (getUserInfo(secret),
     (
       <>
         <div className="App">
-          <BrowserRouter>
-          <Routes>
+          {/* <BrowserRouter> */}
+            <Routes>
+              <Route
+                path="/investments/:addr"
+                element={
+                  <Layout>
+                    <Investments />
+                  </Layout>
+                }
+              />
+                            <Route
+                path="/send"
+                element={
+                    <Send />
+                }
+              />
+              <Route
+                path="/investments"
+                element={<Navigate to="/investments/1" />}
+              />
+              <Route
+                path="/investments/:addr"
+                element={
+                  <Layout>
+                    <Investments />
+                  </Layout>
+                }
+              />
+              <Route path="/scan" element={<Test />} />
+              <Route
+                path="/faqs"
+                element={
+                  <Layout>
+                    <FAQs />
+                  </Layout>
+                }
+              />
+              <Route
+                path="/deposits"
+                element={
+                  <Layout>
+                    <DW />
+                  </Layout>
+                }
+              />
+              <Route path="/payments" element={<></>} />
+
+              <Route
+                path="/qr"
+                element={
+                  <QrCodePage account={mainAccount} username={username} />
+                }
+              />
+              <Route
+                path="/savings"
+                element={
+                  <Layout>
+                    <Savings account={mainAccount}/>
+                  </Layout>
+                }
+              />
+              <Route
+                path="/institutional-ramps"
+                element={
+                  <Layout>
+                    <DepositWithdraw />
+                  </Layout>
+                }
+              />
+              <Route
+                path="/settings"
+                element={
+                  <Layout>
+                    <Settings />
+                  </Layout>
+                }
+              />
+              {/* <Route path="/send" element={<Send />} /> */}
+              <Route path="/sendQR/:user" element={<SendQR />} />
+              {/*}    <Route
+                path="/history"
+                element={<TxHistory account={mainAccount} />}
+              />{*/}
               <Route
                 path="/"
                 element={
-                  <CountDown />
+                  <Layout>
+                    <HomePage account={mainAccount} balance={balance} />
+                  </Layout>
                 }
               />
               <Route
                 path="/register"
                 element={
-                  <CountDown />
+                  <Layout>
+                    <HomePage account={mainAccount} balance={balance} />
+                  </Layout>
                 }
               />
               <Route
                 path="/login"
                 element={
-                  <CountDown />
+                  <Layout>
+                    <HomePage account={mainAccount} balance={balance}/>
+                  </Layout>
                 }
               />
             </Routes>
-          </BrowserRouter>
+          {/* </BrowserRouter> */}
         </div>
       </>
     ));
@@ -476,13 +716,13 @@ const Main = () => {
   const unloggedInView = (
     <div>
       <h1 className={styles.title}>XADE</h1>
-      <BrowserRouter>
+      {/* <BrowserRouter> */}
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
         </Routes>
-      </BrowserRouter>
+      {/* </BrowserRouter> */}
     </div>
   );
   return isLoading ? (

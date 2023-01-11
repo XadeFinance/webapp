@@ -1,0 +1,107 @@
+/* @font-face {
+    font-family: Inter;
+    src: url('inter.ttf')
+} */
+
+
+
+@font-face{
+    font-family: "VelaSans";
+    src: url("https://app.xade.finance/fonts/VelaSans.otf");
+  }
+.element {
+    color: white;
+    font-family: NeueMontreal-Bold;
+    font-weight: bold;
+    font-size:1.5rem;
+    text-align:center;
+    margin-bottom:4rem;    
+}
+
+.element2 {
+    color: grey;
+}
+
+/* .submitButton2 {
+    background-color: #fff;
+    border: none;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+    width: 10rem;
+
+    font-size: 1.5rem;
+    font-family: Inter;
+    letter-spacing: -0.015em;
+    font-weight:700;
+    color: #000;
+} */
+
+.submitSection {
+margin-top:5rem;
+margin-left:1.5rem;
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    bottom: 3rem;
+    height: 3rem;
+    padding: 0;
+
+}
+
+.submitButton {
+
+    background-color: #1c1d1e;   
+     width: 90%;
+    height: 100%;
+    font-size: 1.5rem;
+    font-family: Inter;
+    letter-spacing: -0.015em;
+    /* background-color: #3385ff; */
+    border-radius: 1rem;
+    border: 0;
+    color: #fff;
+    font-weight:700;
+}
+
+.contentWrapper {
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+font-family: "VelaSans";
+margin:0;
+}
+
+.transactionDetails{
+    margin-top:3rem;
+
+}
+
+.information {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.informationInformation {
+    display: inline-block;
+    color: white;
+}
+
+.linkage {
+    display: inline-block;
+}
+
+.numberInput {
+    text-align: center;
+    color: white;
+    border: none;
+    width: 2rem;
+    border-bottom: 2px solid white;
+    border-radius: 2px;
+    margin-left: 1rem;
+    background-color: inherit;
+}

@@ -7,6 +7,15 @@
   align-items: center;
 }
 
+@font-face{
+  font-family: "NeueMontreal";
+  src: url("https:///app.xade.finance/fonts/NeueMontreal.otf");
+}
+
+.montreal{
+  font-family: "NeueMontreal";
+}
+
 .topBar {
   /* width: 100%; */
   height: 50px;
