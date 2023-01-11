@@ -8,6 +8,7 @@ import tickStyles2 from "../../../styles/tickStyles2.module.css";
 import "../../../styles/qrscan.css";
 import "../../../styles/QrPage.css";
 import "../../../styles/HomePage.css";
+import { Player, Controls } from '@lottiefiles/react-lottie-player';
 
 import countries from "./allCountries";
 import { Country, PhoneNumber } from "./allCountries";
@@ -396,29 +397,15 @@ const Send = () => {
       ) : current == 2 ? (
         <>
           <div className={tickStyles.wrapper}>
-            {" "}
-            <svg
-              className={tickStyles.checkmark}
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 52 52"
-            >
-              {" "}
-              <circle
-                className={tickStyles.checkmark__circle}
-                cx="26"
-                cy="26"
-                r="25"
-                fill="none"
-              />{" "}
-              <path
-                className={tickStyles.checkmark__check}
-                fill="none"
-                d="M14.1 27.2l7.1 7.2 16.7-16.8"
-              />
-            </svg>
-          </div>
-
-          <div className={styles3.contentWrapper}>
+          <Player
+          keepLastFrame = {true}
+                autoplay
+                src="https://assets1.lottiefiles.com/private_files/lf30_pzulxwyk.json"
+                style={{ height: '300px', width: '300px' }}
+          >
+  <Controls visible={false} buttons={[]} />
+</Player>
+<div className={styles3.contentWrapper}>
             <div className={tickStyles.and}>Transaction successful! </div>
           </div>
           <br />
@@ -478,6 +465,9 @@ const Send = () => {
                 {receipt.transactionHash.slice(-3)}
               </a>
             </div>
+          </div>
+
+         
           </div>
           {/* <br /> */}
         </>

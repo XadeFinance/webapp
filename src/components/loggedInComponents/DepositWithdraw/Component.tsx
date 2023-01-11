@@ -15,6 +15,11 @@ import { useNavigate } from "react-router-dom";
 
 const DepositWithdraw = () => {
 
+  function capitalizeFirstLetter(str:string)  {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+  
+  
   let [currency, setCurrency] = React.useState('USD');
   let transak: {api:string} = Ramps['transak']
   const navigate = useNavigate();
@@ -30,7 +35,8 @@ const DepositWithdraw = () => {
     style: { color: "rgba(251, 251, 251, 0.6)" },
     error: false,
   });
-  
+
+
   return (
         <>
             {(state == 0)?
@@ -146,10 +152,13 @@ const DepositWithdraw = () => {
 <br />
   <div className = {styles.centrify}>   
       {
-        Object.values(Ramps).forEach((key) => {
+        Object.keys(Ramps).forEach((key) => {
         <div className = {styles.box}>
           <div>
-            <div></div>
+            <div>
+                {capitalizeFirstLetter(key)}
+                
+            </div>
           </div>
         </div>
       })}
