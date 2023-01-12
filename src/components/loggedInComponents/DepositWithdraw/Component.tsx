@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { RiRestaurantLine } from "react-icons/ri";
 import axios from 'axios';
 
-const DepositWithdraw = () => {
+const Component = () => {
 
   function capitalizeFirstLetter(str:string)  {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -23,7 +23,7 @@ const DepositWithdraw = () => {
   let [response, setResponse] = React.useState<any>({
     "":""
   });
-  let [currency, setCurrency] = React.useState('USD');
+  let [currency, setCurrency] = React.useState<Currency>(currencies[0]);
   let transak: {api:string} = Ramps['transak']
   const navigate = useNavigate();
   let [state, setState] = useState(0);
@@ -31,16 +31,15 @@ const DepositWithdraw = () => {
   const [selected, setSelected] = useState(Object.keys(Ramps)[0]);
   const handleSubmitAmount = (e:any) => {
     e.preventDefault();
-    let curr:Currency = currencies[0]
-    currencies.forEach((sym) => {if(currency == sym.symbol) curr = sym})
-    if((parseInt(amount) > curr.max || parseInt(amount) < curr.min))
+
+    if((parseInt(amount) > currency.max || parseInt(amount) < currency.min))
     {
       return;
     }
 
     const options = {
       method: 'GET',
-      url: `https://api-stg.transak.com/api/v2/currencies/price?partnerApiKey=89cb2c9c-19f5-485e-b134-e36045f2db8b&fiatCurrency=${currency}&cryptoCurrency=USDC&isBuyOrSell=BUY&network=polygon&paymentMethod=credit_debit_card&fiatAmount=${amount}`,
+      url: `https://api-stg.transak.com/api/v2/currencies/price?partnerApiKey=89cb2c9c-19f5-485e-b134-e36045f2db8b&fiatCurrency=${currency.symbol}&cryptoCurrency=USDC&isBuyOrSell=BUY&network=polygon&paymentMethod=${currency.payment}&fiatAmount=${amount}`,
       headers: {accept: 'application/json'}
     };
     
@@ -94,14 +93,14 @@ const DepositWithdraw = () => {
 
                     <section>
                       <select
-                       value = {currency}
+                       value = {currency.symbol}
                         id="cc"
                         className={styles4.selectForm}
                         onChange={(e) => {
-                          setCurrency(e.target.value);
                           let c = e.target.value;
                           let curr:Currency = currencies[0]
                           currencies.forEach((r) => {if(c == r.symbol) curr = r})
+                          setCurrency(curr);
                           setAmount(curr.min.toString())
                           // console.log(cc);
                         }}
@@ -127,19 +126,18 @@ const DepositWithdraw = () => {
                         id="num"
                         onChange={(e) => {
                           setAmount(e.target.value)
-                          let curr:Currency = currencies[0]
-                          currencies.forEach((e) => {if(currency == e.symbol) curr = e})
+                          
                           let amount = parseFloat(e.target.value)
-                          if(amount < curr.min)
+                          if(amount < currency.min)
                           {
                             setError({
-                                ...error, error: true, message: `Amount too low (minimum is ${curr.min})`
+                                ...error, error: true, message: `Amount too low (minimum is ${currency.min})`
                             })
                           }
-                          else if(amount > curr.max)
+                          else if(amount > currency.max)
                           {  
                             setError({
-                            ...error, error: true, message: `Amount too high (maximum is ${curr.max})`
+                            ...error, error: true, message: `Amount too high (maximum is ${currency.max})`
                           })
                         }
                           else {
@@ -241,5 +239,9 @@ const DepositWithdraw = () => {
         </>
   );
     };
+
+const DepositWithdraw = () => {
+  return (<></>);
+}
 
 export default DepositWithdraw;

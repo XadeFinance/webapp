@@ -4,7 +4,8 @@ export type Currency = {
     "symbol": string,
     "name": string,
     "min": number, 
-    "max": number
+    "max": number,
+    "payment":string
 }
 //   export type PhoneNumber = {
 //     code: Country,
@@ -21,454 +22,529 @@ export default Ramps;
   
 
 export const currencies:Currency[] = [
-    {
-        "symbol": "USD",
-        "name": "US Dollar",
-        "min": 30,
-        "max": 1500
-    },
-    {
-        "symbol": "GBP",
-        "name": "British pound",
-        "min": 25,
-        "max": 1240
-    },
-    {
-        "symbol": "INR",
-        "name": "Indian rupee",
-        "min": 1728,
-        "max": 24682
-    },
-    {
-        "symbol": "EUR",
-        "name": "Euro",
-        "min": 28,
-        "max": 1407
-    },
-    {
-        "symbol": "CHF",
-        "name": "Swiss franc",
-        "min": 28,
-        "max": 1392
-    },
-    {
-        "symbol": "SEK",
-        "name": "Swedish krona",
-        "min": 316,
-        "max": 15784
-    },
-    {
-        "symbol": "PLN",
-        "name": "Polish Zloty",
-        "min": 128,
-        "max": 6393
-    },
-    {
-        "symbol": "NOK",
-        "name": "Norwegian Krone",
-        "min": 300,
-        "max": 14981
-    },
-    {
-        "symbol": "DKK",
-        "name": "Danish Krone",
-        "min": 210,
-        "max": 10482
-    },
-    {
-        "symbol": "NZD",
-        "name": "New Zealand dollar",
-        "min": 47,
-        "max": 2361
-    },
-    {
-        "symbol": "MXN",
-        "name": "Mexican peso",
-        "min": 574,
-        "max": 28703
-    },
-    {
-        "symbol": "CAD",
-        "name": "Canadian dollar",
-        "min": 40,
-        "max": 2017
-    },
-    {
-        "symbol": "AUD",
-        "name": "Australian dollar",
-        "min": 44,
-        "max": 2180
-    },
-    {
-        "symbol": "ARS",
-        "name": "Argentine Peso",
-        "min": 5378,
-        "max": 268875
-    },
-    {
-        "symbol": "BRL",
-        "name": "Brazilian Real",
-        "min": 157,
-        "max": 7839
-    },
-    {
-        "symbol": "CLP",
-        "name": "Chilean Peso",
-        "min": 25241,
-        "max": 1262070
-    },
-    {
-        "symbol": "CRC",
-        "name": "Costa Rican Colon",
-        "min": 17733,
-        "max": 886663
-    },
-    {
-        "symbol": "DOP",
-        "name": "Dominican Peso",
-        "min": 1696,
-        "max": 84806
-    },
-    {
-        "symbol": "IDR",
-        "name": "Indonesian Rupiah",
-        "min": 468219,
-        "max": 23410950
-    },
-    {
-        "symbol": "ILS",
-        "name": "Israeli Shekel",
-        "min": 105,
-        "max": 5260
-    },
-    {
-        "symbol": "JPY",
-        "name": "Japanese Yen",
-        "min": 3963,
-        "max": 198127
-    },
-    {
-        "symbol": "KRW",
-        "name": "South Korean Won",
-        "min": 37616,
-        "max": 1880820
-    },
-    {
-        "symbol": "MYR",
-        "name": "Malaysian Ringgit",
-        "min": 132,
-        "max": 6605
-    },
-    {
-        "symbol": "PYG",
-        "name": "Paraguayan Guarani",
-        "min": 219909,
-        "max": 10995436
-    },
-    {
-        "symbol": "PEN",
-        "name": "Peruvian Sol",
-        "min": 114,
-        "max": 5685
-    },
-    {
-        "symbol": "PHP",
-        "name": "Philippine Peso",
-        "min": 1666,
-        "max": 83283
-    },
-    {
-        "symbol": "SGD",
-        "name": "Singapore Dollar",
-        "min": 40,
-        "max": 2005
-    },
-    {
-        "symbol": "ZAR",
-        "name": "South African Rand",
-        "min": 513,
-        "max": 25662
-    },
-    {
-        "symbol": "TZS",
-        "name": "Tanzanian Shilling",
-        "min": 70110,
-        "max": 3505500
-    },
-    {
-        "symbol": "THB",
-        "name": "Thai Baht",
-        "min": 1012,
-        "max": 50589
-    },
-    {
-        "symbol": "TRY",
-        "name": "Turkish Lira",
-        "min": 563,
-        "max": 28132
-    },
-    {
-        "symbol": "BBD",
-        "name": "Barbados Dollar",
-        "min": 60,
-        "max": 3000
-    },
-    {
-        "symbol": "FJD",
-        "name": "Fiji Dollar",
-        "min": 66,
-        "max": 3282
-    },
-    {
-        "symbol": "HUF",
-        "name": "Forint",
-        "min": 11117,
-        "max": 555870
-    },
-    {
-        "symbol": "JMD",
-        "name": "Jamaican Dollar",
-        "min": 4577,
-        "max": 228866
-    },
-    {
-        "symbol": "KES",
-        "name": "Kenyan Shilling",
-        "min": 3710,
-        "max": 185475
-    },
-    {
-        "symbol": "MDL",
-        "name": "Moldovan Leu",
-        "min": 576,
-        "max": 28816
-    },
-    {
-        "symbol": "BMD",
-        "name": "Bermudian Dollar",
-        "min": 30,
-        "max": 1500
-    },
-    {
-        "symbol": "FKP",
-        "name": "Falkland Islands Pound",
-        "min": 25,
-        "max": 1240
-    },
-    {
-        "symbol": "GIP",
-        "name": "Gibraltar Pound",
-        "min": 25,
-        "max": 1240
-    },
-    {
-        "symbol": "BGN",
-        "name": "Bulgarian Lev",
-        "min": 55,
-        "max": 2758
-    },
-    {
-        "symbol": "CZK",
-        "name": "Czech Koruna",
-        "min": 676,
-        "max": 33812
-    },
-    {
-        "symbol": "ISK",
-        "name": "Iceland Krona",
-        "min": 4310,
-        "max": 215490
-    },
-    {
-        "symbol": "RON",
-        "name": "Romanian Leu",
-        "min": 139,
-        "max": 6945
-    },
-    {
-        "symbol": "VND",
-        "name": "Dong",
-        "min": 704060,
-        "max": 35203012
-    },
-    {
-        "symbol": "AOA",
-        "name": "Kwanza",
-        "min": 15111,
-        "max": 755528
-    },
-    {
-        "symbol": "BZD",
-        "name": "Belize Dollar",
-        "min": 61,
-        "max": 3026
-    },
-    {
-        "symbol": "BND",
-        "name": "Brunei Dollar",
-        "min": 40,
-        "max": 2024
-    },
-    {
-        "symbol": "XAF",
-        "name": "CFA Franc BEAC",
-        "min": 18454,
-        "max": 922713
-    },
-    {
-        "symbol": "KMF",
-        "name": "Comoro Franc",
-        "min": 13889,
-        "max": 694425
-    },
-    {
-        "symbol": "DJF",
-        "name": "Djibouti Franc",
-        "min": 5325,
-        "max": 266250
-    },
-    {
-        "symbol": "XCD",
-        "name": " East Caribbean Dollar",
-        "min": 81,
-        "max": 4054
-    },
-    {
-        "symbol": "GEL",
-        "name": "Lari",
-        "min": 81,
-        "max": 4050
-    },
-    {
-        "symbol": "GTQ",
-        "name": "Quetzal",
-        "min": 236,
-        "max": 11782
-    },
-    {
-        "symbol": "HNL",
-        "name": "Lempira",
-        "min": 740,
-        "max": 37005
-    },
-    {
-        "symbol": "HKD",
-        "name": "Hong Kong Dollar",
-        "min": 234,
-        "max": 11712
-    },
-    {
-        "symbol": "KZT",
-        "name": "Tenge",
-        "min": 13943,
-        "max": 697151
-    },
-    {
-        "symbol": "KGS",
-        "name": "Som",
-        "min": 2522,
-        "max": 126110
-    },
-    {
-        "symbol": "MGA",
-        "name": "Malagasy Ariary",
-        "min": 135000,
-        "max": 6750000
-    },
-    {
-        "symbol": "MWK",
-        "name": "Kwacha",
-        "min": 30720,
-        "max": 1536000
-    },
-    {
-        "symbol": "MRU",
-        "name": "Ouguiya",
-        "min": 1096,
-        "max": 54788
-    },
-    {
-        "symbol": "MZN",
-        "name": "Mozambique Metical",
-        "min": 1917,
-        "max": 95850
-    },
-    {
-        "symbol": "OMR",
-        "name": "Rial Omani",
-        "min": 12,
-        "max": 578
-    },
-    {
-        "symbol": "PGK",
-        "name": "Kina",
-        "min": 106,
-        "max": 5288
-    },
-    {
-        "symbol": "RWF",
-        "name": "Rwanda Franc",
-        "min": 32160,
-        "max": 1608000
-    },
-    {
-        "symbol": "STN",
-        "name": "Dobra",
-        "min": 701,
-        "max": 35063
-    },
-    {
-        "symbol": "SCR",
-        "name": "Seychelles Rupee",
-        "min": 400,
-        "max": 19986
-    },
-    {
-        "symbol": "SBD",
-        "name": "Solomon Islands Dollar",
-        "min": 248,
-        "max": 12397
-    },
-    {
-        "symbol": "SRD",
-        "name": "Surinam Dollar",
-        "min": 947,
-        "max": 47336
-    },
-    {
-        "symbol": "SZL",
-        "name": "Lilangeni",
-        "min": 514,
-        "max": 25695
-    },
-    {
-        "symbol": "TJS",
-        "name": "Somoni",
-        "min": 307,
-        "max": 15343
-    },
-    {
-        "symbol": "TOP",
-        "name": "Pa'anga",
-        "min": 71,
-        "max": 3529
-    },
-    {
-        "symbol": "TMT",
-        "name": "Turkmenistan New Manat",
-        "min": 105,
-        "max": 5265
-    },
-    {
-        "symbol": "UYU",
-        "name": "Peso Uruguayo",
-        "min": 1197,
-        "max": 59830
-    },
-    {
-        "symbol": "COP",
-        "name": "Colombian peso",
-        "min": 146630,
-        "max": 1221919
-    }
-]
+        {
+            "symbol": "USD",
+            "name": "US Dollar",
+            "min": 30,
+            "max": 1000,
+            "payment": "pm_zelle"
+        },
+        {
+            "symbol": "GBP",
+            "name": "British pound",
+            "min": 16,
+            "max": 11483,
+            "payment": "gbp_bank_transfer"
+        },
+        {
+            "symbol": "INR",
+            "name": "Indian rupee",
+            "min": 1707,
+            "max": 24392,
+            "payment": "inr_upi"
+        },
+        {
+            "symbol": "EUR",
+            "name": "Euro",
+            "min": 19,
+            "max": 12950,
+            "payment": "sepa_bank_transfer"
+        },
+        {
+            "symbol": "CHF",
+            "name": "Swiss franc",
+            "min": 28,
+            "max": 1395,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "SEK",
+            "name": "Swedish krona",
+            "min": 313,
+            "max": 15660,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "PLN",
+            "name": "Polish Zloty",
+            "min": 130,
+            "max": 6512,
+            "payment": "pm_open_banking"
+        },
+        {
+            "symbol": "NOK",
+            "name": "Norwegian Krone",
+            "min": 298,
+            "max": 14888,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "DKK",
+            "name": "Danish Krone",
+            "min": 206,
+            "max": 10321,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "NZD",
+            "name": "New Zealand dollar",
+            "min": 47,
+            "max": 2352,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "MXN",
+            "name": "Mexican peso",
+            "min": 567,
+            "max": 28357,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "CAD",
+            "name": "Canadian dollar",
+            "min": 40,
+            "max": 2007,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "AUD",
+            "name": "Australian dollar",
+            "min": 43,
+            "max": 2158,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "ARS",
+            "name": "Argentine Peso",
+            "min": 5429,
+            "max": 271464,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "BRL",
+            "name": "Brazilian Real",
+            "min": 154,
+            "max": 7719,
+            "payment": "pm_pix"
+        },
+        {
+            "symbol": "CLP",
+            "name": "Chilean Peso",
+            "min": 24536,
+            "max": 1226775,
+            "payment": "pm_astropay"
+        },
+        {
+            "symbol": "CRC",
+            "name": "Costa Rican Colon",
+            "min": 17532,
+            "max": 876622,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "DOP",
+            "name": "Dominican Peso",
+            "min": 1694,
+            "max": 84688,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "IDR",
+            "name": "Indonesian Rupiah",
+            "min": 456487,
+            "max": 22824373,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "ILS",
+            "name": "Israeli Shekel",
+            "min": 103,
+            "max": 5129,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "JPY",
+            "name": "Japanese Yen",
+            "min": 3909,
+            "max": 195453,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "KRW",
+            "name": "South Korean Won",
+            "min": 37191,
+            "max": 1859526,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "MYR",
+            "name": "Malaysian Ringgit",
+            "min": 131,
+            "max": 6542,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "PYG",
+            "name": "Paraguayan Guarani",
+            "min": 221388,
+            "max": 11069378,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "PEN",
+            "name": "Peruvian Sol",
+            "min": 114,
+            "max": 5682,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "PHP",
+            "name": "Philippine Peso",
+            "min": 1651,
+            "max": 49522,
+            "payment": "pm_gcash"
+        },
+        {
+            "symbol": "SGD",
+            "name": "Singapore Dollar",
+            "min": 40,
+            "max": 1989,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "ZAR",
+            "name": "South African Rand",
+            "min": 504,
+            "max": 25188,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "TZS",
+            "name": "Tanzanian Shilling",
+            "min": 69958,
+            "max": 3497904,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "THB",
+            "name": "Thai Baht",
+            "min": 997,
+            "max": 49851,
+            "payment": "pm_bangkok_bank_mobile"
+        },
+        {
+            "symbol": "TRY",
+            "name": "Turkish Lira",
+            "min": 563,
+            "max": 28169,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "BBD",
+            "name": "Barbados Dollar",
+            "min": 60,
+            "max": 3000,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "FJD",
+            "name": "Fiji Dollar",
+            "min": 65,
+            "max": 3259,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "HUF",
+            "name": "Forint",
+            "min": 11051,
+            "max": 552542,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "JMD",
+            "name": "Jamaican Dollar",
+            "min": 4590,
+            "max": 229524,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "KES",
+            "name": "Kenyan Shilling",
+            "min": 3714,
+            "max": 185700,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "MDL",
+            "name": "Moldovan Leu",
+            "min": 574,
+            "max": 28697,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "BMD",
+            "name": "Bermudian Dollar",
+            "min": 30,
+            "max": 1500,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "FKP",
+            "name": "Falkland Islands Pound",
+            "min": 25,
+            "max": 1230,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "GIP",
+            "name": "Gibraltar Pound",
+            "min": 25,
+            "max": 1230,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "BGN",
+            "name": "Bulgarian Lev",
+            "min": 54,
+            "max": 2721,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "CZK",
+            "name": "Czech Koruna",
+            "min": 667,
+            "max": 33364,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "ISK",
+            "name": "Iceland Krona",
+            "min": 4282,
+            "max": 214095,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "RON",
+            "name": "Romanian Leu",
+            "min": 137,
+            "max": 6859,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "VND",
+            "name": "Dong",
+            "min": 703235,
+            "max": 35161746,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "AOA",
+            "name": "Kwanza",
+            "min": 15113,
+            "max": 755670,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "BZD",
+            "name": "Belize Dollar",
+            "min": 60,
+            "max": 3023,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "BND",
+            "name": "Brunei Dollar",
+            "min": 40,
+            "max": 1994,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "XAF",
+            "name": "CFA Franc BEAC",
+            "min": 18203,
+            "max": 910163,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "KMF",
+            "name": "Comoro Franc",
+            "min": 13747,
+            "max": 687338,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "DJF",
+            "name": "Djibouti Franc",
+            "min": 5341,
+            "max": 267037,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "XCD",
+            "name": " East Caribbean Dollar",
+            "min": 81,
+            "max": 4054,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "GEL",
+            "name": "Lari",
+            "min": 80,
+            "max": 4012,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "GTQ",
+            "name": "Quetzal",
+            "min": 235,
+            "max": 11764,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "HNL",
+            "name": "Lempira",
+            "min": 740,
+            "max": 37008,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "HKD",
+            "name": "Hong Kong Dollar",
+            "min": 234,
+            "max": 11714,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "KZT",
+            "name": "Tenge",
+            "min": 13864,
+            "max": 693197,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "KGS",
+            "name": "Som",
+            "min": 2570,
+            "max": 128520,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "MGA",
+            "name": "Malagasy Ariary",
+            "min": 136145,
+            "max": 6807272,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "MWK",
+            "name": "Kwacha",
+            "min": 30813,
+            "max": 1540638,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "MRU",
+            "name": "Ouguiya",
+            "min": 1092,
+            "max": 54584,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "MZN",
+            "name": "Mozambique Metical",
+            "min": 1916,
+            "max": 95775,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "OMR",
+            "name": "Rial Omani",
+            "min": 12,
+            "max": 577,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "PGK",
+            "name": "Kina",
+            "min": 106,
+            "max": 5286,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "RWF",
+            "name": "Rwanda Franc",
+            "min": 32168,
+            "max": 1608395,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "STN",
+            "name": "Dobra",
+            "min": 683,
+            "max": 34148,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "SCR",
+            "name": "Seychelles Rupee",
+            "min": 384,
+            "max": 19186,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "SBD",
+            "name": "Solomon Islands Dollar",
+            "min": 248,
+            "max": 12423,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "SRD",
+            "name": "Surinam Dollar",
+            "min": 948,
+            "max": 47400,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "SZL",
+            "name": "Lilangeni",
+            "min": 507,
+            "max": 25335,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "TJS",
+            "name": "Somoni",
+            "min": 307,
+            "max": 15337,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "TOP",
+            "name": "Pa'anga",
+            "min": 70,
+            "max": 3500,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "TMT",
+            "name": "Turkmenistan New Manat",
+            "min": 105,
+            "max": 5250,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "UYU",
+            "name": "Peso Uruguayo",
+            "min": 1194,
+            "max": 59706,
+            "payment": "credit_debit_card"
+        },
+        {
+            "symbol": "COP",
+            "name": "Colombian peso",
+            "min": 141320,
+            "max": 1177665,
+            "payment": "pm_pse"
+        }
+    ]
