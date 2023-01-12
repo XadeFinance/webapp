@@ -12,22 +12,54 @@ import styles3 from './send.module.css'
 import styles4 from './yes.module.css'
 import Ramps, { currencies, Currency } from './ramps'
 import { useNavigate } from "react-router-dom";
+import { RiRestaurantLine } from "react-icons/ri";
+import axios from 'axios';
 
 const DepositWithdraw = () => {
 
   function capitalizeFirstLetter(str:string)  {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
-  
-  
+  let [response, setResponse] = React.useState<any>({
+    "":""
+  });
   let [currency, setCurrency] = React.useState('USD');
   let transak: {api:string} = Ramps['transak']
   const navigate = useNavigate();
   let [state, setState] = useState(0);
-  const [amount, setAmount] = useState<string>('20');   
-  const [selected, setSelected] = useState(null);
-  const handleChange = () => {
-    setState(1)
+  const [amount, setAmount] = useState<string>('0');   
+  const [selected, setSelected] = useState(Object.keys(Ramps)[0]);
+  const handleSubmitAmount = (e:any) => {
+    e.preventDefault();
+    let curr:Currency = currencies[0]
+    currencies.forEach((sym) => {if(currency == sym.symbol) curr = sym})
+    if((parseInt(amount) > curr.max || parseInt(amount) < curr.min))
+    {
+      return;
+    }
+
+    const options = {
+      method: 'GET',
+      url: `https://api-stg.transak.com/api/v2/currencies/price?partnerApiKey=89cb2c9c-19f5-485e-b134-e36045f2db8b&fiatCurrency=${currency}&cryptoCurrency=USDC&isBuyOrSell=BUY&network=polygon&paymentMethod=credit_debit_card&fiatAmount=${amount}`,
+      headers: {accept: 'application/json'}
+    };
+    
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+
+    setState(1);
+
+  
+  }
+
+  const handleSubmitRamp = (e:any) => {
+
   }
 
   let [error, setError] = React.useState({
@@ -50,7 +82,7 @@ const DepositWithdraw = () => {
           </p>
 <div className={styles4.number_input} id="phonenums">
             <form
-              onSubmit={handleChange}
+              onSubmit={handleSubmitAmount}
               className={styles4.number_form}
             >
               <div className={styles4.flexContainer}>
@@ -152,16 +184,40 @@ const DepositWithdraw = () => {
 <br />
   <div className = {styles.centrify}>   
       {
-        Object.keys(Ramps).forEach((key) => {
-        <div className = {styles.box}>
-          <div>
-            <div>
-                {capitalizeFirstLetter(key)}
-                
+        (Object.keys(Ramps)).map((key) => {
+
+        return (
+        <div className = {styles.box} style = {{'width': '100%'}}>
+            <div className = {styles.innerBox}>
+              <p> {capitalizeFirstLetter(key)} </p>
+              <p>{/* amount in eth  */}</p>
             </div>
-          </div>
+            <div className = {styles.innerBox}>
+              <p>Price USD</p>
+              <p></p>
+            </div>
+            <div className = {styles.innerBox}>
+              <p>Total Fees</p>
+              <p>${0}</p>
+            </div>
+            <div className = {styles.innerBox + " " + styles.innersq}>
+              <p>Processing fee</p>
+              <p>${0}</p>
+            </div>
+            <div className = {styles.innerBox + " " + styles.innersq}>
+              <p>Network fee</p>
+              <p>${0}</p>
+            </div>
+            <div className = {styles.innerBox}>
+              <p>Total</p>
+              <p>${0}</p>
+            </div>
+            <div>
+              
+            </div>
         </div>
-      })}
+        )})
+      }
   </div>
 <br />
 
