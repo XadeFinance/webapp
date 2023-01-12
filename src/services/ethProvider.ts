@@ -487,7 +487,7 @@ const approveERC20 =  async (cost :any) => {
   let accounts = await kit.web3.eth.getAccounts();
   kit.defaultAccount = accounts[0];
   const XUSDContract= new web3.eth.Contract(xusdABI, xusdAddr);
-  const liquidityDeposit= new web3.eth.Contract(liquidityPoolAbi,liquidityPoolAddress);
+  const liquidityDeposit= new web3.eth.Contract(liquidityPoolAbi.abi,liquidityPoolAddress);
   const tx = await XUSDContract.methods
     .approve(depositAddr, cost)
     .send({
@@ -497,14 +497,16 @@ const approveERC20 =  async (cost :any) => {
 
     })
     .once("error", (err) => {
-      console.log(err);
+      console.log("error===",err);
     })
     .then((receipt) => {
       console.log(receipt);
       if (receipt && receipt.status) {
-        claimNFTs();
+        // claimNFTs();
+        console.log("inside if of approve")
       } else {
         // End transaction
+        console.log("receipt==",receipt);
       }
     });
 };
