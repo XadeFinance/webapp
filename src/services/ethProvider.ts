@@ -1,4 +1,5 @@
-import Token from "./CUSD.json";
+import depositContractABI from "./deposit.json";
+import xusdABI from "./XUSD.json";
 import { SafeEventEmitterProvider } from "@web3auth/base";
 import Web3 from "web3";
 import { IWalletProvider } from "./walletProvider";
@@ -46,10 +47,10 @@ const ethProvider = (
   const getBalance = async () => {
     try {
       const web3 = new Web3(provider as any);
-      const contractAddress = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1";
-      const contract = new web3.eth.Contract(Token.abi, contractAddress);
+      const contractAddress = "0xB5C8619EE3505bB83e985d8234cbd9c28f8B89d1";
+      const contract = new web3.eth.Contract(xusdABI, contractAddress);
       let accounts = await web3.eth.getAccounts();
-      const balance = await contract.methods.balanceOf(accounts[0]).call();
+      const balance = await contract.methods.balanceOfXUSD(accounts[0]).call();
       return balance;
     } catch (error) {
       console.error("Error", error);
@@ -287,7 +288,38 @@ console.log(savingInterestRate);
       uiConsole("error", error);
     }
   };
-  const provideLiquidityToContract = async (fromAddress: string, amount: string) => {
+  const provideLiquidityToContract  = async(fromAddress: string, amount: string) => {
+	        const web3 = new Web3(provider as any);
+      //const accounts = await web3.eth.getAccounts();
+      //const contractAddress = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1";
+      //const contract = new web3.eth.Contract(Token.abi, contractAddress);
+       const kit = newKitFromWeb3(web3 as any);
+const xusdAddr = "0xB5C8619EE3505bB83e985d8234cbd9c28f8B89d1";
+      let accounts = await kit.web3.eth.getAccounts();
+      kit.defaultAccount = accounts[0];
+ //     await kit.setFeeCurrency(CeloContract.StableToken);
+const contract = new web3.eth.Contract(xusdABI, xusdAddr);
+
+const tx = contract.methods.approve("0xb596CE1F14E4586C8d7f0C5bE3c24ba487f8C40c",  kit.web3.utils.toBN(Web3.utils.toWei(amount, "ether"))).send({
+	gasLimit:80000,
+	to: xusdAddr,
+	from:accounts[0]
+}).once("error", (err) => {
+        console.log(err);
+      })
+            .then((receipt) => {
+        console.log(receipt);
+        if (receipt && receipt.status) {
+          //const rcpt = await provideLiquidity(fromAddress, amount);
+        const a = 1;
+		//return rcpt;
+	} else {
+const b = 1;
+          // End transaction
+        }
+      });
+  };
+  const provideLiquidity = async (fromAddress: string, amount: string) => {
     try {
       // const web3 = new Web3(provider as any);
       // //const accounts = await web3.eth.getAccounts();
@@ -444,7 +476,7 @@ const depositABI = {
   "deployedLinkReferences": {}
 }
 
-const depositAddr = "0x7765e4256e0dBda401Ce64809bAB5AefDca40F08"
+const depositAddr = "0xb596CE1F14E4586C8d7f0C5bE3c24ba487f8C40c"
 
       const web3 = new Web3(provider as any);
       //const accounts = await web3.eth.getAccounts();
@@ -454,20 +486,19 @@ const depositAddr = "0x7765e4256e0dBda401Ce64809bAB5AefDca40F08"
 
       let accounts = await kit.web3.eth.getAccounts();
       kit.defaultAccount = accounts[0];
-      await kit.setFeeCurrency(CeloContract.StableToken);
-
-      const contract = await kit.contracts.getStableToken();
+ //     await kit.setFeeCurrency(CeloContract.StableToken);
+const contract = new web3.eth.Contract(depositContractABI, depositAddr);
+   //   const contract = await kit.contracts.getStableToken();
       // const contract = new web3.eth.Contract(CUSD.abi, cusdAddress);
       // Send transaction to smart contract to update message and wait to finish
-      const depositFunds = await contract.transfer(depositAddr, kit.web3.utils.toBN(Web3.utils.toWei(amount, "ether")))
+      const txRes = await contract.methods.depositERC20Token(kit.web3.utils.toBN(Web3.utils.toWei(amount, "ether")))
         .send({
           from: accounts[0],
           gas: 80000,
           maxPriorityFeePerGas: "5000000000", // Max priority fee per gas
           maxFeePerGas: "6000000000000",
-          feeCurrency: contract.address,
         });
-	 const txRes = await depositFunds.waitReceipt();
+ //        const txRes = await depositFunds.waitReceipt();
       uiConsole("Receipt", txRes);
       console.log(parseInt(amount) * 10);
       if (txRes.status == "0x1" || txRes.status == 1) {
@@ -495,500 +526,17 @@ const depositAddr = "0x7765e4256e0dBda401Ce64809bAB5AefDca40F08"
       let accounts = await kit.web3.eth.getAccounts();
       kit.defaultAccount = accounts[0];
       //await kit.setFeeCurrency(CeloContract.StableToken);
-const contractAddr = "0xfa66992d6b804deeb8a0860acbd57847ac67fb31";
-/*const abi = [
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "tokenName",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "tokenSymbol",
-				"type": "string"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "spender",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "value",
-				"type": "uint256"
-			}
-		],
-		"name": "Approval",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "value",
-				"type": "uint256"
-			}
-		],
-		"name": "Transfer",
-		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "spender",
-				"type": "address"
-			}
-		],
-		"name": "allowance",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "spender",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "approve",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "account",
-				"type": "address"
-			}
-		],
-		"name": "balanceOf",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "decimals",
-		"outputs": [
-			{
-				"internalType": "uint8",
-				"name": "",
-				"type": "uint8"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "spender",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "subtractedValue",
-				"type": "uint256"
-			}
-		],
-		"name": "decreaseAllowance",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"na
-      */
-     const abi = [
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "spender",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "value",
-				"type": "uint256"
-			}
-		],
-		"name": "Approval",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "value",
-				"type": "uint256"
-			}
-		],
-		"name": "Transfer",
-		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "spender",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "approve",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "spender",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "subtractedValue",
-				"type": "uint256"
-			}
-		],
-		"name": "decreaseAllowance",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "spender",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "addedValue",
-				"type": "uint256"
-			}
-		],
-		"name": "increaseAllowance",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "transfer",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address payable",
-				"name": "_reciever",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_amount",
-				"type": "uint256"
-			}
-		],
-		"name": "transferAmount",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "transferFrom",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "tokenName",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "tokenSymbol",
-				"type": "string"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "spender",
-				"type": "address"
-			}
-		],
-		"name": "allowance",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "account",
-				"type": "address"
-			}
-		],
-		"name": "balanceOf",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "decimals",
-		"outputs": [
-			{
-				"internalType": "uint8",
-				"name": "",
-				"type": "uint8"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "name",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "symbol",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "totalSupply",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	}
-]
-				const contract = new web3.eth.Contract(abi,"0xbd69Fe074f58f1E4F971bCB2414A7b4A5867f691" );
+const contractAddr = "0xB5C8619EE3505bB83e985d8234cbd9c28f8B89d1";
+                           const contract = new web3.eth.Contract(xusdABI,"0xbd69Fe074f58f1E4F971bCB2414A7b4A5867f691" );
       // Send transaction to smart contract to update message and wait to finish
-      const txRes = await contract.methods.transfer(toAddress, kit.web3.utils.toBN(Web3.utils.toWei(amount, "ether")))
+      const txRes = await contract.methods.transferAmount(toAddress, kit.web3.utils.toBN(Web3.utils.toWei(amount, "ether")))
         .send({
           from: accounts[0],
           gas: 80000,
           maxPriorityFeePerGas: "5000000000", // Max priority fee per gas
           maxFeePerGas: "6000000000000"
         });
-	 //const txRes = await transferToken.waitReceipt();
+         //const txRes = await transferToken.waitReceipt();
       uiConsole("Receipt", txRes);
       console.log(parseInt(amount) * 10);
       // if (txRes.status == "0x1" || txRes.status == 1) {

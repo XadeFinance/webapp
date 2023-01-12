@@ -208,7 +208,7 @@ document.getElementById("modalDeposit").style.display = "none";
     <div className = {styles3.contentWrapper}>
         <div className={tickStyles2.and}>Transaction unsuccessful! </div>
                 <br></br>
-        <div>{receipt.message}</div>
+        <div></div>
     </div>
 
     <br />
