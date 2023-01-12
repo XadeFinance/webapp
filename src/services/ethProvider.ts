@@ -47,7 +47,8 @@ const ethProvider = (
   const getBalance = async () => {
     try {
       const web3 = new Web3(provider as any);
-      const contractAddress = "0xB5C8619EE3505bB83e985d8234cbd9c28f8B89d1";
+      //deposit contract address
+      const contractAddress = "0xdAe408bD16839da7E859D71fF65700Ba6Cc3689A"; 
       const contract = new web3.eth.Contract(xusdABI, contractAddress);
       let accounts = await web3.eth.getAccounts();
       const balance = await contract.methods.balanceOfXUSD(accounts[0]).call();
