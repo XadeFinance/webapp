@@ -51,6 +51,7 @@ const ethProvider = (
       const contract = new web3.eth.Contract(xusdABI, contractAddress);
       let accounts = await web3.eth.getAccounts();
       const balance = await contract.methods.balanceOfXUSD(accounts[0]).call();
+      console.log("balance",balance);
       return balance;
     } catch (error) {
       console.error("Error", error);
@@ -527,7 +528,7 @@ const contract = new web3.eth.Contract(depositContractABI, depositAddr);
       kit.defaultAccount = accounts[0];
       //await kit.setFeeCurrency(CeloContract.StableToken);
 const contractAddr = "0xB5C8619EE3505bB83e985d8234cbd9c28f8B89d1";
-                           const contract = new web3.eth.Contract(xusdABI,"0xbd69Fe074f58f1E4F971bCB2414A7b4A5867f691" );
+                           const contract = new web3.eth.Contract(xusdABI,contractAddr );
       // Send transaction to smart contract to update message and wait to finish
       const txRes = await contract.methods.transferAmount(toAddress, kit.web3.utils.toBN(Web3.utils.toWei(amount, "ether")))
         .send({
