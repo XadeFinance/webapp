@@ -288,13 +288,14 @@ console.log(savingInterestRate);
       uiConsole("error", error);
     }
   };
+  const xusdAddr = "0xB5C8619EE3505bB83e985d8234cbd9c28f8B89d1";
   const provideLiquidityToContract  = async(fromAddress: string, amount: string) => {
 	        const web3 = new Web3(provider as any);
       //const accounts = await web3.eth.getAccounts();
       //const contractAddress = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1";
       //const contract = new web3.eth.Contract(Token.abi, contractAddress);
        const kit = newKitFromWeb3(web3 as any);
-const xusdAddr = "0xB5C8619EE3505bB83e985d8234cbd9c28f8B89d1";
+
       let accounts = await kit.web3.eth.getAccounts();
       kit.defaultAccount = accounts[0];
  //     await kit.setFeeCurrency(CeloContract.StableToken);
@@ -326,7 +327,7 @@ const b = 1;
       // const cusdAddress = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1";
       // //const contract = new web3.eth.Contract(Token.abi, contractAddress);
       //  const kit = newKitFromWeb3(web3 as any);
-const depositABI = {
+const liquidityPoolAbi = {
   "_format": "hh-sol-artifact-1",
   "contractName": "liquidityPool",
   "sourceName": "contracts/liquidityPool.sol",
@@ -476,7 +477,39 @@ const depositABI = {
   "deployedLinkReferences": {}
 }
 
-const depositAddr = "0xb596CE1F14E4586C8d7f0C5bE3c24ba487f8C40c"
+const approveERC20 =  async (cost :any) => {
+  const web3 = new Web3(provider as any);
+  //const accounts = await web3.eth.getAccounts();
+  //const contractAddress = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1";
+  //const contract = new web3.eth.Contract(Token.abi, contractAddress);
+   const kit = newKitFromWeb3(web3 as any);
+
+  let accounts = await kit.web3.eth.getAccounts();
+  kit.defaultAccount = accounts[0];
+  const XUSDContract= new web3.eth.Contract(xusdABI, xusdAddr);
+  const liquidityDeposit= new web3.eth.Contract(liquidityPoolAbi,liquidityPoolAddress);
+  const tx = await XUSDContract.methods
+    .approve(depositAddr, cost)
+    .send({
+      gasLimit: 80000,
+      // to: depositAddr,
+      from: accounts[0],
+
+    })
+    .once("error", (err) => {
+      console.log(err);
+    })
+    .then((receipt) => {
+      console.log(receipt);
+      if (receipt && receipt.status) {
+        claimNFTs();
+      } else {
+        // End transaction
+      }
+    });
+};
+
+const liquidityPoolAddress = "0xb596CE1F14E4586C8d7f0C5bE3c24ba487f8C40c"
 
       const web3 = new Web3(provider as any);
       //const accounts = await web3.eth.getAccounts();
@@ -487,10 +520,11 @@ const depositAddr = "0xb596CE1F14E4586C8d7f0C5bE3c24ba487f8C40c"
       let accounts = await kit.web3.eth.getAccounts();
       kit.defaultAccount = accounts[0];
  //     await kit.setFeeCurrency(CeloContract.StableToken);
-const contract = new web3.eth.Contract(depositContractABI, depositAddr);
+      const contract = new web3.eth.Contract(liquidityPoolAbi, liquidityPoolAddress);
    //   const contract = await kit.contracts.getStableToken();
       // const contract = new web3.eth.Contract(CUSD.abi, cusdAddress);
       // Send transaction to smart contract to update message and wait to finish
+      await approveERC20(amount);
       const txRes = await contract.methods.depositERC20Token(kit.web3.utils.toBN(Web3.utils.toWei(amount, "ether")))
         .send({
           from: accounts[0],
@@ -527,7 +561,7 @@ const contract = new web3.eth.Contract(depositContractABI, depositAddr);
       kit.defaultAccount = accounts[0];
       //await kit.setFeeCurrency(CeloContract.StableToken);
 const contractAddr = "0xB5C8619EE3505bB83e985d8234cbd9c28f8B89d1";
-                           const contract = new web3.eth.Contract(xusdABI,"0xbd69Fe074f58f1E4F971bCB2414A7b4A5867f691" );
+                           const contract = new web3.eth.Contract(xusdABI,"0xB5C8619EE3505bB83e985d8234cbd9c28f8B89d1" );
       // Send transaction to smart contract to update message and wait to finish
       const txRes = await contract.methods.transferAmount(toAddress, kit.web3.utils.toBN(Web3.utils.toWei(amount, "ether")))
         .send({
