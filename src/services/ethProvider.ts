@@ -288,7 +288,7 @@ console.log(savingInterestRate);
       uiConsole("error", error);
     }
   };
-  const xusdAddr = "0xB5C8619EE3505bB83e985d8234cbd9c28f8B89d1";
+  const xusdAddr = "0xdAe408bD16839da7E859D71fF65700Ba6Cc3689A";
   const provideLiquidityToContract  = async(fromAddress: string, amount: string) => {
 	        const web3 = new Web3(provider as any);
       //const accounts = await web3.eth.getAccounts();
@@ -301,7 +301,7 @@ console.log(savingInterestRate);
  //     await kit.setFeeCurrency(CeloContract.StableToken);
 const contract = new web3.eth.Contract(xusdABI, xusdAddr);
 
-const tx = contract.methods.approve("0xb596CE1F14E4586C8d7f0C5bE3c24ba487f8C40c",  kit.web3.utils.toBN(Web3.utils.toWei(amount, "ether"))).send({
+const tx = contract.methods.approve("0xb175e1c732D47226A89Bad5f47e5288B76Ee6699",  kit.web3.utils.toBN(Web3.utils.toWei(amount, "ether"))).send({
 	gasLimit:80000,
 	to: xusdAddr,
 	from:accounts[0]
@@ -476,6 +476,7 @@ const liquidityPoolAbi = {
   "linkReferences": {},
   "deployedLinkReferences": {}
 }
+const liquidityPoolAddress = "0xb175e1c732D47226A89Bad5f47e5288B76Ee6699";
 
 const approveERC20 =  async (cost :any) => {
   const web3 = new Web3(provider as any);
@@ -511,7 +512,6 @@ const approveERC20 =  async (cost :any) => {
     });
 };
 
-const liquidityPoolAddress = "0xb596CE1F14E4586C8d7f0C5bE3c24ba487f8C40c"
 
       const web3 = new Web3(provider as any);
       //const accounts = await web3.eth.getAccounts();
@@ -562,8 +562,8 @@ const liquidityPoolAddress = "0xb596CE1F14E4586C8d7f0C5bE3c24ba487f8C40c"
       let accounts = await kit.web3.eth.getAccounts();
       kit.defaultAccount = accounts[0];
       //await kit.setFeeCurrency(CeloContract.StableToken);
-const contractAddr = "0xB5C8619EE3505bB83e985d8234cbd9c28f8B89d1";
-                           const contract = new web3.eth.Contract(xusdABI,"0xB5C8619EE3505bB83e985d8234cbd9c28f8B89d1" );
+const contractAddr = "0xdAe408bD16839da7E859D71fF65700Ba6Cc3689A";
+                           const contract = new web3.eth.Contract(xusdABI,contractAddr);
       // Send transaction to smart contract to update message and wait to finish
       const txRes = await contract.methods.transferAmount(toAddress, kit.web3.utils.toBN(Web3.utils.toWei(amount, "ether")))
         .send({
