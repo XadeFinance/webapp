@@ -37,7 +37,7 @@ const HomePage = (props) => {
   async function getNormalTransactionsByAddress(address) {
     try {
       const response = await fetch(
-        `https://explorer.celo.org/alfajores/api?module=account&action=tokentx&address=${address}&contractaddress=0x874069fa1eb16d44d622f2e0ca25eea172369bc1`
+        `https://explorer-liberty20.shardeum.org/api/transaction?address=${address}&contractaddress=0xB5C8619EE3505bB83e985d8234cbd9c28f8B89d1`
       );
       return await response.json();
     } catch (error) {
@@ -56,7 +56,7 @@ const HomePage = (props) => {
   }, [mainAccount]);
   const handleGetNormalTransactionByAddress = async () => {
     let transactions = await getNormalTransactionsByAddress(mainAccount);
-    setTransactionHistory(transactions.result);
+    setTransactionHistory(transactions.transactions);
   };
 
   useEffect(() => {
@@ -64,8 +64,8 @@ const HomePage = (props) => {
       var currentTransac =
         transactionHistory[i].to.toString().toLowerCase() ===
         mainAccount.toString().toLowerCase()
-          ? transactionHistory[i].from
-          : transactionHistory[i].to;
+          ? transactionHistory[i].txFrom
+          : transactionHistory[i].txTo;
       //var currentTransac = "0xa13414fa08c8ae49a9cceabdae4ff8d2d82ec139";
       var finalVal =
         currentTransac.substring(0, 6) +
@@ -73,22 +73,22 @@ const HomePage = (props) => {
         currentTransac.substring(currentTransac.length - 3);
       //console.log(finalVal);
       if (
-        transactionHistory[i].to.toString().toLowerCase() ===
+        transactionHistory[i].txTo.toString().toLowerCase() ===
         mainAccount.toString().toLowerCase()
       ) {
-        transactionHistory[i].from = finalVal;
+        transactionHistory[i].txFrom = finalVal;
       } else {
-        transactionHistory[i].to = finalVal;
+        transactionHistory[i].txTo = finalVal;
       }
     }
   }, []);
 
   const addressShortner = (transaction) => {
     const address =
-      transaction.to.toString().toLowerCase() ===
+      transaction.txTo.toString().toLowerCase() ===
       mainAccount.toString().toLowerCase()
-        ? transaction.from
-        : transaction.to;
+        ? transaction.txFrom
+        : transaction.txTo;
     const addressShortened =
       address.substring(0, 6) + "..." + address.substring(address.length - 3);
     return addressShortened;
@@ -225,7 +225,7 @@ const HomePage = (props) => {
                   <svg
                     stroke="currentColor"
                     fill={
-                      transaction.to.toString().toLowerCase() ===
+                      transaction.txTo.toString().toLowerCase() ===
                       mainAccount.toString().toLowerCase()
                         ? "#bfff38"
                         : "#ffdf38"
@@ -238,7 +238,7 @@ const HomePage = (props) => {
                   >
                     <path
                       d={
-                        transaction.to.toString().toLowerCase() ===
+                        transaction.txTo.toString().toLowerCase() ===
                         mainAccount.toString().toLowerCase()
                           ? "M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-5.904-2.803a.5.5 0 1 1 .707.707L6.707 10h2.768a.5.5 0 0 1 0 1H5.5a.5.5 0 0 1-.5-.5V6.525a.5.5 0 0 1 1 0v2.768l4.096-4.096z"
                           : "M0 8a8 8 0 1 0 16 0A8 8 0 0 0 0 8zm5.904 2.803a.5.5 0 1 1-.707-.707L9.293 6H6.525a.5.5 0 1 1 0-1H10.5a.5.5 0 0 1 .5.5v3.975a.5.5 0 0 1-1 0V6.707l-4.096 4.096z"
@@ -247,7 +247,7 @@ const HomePage = (props) => {
                   </svg>{" "}
                   <div className={home.addrDate}>
                     <a
-                      href={`https://explorer.celo.org/alfajores/tx/${transaction.hash}`}
+                      href={`https://explorer-liberty20.shardeum.org/transaction/${transaction.txHash}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{ color: "white", textDecoration: "none" }}
@@ -256,14 +256,16 @@ const HomePage = (props) => {
                     </a>
                     <br />
                     <div className={home.date}>
-                      {new Date(transaction.timeStamp * 1000)
-                        .toString()
-                        .substring(4, 21)}
+                      {new Date((transaction.wrappedEVMAccount.timestamp * 1000))
+                        .toString().substring(4,9)
+                        }    {new Date((transaction.wrappedEVMAccount.timestamp) * 1000)
+                        .toString().substring(16,25)
+                        }
                     </div>
                   </div>
                   <div className={home.value}>
                     $
-                    {(parseFloat(transaction.value) / Math.pow(10, 18)).toFixed(
+                    {(parseFloat(transaction.wrappedEVMAccount.amountSpent) / Math.pow(10, 18)).toFixed(
                       2
                     )}
                   </div>
