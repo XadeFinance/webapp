@@ -10,6 +10,7 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@livechat/widget-react": "^1.2.1",
+    "@lottiefiles/react-lottie-player": "^3.5.0",
     "@mui/material": "^5.10.4",
     "@onramper/widget": "^2.2.20",
     "@transak/transak-sdk": "^1.2.2",

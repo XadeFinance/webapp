@@ -8,6 +8,7 @@ import "../../../styles/qrscan.css"
 import "../../../styles/QrPage.css"
 import "../../../styles/HomePage.css"
 
+
 const DepositWithdraw = () => {
       return (
         <div className="container" >
