@@ -3,7 +3,7 @@ import { CHAIN_NAMESPACES, CustomChainConfig } from "@web3auth/base";
 export const CHAIN_CONFIG = {
   chain: {
     chainNamespace: CHAIN_NAMESPACES.EIP155,
-    rpcTarget: "http://45.79.181.218:8080/",
+    rpcTarget: "https://liberty20.shardeum.org",
     blockExplorer: "https://explorer-liberty20.shardeum.org",
     chainId: "0x1f91",
     displayName: "Shardeum Liberty 20 Testnet",
