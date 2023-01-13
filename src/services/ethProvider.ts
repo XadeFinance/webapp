@@ -517,27 +517,27 @@ const approveERC20 =  async (cost :any) => {
     
     
   //const liquidityDeposit= new web3.eth.Contract(depositContractABI,liquidityPoolAddress);
-  const tx = await XUSDContract.methods
-    .approve(liquidityPoolAddress, cost)
-    .send({
-      gasLimit: 80000,
-      to: liquidityPoolAddress,
-      from: accounts[0],
+  //const tx = await XUSDContract.methods
+   // .approve(liquidityPoolAddress, cost)
+   // .send({
+    //  gasLimit: 80000,
+    //  to: liquidityPoolAddress,
+     // from: accounts[0],
 
-    })
-    .once("error", (err) => {
-      console.log("error===",err);
-    })
-    .then((receipt) => {
-      console.log(receipt);
-      if (receipt && receipt.status) {
+   // })
+   // .once("error", (err) => {
+   //   console.log("error===",err);
+    //})
+    //.then((receipt) => {
+    //  console.log(receipt);
+    //  if (receipt && receipt.status) {
         // claimNFTs();
-        console.log("inside if of approve")
-      } else {
+      ///  console.log("inside if of approve")
+     // } else {
         // End transaction
-        console.log("receipt==",receipt);
-      }
-    });
+     //   console.log("receipt==",receipt);
+    //  }
+   // });
 };
 
 
