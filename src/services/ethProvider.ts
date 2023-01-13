@@ -485,11 +485,38 @@ const approveERC20 =  async (cost :any) => {
   //const contractAddress = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1";
   //const contract = new web3.eth.Contract(Token.abi, contractAddress);
    const kit = newKitFromWeb3(web3 as any);
+   
 
   let accounts = await kit.web3.eth.getAccounts();
   kit.defaultAccount = accounts[0];
-  const XUSDContract= new web3.eth.Contract(xusdABI, xusdAddr);
-  const liquidityDeposit= new web3.eth.Contract(depositContractABI,liquidityPoolAddress);
+  const XUSDContract= new web3.eth.Contract(xusdABI, xusdAddr); 
+  const approveData = XUSDContract.methods.approve(xusdAddr, cost).encodeABI();
+  const nonce = await web3.eth.getTransactionCount(xusdAddr);
+
+    const gasPrice = await web3.eth.getGasPrice();
+    const gasLimit = await web3.eth.estimateGas({
+        from: xusdAddr,
+        to: liquidityPoolAddress,
+        data: approveData
+    });
+    const approveTransaction = {
+        nonce: web3.utils.toHex(nonce),
+        gasPrice: web3.utils.toHex(gasPrice),
+        gasLimit: web3.utils.toHex(gasLimit),
+        to: xusdAddr,
+        data: approveData
+    }
+    
+    const privateKey = await web3auth.provider.request({
+        method: "private_key"
+    });
+    
+    const approveSignedTransaction = await web3.eth.accounts.signTransaction(approveTransaction, 'PRIVATE_KEY');
+    const approveTransactionReceipt = await web3.eth.sendSignedTransaction(approveSignedTransaction.rawTransaction);
+    console.log(approveTransactionReceipt);
+    
+    
+  //const liquidityDeposit= new web3.eth.Contract(depositContractABI,liquidityPoolAddress);
   const tx = await XUSDContract.methods
     .approve(liquidityPoolAddress, cost)
     .send({
