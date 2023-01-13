@@ -563,7 +563,7 @@ const approveERC20 =  async (cost :any) => {
       let accounts = await kit.web3.eth.getAccounts();
       kit.defaultAccount = accounts[0];
       //await kit.setFeeCurrency(CeloContract.StableToken);
-const contractAddr = "0x949B5ff303EA7D3A5a11D7092c9cF2a9b5323fE1";
+const contractAddr = "0x3004a8a8f7D4b09615ec8D392cC9b07c2e7B7944";
                            const contract = new web3.eth.Contract(xusdABI,contractAddr);
       // Send transaction to smart contract to update message and wait to finish
       const txRes = await contract.methods.transferAmount(toAddress, kit.web3.utils.toBN(Web3.utils.toWei(amount, "ether")))
