@@ -491,7 +491,7 @@ const approveERC20 =  async (cost :any) => {
   const XUSDContract= new web3.eth.Contract(xusdABI, xusdAddr);
   const liquidityDeposit= new web3.eth.Contract(depositContractABI,liquidityPoolAddress);
   const tx = await XUSDContract.methods
-    .approve(depositAddr, cost)
+    .approve(liquidityPoolAddress, cost)
     .send({
       gasLimit: 80000,
       // to: depositAddr,
