@@ -489,7 +489,7 @@ const approveERC20 =  async (cost :any) => {
   let accounts = await kit.web3.eth.getAccounts();
   kit.defaultAccount = accounts[0];
   const XUSDContract= new web3.eth.Contract(xusdABI, xusdAddr);
-  const liquidityDeposit= new web3.eth.Contract(liquidityPoolAbi.abi,liquidityPoolAddress);
+  const liquidityDeposit= new web3.eth.Contract(depositContractABI,liquidityPoolAddress);
   const tx = await XUSDContract.methods
     .approve(depositAddr, cost)
     .send({
@@ -523,7 +523,7 @@ const approveERC20 =  async (cost :any) => {
       let accounts = await kit.web3.eth.getAccounts();
       kit.defaultAccount = accounts[0];
  //     await kit.setFeeCurrency(CeloContract.StableToken);
-      const contract = new web3.eth.Contract(liquidityPoolAbi, liquidityPoolAddress);
+      const contract = new web3.eth.Contract(depositContractABI, liquidityPoolAddress);
    //   const contract = await kit.contracts.getStableToken();
       // const contract = new web3.eth.Contract(CUSD.abi, cusdAddress);
       // Send transaction to smart contract to update message and wait to finish
