@@ -47,6 +47,7 @@ const Send = () => {
     document.getElementById("sendCUSDBtn").style.display = "none";
 
     // alert(`Address: ${address} | Amt: ${amount}`);
+    setCurrent(4);
     const account = await provider?.signAndSendTransaction(
       address,
       amount.toString()
@@ -502,7 +503,22 @@ const Send = () => {
           <br />
         </>
       ) : current == 4 ? (
-        <></>
+        <>
+        <div className={tickStyles.wrapper}>
+          <Player
+          keepLastFrame = {true}
+                autoplay
+                src="https://assets1.lottiefiles.com/packages/lf20_ECtMfI7muZ.json"
+                style={{ height: '300px', width: '300px' }}
+          >
+           <Controls visible={false} buttons={[]} />
+         </Player>
+          </div>
+
+          <div className={styles3.contentWrapper}>
+            <div className={tickStyles.and}>Transaction pending! </div>
+          </div>
+        </>
       ) : (
         <></>
       )}
