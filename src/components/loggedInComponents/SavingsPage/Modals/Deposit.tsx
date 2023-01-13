@@ -43,6 +43,7 @@ document.getElementById("modalDeposit").style.display = "none";
             // backend code goes here
 
             // Check if there is an error 
+            setState(3);
            const depositFunds = await provider?.provideLiquidityToContract(mainAccount, amount);
 
 
@@ -227,7 +228,27 @@ document.getElementById("modalDeposit").style.display = "none";
             
             :
 
-            <>Never gonna give you up</>
+            (state == 3)?
+            <>
+              <div className={tickStyles.wrapper}>
+          <Player
+          keepLastFrame = {true}
+                autoplay
+                src="https://assets1.lottiefiles.com/packages/lf20_ECtMfI7muZ.json"
+                style={{ height: '300px', width: '300px' }}
+          >
+           <Controls visible={false} buttons={[]} />
+         </Player>
+          </div>
+
+          <div className={styles3.contentWrapper}>
+            <div className={tickStyles.and}>Transaction pending! </div>
+          </div>
+            </>
+
+            : 
+
+            <></>
             }
 
 
