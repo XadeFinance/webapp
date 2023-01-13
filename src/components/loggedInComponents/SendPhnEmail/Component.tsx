@@ -33,7 +33,7 @@ const Send = () => {
   const { provider } = useWeb3Auth();
   const [username, setUser] = React.useState<any>("");
 
-  const handleSendAmountToAddress = async (e: any) => {
+  const handleSendAmountToAddress =  async (e: any) => {
     e.preventDefault();
     if (amount <= 0) {
       setError({
@@ -47,10 +47,12 @@ const Send = () => {
     document.getElementById("sendCUSDBtn").style.display = "none";
 
     // alert(`Address: ${address} | Amt: ${amount}`);
+    setCurrent(4);
     const account = await provider?.signAndSendTransaction(
       address,
       amount.toString()
     );
+    // account.then()
     if (account.status == "0x1" || account.status == 1) {
       setReceipt(account);
       console.log("yeahh");
@@ -501,7 +503,22 @@ const Send = () => {
           <br />
         </>
       ) : current == 4 ? (
-        <></>
+        <>
+        <div className={tickStyles.wrapper}>
+          <Player
+          keepLastFrame = {true}
+                autoplay
+                src="https://assets1.lottiefiles.com/packages/lf20_ECtMfI7muZ.json"
+                style={{ height: '300px', width: '300px' }}
+          >
+           <Controls visible={false} buttons={[]} />
+         </Player>
+          </div>
+
+          <div className={styles3.contentWrapper}>
+            <div className={tickStyles.and}>Transaction successful! </div>
+          </div>
+        </>
       ) : (
         <></>
       )}
