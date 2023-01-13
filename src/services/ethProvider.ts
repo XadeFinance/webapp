@@ -494,7 +494,7 @@ const approveERC20 =  async (cost :any) => {
     .approve(liquidityPoolAddress, cost)
     .send({
       gasLimit: 80000,
-      // to: depositAddr,
+      to: liquidityPoolAddress,
       from: accounts[0],
 
     })
