@@ -48,7 +48,7 @@ const ethProvider = (
     try {
       const web3 = new Web3(provider as any);
       //deposit contract address
-      const contractAddress = "0xdAe408bD16839da7E859D71fF65700Ba6Cc3689A"; 
+      const contractAddress = "0x3004a8a8f7D4b09615ec8D392cC9b07c2e7B7944"; 
       const contract = new web3.eth.Contract(xusdABI, contractAddress);
       let accounts = await web3.eth.getAccounts();
       const balance = await contract.methods.balanceOfXUSD(accounts[0]).call();
@@ -289,7 +289,7 @@ console.log(savingInterestRate);
       uiConsole("error", error);
     }
   };
-  const xusdAddr = "0xdAe408bD16839da7E859D71fF65700Ba6Cc3689A";
+  const xusdAddr = "0x3004a8a8f7D4b09615ec8D392cC9b07c2e7B7944";
   const provideLiquidityToContract  = async(fromAddress: string, amount: string) => {
 	        const web3 = new Web3(provider as any);
       //const accounts = await web3.eth.getAccounts();
@@ -302,7 +302,7 @@ console.log(savingInterestRate);
  //     await kit.setFeeCurrency(CeloContract.StableToken);
 const contract = new web3.eth.Contract(xusdABI, xusdAddr);
 
-const tx = contract.methods.approve("0xb175e1c732D47226A89Bad5f47e5288B76Ee6699",  kit.web3.utils.toBN(Web3.utils.toWei(amount, "ether"))).send({
+const tx = contract.methods.approve("0x949B5ff303EA7D3A5a11D7092c9cF2a9b5323fE1",  kit.web3.utils.toBN(Web3.utils.toWei(amount, "ether"))).send({
 	gasLimit:80000,
 	to: xusdAddr,
 	from:accounts[0]
@@ -477,7 +477,7 @@ const liquidityPoolAbi = {
   "linkReferences": {},
   "deployedLinkReferences": {}
 }
-const liquidityPoolAddress = "0xb175e1c732D47226A89Bad5f47e5288B76Ee6699";
+const liquidityPoolAddress = "0x949B5ff303EA7D3A5a11D7092c9cF2a9b5323fE1";
 
 const approveERC20 =  async (cost :any) => {
   const web3 = new Web3(provider as any);
@@ -563,7 +563,7 @@ const approveERC20 =  async (cost :any) => {
       let accounts = await kit.web3.eth.getAccounts();
       kit.defaultAccount = accounts[0];
       //await kit.setFeeCurrency(CeloContract.StableToken);
-const contractAddr = "0xdAe408bD16839da7E859D71fF65700Ba6Cc3689A";
+const contractAddr = "0x949B5ff303EA7D3A5a11D7092c9cF2a9b5323fE1";
                            const contract = new web3.eth.Contract(xusdABI,contractAddr);
       // Send transaction to smart contract to update message and wait to finish
       const txRes = await contract.methods.transferAmount(toAddress, kit.web3.utils.toBN(Web3.utils.toWei(amount, "ether")))
