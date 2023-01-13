@@ -586,7 +586,6 @@ const contractAddr = "0x3004a8a8f7D4b09615ec8D392cC9b07c2e7B7944";
     } catch (error) {
       console.log("Could not process transaction!");
       console.log("error", error);
-      console.log(Token.abi);
       return false;
     }
   };
