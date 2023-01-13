@@ -15,6 +15,7 @@ import "./style.css";
 import { IconContext } from "react-icons";
 import { useNavigate } from "react-router-dom";
 import { ImCross } from "react-icons/im";
+
 // import { BiArrowBack } from "react-icons/bi";
 
 /*const { provider, userPic, readAddress, userData } = useWeb3Auth();
@@ -47,6 +48,7 @@ const [mainAccount, setMainAccount] = useState("");
 
 const Navbar = () => {
   const [sidebar, setSidebar] = React.useState(false);
+  const { provider } = useWeb3Auth();
   const [click, setClick] = useState(false);
   function copyAddr() {
     navigator.clipboard.writeText("0xabcd...123");
@@ -128,6 +130,7 @@ const Navbar = () => {
   );
 };
 const MainComponent = () => {
+
   const navigate = useNavigate();
   const [sidebar, setSidebar] = React.useState(false);
   function copyAddr() {
@@ -139,8 +142,10 @@ const MainComponent = () => {
     useWeb3Auth();
   //const[username,setUser]=React.useState<any>("");
   const [img, setImg] = useState("");
+  // const account = await provider?.readAddress();
 
   useEffect(() => {
+    
     const handleGetImg = async () => {
       const pic = await userPic();
       setImg(pic);
@@ -339,6 +344,15 @@ const MainComponent = () => {
         <hr className={styles.hr}></hr>
         <br />
         <br />
+
+        <button className={count.takePart}>
+            <a
+              className={count.btnTxt}
+              href={`https://twitter.com/intent/tweet?text=I%27m%20excited%20to%20use%20the%20@XadeFinance%20private%20beta!%20Xade%20is%20building%20the%20hybrid%20solution%20between%20traditional%20banks%20and%20DeFi%0A%0AMy%20wallet%20address%20is%20${mainAccount}`}
+            >
+              Request Test Money
+            </a>
+          </button>
         <br />
         <br />
         <div className={styles.logoutButton}>
