@@ -505,10 +505,12 @@ const approveERC20 =  async (cost :any) => {
       console.log(receipt);
       if (receipt && receipt.status) {
         // claimNFTs();
+	      return true;
         console.log("inside if of approve")
       } else {
         // End transaction
         console.log("receipt==",receipt);
+	      return false;
       }
     });
 };
@@ -527,7 +529,9 @@ const approveERC20 =  async (cost :any) => {
    //   const contract = await kit.contracts.getStableToken();
       // const contract = new web3.eth.Contract(CUSD.abi, cusdAddress);
       // Send transaction to smart contract to update message and wait to finish
-      await approveERC20(amount);
+      let approveResponse = await approveERC20(amount);
+      if(approveResponse === false)
+	      return;
       const txRes = await contract.methods.depositERC20Token(kit.web3.utils.toBN(Web3.utils.toWei(amount, "ether")))
         .send({
           from: accounts[0],
