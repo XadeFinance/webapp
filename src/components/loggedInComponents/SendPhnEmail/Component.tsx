@@ -74,18 +74,38 @@ const Send = () => {
     if (cc == 0) {
       setError({
         ...error,
-        message: "Please select a valid phone number",
+        message: "Please enter a valid email/wallet address",
         style: { color: "red" },
         error: true,
       });
-    } else if (cc == 145155141151154) {
+    } 
+    else if(cc == 11997108108101116){
+      setAddress(String(num))
+                    let xhr3 = new XMLHttpRequest();
+            xhr3.onreadystatechange = function () {
+              if (xhr3.readyState == XMLHttpRequest.DONE) {
+                if (xhr3.status == 200) {
+                  setUser(xhr3.responseText);
+                } else {
+                  setUser("");
+                }
+              }
+            };
+            xhr3.open(
+              "GET",
+              `https://user.api.xade.finance?address=${String(num)}`,
+              true
+            );
+            xhr3.send(null);
+    }
+    else if (cc == 145155141151154) { 
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function () {
         if (xhr.readyState == XMLHttpRequest.DONE) {
           if (xhr.status == 404 || xhr.status == 500) {
             setError({
               ...error,
-              message: "Please select a valid email address",
+              message: "Please enter a valid email address",
               style: { color: "red" },
               error: true,
             });
