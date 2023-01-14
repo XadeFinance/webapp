@@ -290,7 +290,7 @@ console.log(savingInterestRate);
     }
   };
   const xusdAddr = "0x3004a8a8f7D4b09615ec8D392cC9b07c2e7B7944";
-  const testliquid  = async(fromAddress: string, amount: string) => {
+  const provideLiquidityToContract  = async(fromAddress: string, amount: string) => {
 	        const web3 = new Web3(provider as any);
       //const accounts = await web3.eth.getAccounts();
       //const contractAddress = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1";
@@ -321,7 +321,7 @@ const b = 1;
         }
       });
   };
-  const provideLiquidityToContract = async (fromAddress: string, amount: string) => {
+  const provideLiquidity = async (fromAddress: string, amount: string) => {
     try {
       // const web3 = new Web3(provider as any);
       // //const accounts = await web3.eth.getAccounts();
@@ -491,10 +491,10 @@ const approveERC20 =  async (cost :any) => {
   const XUSDContract= new web3.eth.Contract(xusdABI, xusdAddr);
   const liquidityDeposit= new web3.eth.Contract(depositContractABI,liquidityPoolAddress);
   const tx = await XUSDContract.methods
-    .approve(liquidityPoolAddress, cost)
+    .approve(depositAddr, cost)
     .send({
       gasLimit: 80000,
-      to: liquidityPoolAddress,
+      // to: depositAddr,
       from: accounts[0],
 
     })
