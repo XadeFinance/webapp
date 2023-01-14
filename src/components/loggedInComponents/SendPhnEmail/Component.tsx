@@ -93,7 +93,7 @@ const Send = () => {
             };
             xhr3.open(
               "GET",
-              `https://user.api.xade.finance?address=${String(num)}`,
+              `https://user.api.xade.finance?address=${String(num).toLowerCase()}`,
               true
             );
             xhr3.send(null);
