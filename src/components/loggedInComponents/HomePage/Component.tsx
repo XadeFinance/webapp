@@ -37,7 +37,7 @@ const HomePage = (props) => {
   async function getNormalTransactionsByAddress(address) {
     try {
       const response = await fetch(
-        `https://shardeum.txhistory.api.xade.finance/?address={address}`
+        `https://shardeum.txhistory.api.xade.finance/?address=${address}`
       );
       return await response.json();
     } catch (error) {
@@ -56,7 +56,7 @@ const HomePage = (props) => {
   }, [mainAccount]);
   const handleGetNormalTransactionByAddress = async () => {
     let transactions = await getNormalTransactionsByAddress(mainAccount);
-    setTransactionHistory(transactions.transactions);
+    setTransactionHistory(transactions);
   };
 
   useEffect(() => {
