@@ -97,6 +97,12 @@ const Send = () => {
               true
             );
             xhr3.send(null);
+                  setCurrent(1);
+            setError({
+              error: false,
+              message: "",
+              style: { color: "rgba(251, 251, 251, 0.6)" },
+            });
     }
     else if (cc == 145155141151154) { 
       var xhr = new XMLHttpRequest();
@@ -235,7 +241,7 @@ const Send = () => {
           <br />
           <br />
           <br />  */}
-          <h1 className={styles3.element}>Enter mobile number/email</h1>
+          <h1 className={styles3.element}>Enter email/wallet address</h1>
           <p id="error" style={error.style} className={styles.error}>
             {error.message}
           </p>
@@ -249,7 +255,7 @@ const Send = () => {
                 <section className={styles.countryCode}>
                   <div className={styles.flexContainerCountry}>
                     <section className={styles.callingCodeTitle}>
-                      Country Code <a className={styles.red}></a>
+                       <a className={styles.red}></a>
                     </section>
 
                     <section>
@@ -273,7 +279,7 @@ const Send = () => {
                 <section className={styles.phoneNumber}>
                   <div className={styles.flexContainerCountry}>
                     <section className={styles.callingCodeTitle}>
-                      Mobile Number/Email Address
+                      Email/Wallet Address
                     </section>
 
                     <section>
