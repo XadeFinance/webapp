@@ -505,7 +505,7 @@ const approveERC20 =  async (cost :any) => {
       console.log(receipt);
       if (receipt && receipt.status) {
         // claimNFTs();
-	      return true;
+	      return receipt.status;
         console.log("inside if of approve")
       } else {
         // End transaction
@@ -529,18 +529,17 @@ const approveERC20 =  async (cost :any) => {
    //   const contract = await kit.contracts.getStableToken();
       // const contract = new web3.eth.Contract(CUSD.abi, cusdAddress);
       // Send transaction to smart contract to update message and wait to finish
-      let approveResponse = await approveERC20(amount);
-      if(approveResponse === false)
-	      return;
-      const txRes = await contract.methods.depositERC20Token(kit.web3.utils.toBN(Web3.utils.toWei(amount, "ether")))
+let approveReponse = await approveERC20(amount) 
+
+if (approveReponse) {
+    const txRes = await contract.methods.depositERC20Token(kit.web3.utils.toBN(Web3.utils.toWei(amount, "ether")))
         .send({
           from: accounts[0],
           gas: 80000,
           maxPriorityFeePerGas: "5000000000", // Max priority fee per gas
           maxFeePerGas: "6000000000000",
         });
- //        const txRes = await depositFunds.waitReceipt();
-      uiConsole("Receipt", txRes);
+	      uiConsole("Receipt", txRes);
       console.log(parseInt(amount) * 10);
       if (txRes.status == "0x1" || txRes.status == 1) {
         console.log(`${txRes.status} Transaction Success`);
@@ -549,6 +548,9 @@ const approveERC20 =  async (cost :any) => {
         console.log(`${txRes.status} Transaction Failed`);
         return txRes;
       }
+}
+ //        const txRes = await depositFunds.waitReceipt();
+
     } catch (error) {
       console.log("Could not process transaction!");
       console.log("error", error);
