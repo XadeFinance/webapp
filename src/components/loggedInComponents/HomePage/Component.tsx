@@ -37,7 +37,7 @@ const HomePage = (props) => {
   async function getNormalTransactionsByAddress(address) {
     try {
       const response = await fetch(
-        `https://explorer-liberty20.shardeum.org/api/transaction?address=${address}&contractaddress=0xB5C8619EE3505bB83e985d8234cbd9c28f8B89d1`
+        `https://shardeum.txhistory.api.xade.finance/?address={address}`
       );
       return await response.json();
     } catch (error) {
@@ -256,18 +256,12 @@ const HomePage = (props) => {
                     </a>
                     <br />
                     <div className={home.date}>
-                      {new Date((transaction.wrappedEVMAccount.timestamp * 1000))
-                        .toString().substring(4,9)
-                        }    {new Date((transaction.wrappedEVMAccount.timestamp) * 1000)
-                        .toString().substring(16,25)
-                        }
+                       {transaction.timestamp}
                     </div>
                   </div>
                   <div className={home.value}>
                     $
-                    {(parseFloat(transaction.wrappedEVMAccount.amountSpent) / Math.pow(10, 18)).toFixed(
-                      2
-                    )}
+                    {parseFloat(transaction.value).toFixed(2)}
                   </div>
                 </div>
                 <hr
