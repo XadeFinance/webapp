@@ -255,7 +255,7 @@ const Send = () => {
                 <section className={styles.countryCode}>
                   <div className={styles.flexContainerCountry}>
                     <section className={styles.callingCodeTitle}>
-                       <a className={styles.red}></a>
+                       Sending To<a className={styles.red}></a>
                     </section>
 
                     <section>
