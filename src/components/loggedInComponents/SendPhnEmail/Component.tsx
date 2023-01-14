@@ -80,6 +80,15 @@ const Send = () => {
       });
     } 
     else if(cc == 11997108108101116){
+      let pattern = /^0x[a-fA-F0-9]{40}$/;
+      if(pattern.test(String(num)) === false){
+                    setError({
+              error: true,
+              message: "Please enter a valid wallet address",
+              style: { color: "red" },
+            });
+        return;
+      }
       setAddress(String(num))
                     let xhr3 = new XMLHttpRequest();
             xhr3.onreadystatechange = function () {
