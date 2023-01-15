@@ -347,8 +347,9 @@ const MainComponent = () => {
 
         <button className={count.takePart}>
             <a
+             target="_blank"
               className={count.btnTxt}
-              href={`https://twitter.com/intent/tweet?text=I%27m%20excited%20to%20use%20the%20@XadeFinance%20private%20beta!%20Xade%20is%20building%20the%20hybrid%20solution%20between%20traditional%20banks%20and%20DeFi%0A%0AMy%20wallet%20address%20is%20${mainAccount}`}
+             href={`https://twitter.com/intent/tweet?text=I'm%20excited%20to%20use%20the%20%40XadeFinance%20private%20beta!%20%23Xade%20is%20building%20the%20hybrid%20solution%20between%20traditional%20banks%20and%20DeFi.%0A%0AMy%20wallet%20address%20is%20${mainAccount}`}
             >
               Request Test Money
             </a>

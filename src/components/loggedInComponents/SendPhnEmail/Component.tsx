@@ -74,18 +74,53 @@ const Send = () => {
     if (cc == 0) {
       setError({
         ...error,
-        message: "Please select a valid phone number",
+        message: "Please enter a valid email/wallet address",
         style: { color: "red" },
         error: true,
       });
-    } else if (cc == 145155141151154) {
+    } 
+    else if(cc == 11997108108101116){
+      let pattern = /^0x[a-fA-F0-9]{40}$/;
+      if(pattern.test(String(num)) === false){
+                    setError({
+              error: true,
+              message: "Please enter a valid wallet address",
+              style: { color: "red" },
+            });
+        return;
+      }
+      setAddress(String(num))
+                    let xhr3 = new XMLHttpRequest();
+            xhr3.onreadystatechange = function () {
+              if (xhr3.readyState == XMLHttpRequest.DONE) {
+                if (xhr3.status == 200) {
+                  setUser(xhr3.responseText);
+                } else {
+                  setUser("");
+                }
+              }
+            };
+            xhr3.open(
+              "GET",
+              `https://user.api.xade.finance/shardeum?address=${String(num).toLowerCase()}`,
+              true
+            );
+            xhr3.send(null);
+                  setCurrent(1);
+            setError({
+              error: false,
+              message: "",
+              style: { color: "rgba(251, 251, 251, 0.6)" },
+            });
+    }
+    else if (cc == 145155141151154) { 
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function () {
         if (xhr.readyState == XMLHttpRequest.DONE) {
           if (xhr.status == 404 || xhr.status == 500) {
             setError({
               ...error,
-              message: "Please select a valid email address",
+              message: "Please enter a valid email address",
               style: { color: "red" },
               error: true,
             });
@@ -104,7 +139,7 @@ const Send = () => {
             };
             xhr3.open(
               "GET",
-              `https://user.api.xade.finance?address=${xhr.responseText}`,
+              `https://user.api.xade.finance/shardeum?address=${xhr.responseText}`,
               true
             );
             xhr3.send(null);
@@ -166,7 +201,7 @@ const Send = () => {
             };
             xhr3.open(
               "GET",
-              `https://user.api.xade.finance?address=${xhr.responseText}`,
+              `https://user.api.xade.finance/shardeum?address=${xhr.responseText}`,
               true
             );
             xhr3.send(null);
@@ -215,7 +250,7 @@ const Send = () => {
           <br />
           <br />
           <br />  */}
-          <h1 className={styles3.element}>Enter mobile number/email</h1>
+          <h1 className={styles3.element}>Enter email/wallet address</h1>
           <p id="error" style={error.style} className={styles.error}>
             {error.message}
           </p>
@@ -229,7 +264,7 @@ const Send = () => {
                 <section className={styles.countryCode}>
                   <div className={styles.flexContainerCountry}>
                     <section className={styles.callingCodeTitle}>
-                      Country Code <a className={styles.red}></a>
+                       Sending To<a className={styles.red}></a>
                     </section>
 
                     <section>
@@ -253,7 +288,7 @@ const Send = () => {
                 <section className={styles.phoneNumber}>
                   <div className={styles.flexContainerCountry}>
                     <section className={styles.callingCodeTitle}>
-                      Mobile Number/Email Address
+                      Email/Wallet Address
                     </section>
 
                     <section>
@@ -463,7 +498,7 @@ const Send = () => {
               style={{color:"white"}}
                 target="_blank"
                 className={styles3.linkage}
-                href={`https://alfajores-blockscout.celo-testnet.org/tx/${receipt.transactionHash}/token-transfers`}
+                href={`https://explorer-liberty20.shardeum.org/transaction/${receipt.transactionHash}/`}
               >
                 {receipt.transactionHash.slice(0, 6)}...
                 {receipt.transactionHash.slice(-3)}
