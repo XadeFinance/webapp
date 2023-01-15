@@ -82,7 +82,7 @@ const Navbar = (props: Props) => {
               </li>
               <li className="nav-item">
                 <Link
-                  to="/investments/1"
+                  to="/investments"
                   className="nav-links"
                   onClick={closeMobileMenu}
                 >
