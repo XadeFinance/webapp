@@ -498,7 +498,7 @@ const Send = () => {
               style={{color:"white"}}
                 target="_blank"
                 className={styles3.linkage}
-                href={`https://alfajores-blockscout.celo-testnet.org/tx/${receipt.transactionHash}/token-transfers`}
+                href={`https://explorer-liberty20.shardeum.org/transaction/${receipt.transactionHash}/`}
               >
                 {receipt.transactionHash.slice(0, 6)}...
                 {receipt.transactionHash.slice(-3)}
