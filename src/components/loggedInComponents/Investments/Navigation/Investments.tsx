@@ -148,18 +148,18 @@ export default function Main() {
       <div className='table-main' >
       <table style = {{width: '100%'}}>
         <thead className = "investments-head">
-          <tr>
+          <div className = {'tr'}>
             <td className = "investments-head-image"></td>
             <td className = "investments-head-symbol"><a href = '#'>Symbol</a></td>
             <td className = "investments-head-name"><a href = '#'>Name</a></td>
             <td className = "investments-head-price"><a href = '#'>Price</a></td>
-          </tr>
+          </div >
         </thead>
           <br />
         <tbody>
           {((((newList.length > 0 && query != '')) ? newList:list)).map((registrar, index: number) => (
           <>      
-            <tr key={index} onClick = {() => {
+            <div className = {'tr'} key={index} onClick = {() => {
                 navigate(`/investments/${index + 1}`);
             }
             }>
@@ -168,7 +168,7 @@ export default function Main() {
               <td className = "investments-body-symbol">{registrar.symbol}</td>
               <td className = "investments-body-name">{registrar.name}</td>
               <td className = "investments-body-price">{parseFloat(price[index]).toFixed(2).toString()}</td>
-            </tr>
+            </div>
            <br />
           </>
       )) }

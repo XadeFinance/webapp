@@ -49,6 +49,7 @@ const [mainAccount, setMainAccount] = useState("");
 const Navbar = () => {
   const [sidebar, setSidebar] = React.useState(false);
   const { provider } = useWeb3Auth();
+  
   const [click, setClick] = useState(false);
   function copyAddr() {
     navigator.clipboard.writeText("0xabcd...123");

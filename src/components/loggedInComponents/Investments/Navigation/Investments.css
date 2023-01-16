@@ -1,18 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@200&display=swap");
 
-table thead tr {
+table thead .tr {
   font-weight: 700%;
   font-family: "Sora";
   height: 1rem;
   font-size: 1.2rem;
 }
 
-tbody tr {
+tbody .tr {
   border-radius: 2rem;
   height: 3rem;
-  border-bottom: 0.1px solid #707070;
+  /* border: 1px solid #; */
   border-radius: 2rem;
+  width: 100%;
+  display: flex;
+  font-size: 1.2rem;
+  justify-content: space-evenly;
   font-family: "Sora";
+  align-items: center;
+  box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
 }
 
 td {
