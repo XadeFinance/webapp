@@ -584,6 +584,18 @@ const Main = () => {
     }
   }, [provider, mainAccount]);
 
+  const [userPoolBalance, setUserPoolBalance] = useState("");
+
+  useEffect(() => {
+    const handelGetPoolDetails = async () => {
+      const account = await provider?.getUserPoolBalance();
+      setUserPoolBalance(account);
+    };
+    if (provider) {
+      handelGetPoolDetails();
+    }
+  }, [provider, userPoolBalance]);
+
   const [balance, setBalance] = useState("");
 
   useEffect(() => {
@@ -658,7 +670,7 @@ const Main = () => {
                 path="/savings"
                 element={
                   <Layout>
-                    <Savings account={mainAccount}/>
+                    <Savings account={mainAccount} balance={userPoolBalance}/>
                   </Layout>
                 }
               />
