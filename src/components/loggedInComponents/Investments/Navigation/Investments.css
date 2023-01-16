@@ -1,0 +1,166 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@200&display=swap");
+
+table thead tr {
+  font-weight: 700%;
+  font-family: "Sora";
+  height: 1rem;
+  font-size: 1.2rem;
+}
+
+tbody tr {
+  border-radius: 2rem;
+  height: 3rem;
+  border-bottom: 0.1px solid #707070;
+  border-radius: 2rem;
+  font-family: "Sora";
+}
+
+td {
+  padding-left: 0rem;
+}
+table {
+  border-collapse: collapse;
+}
+
+.search-bar {
+  display: flex;
+  width: 60%;
+  height: 3rem;
+  border-radius: 100px;
+  border: 1px solid #707070;
+  
+}
+
+.search-bar-center {
+ display: inline-block;
+ padding: 0%;
+ align-content: center;
+ padding-bottom: 2rem;
+ 
+  /* justify-content: center;s */
+}
+
+.input-text-investments {
+  display: inline;
+  box-sizing: border-box;
+  width: 90%;
+  height: 2.9rem;
+  border: none;
+  padding: none;
+  margin: none;
+  background-color: black;
+  color: white;
+  padding-left: 1.5rem;
+  border-radius: 90px;
+  font-size: 1.3rem;
+  font-family: "Sora";
+}
+
+.input-text-investments:focus {
+  outline: none;
+}
+
+.date-investment {
+  color: #707068;
+  font-family: "Sora";
+  font-size: 1.69rem;
+}
+
+.closed-adjust {
+  width: 2rem;
+}
+
+.input-submit-investments:focus {
+  outline: none;
+}
+
+.investments-ticker img {
+  width: 2rem;
+  border-radius: 2rem;
+}
+
+.input-submit-investments {
+  /* background: url("https://www.nicepng.com/png/detail/65-659698_search-icon-without-background.png"); */
+  background: transparent;
+  position: relative;
+  display: inline;
+  border: 0;
+  width: 3rem;
+  height: 1.8rem;
+  margin: none;
+  padding: none;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: none;
+  top: 7px;
+  left: 10px;
+}
+
+.search-adjust-investments {
+  width: 1.69rem;
+}
+
+/* .investments-background {
+  width: 100%;
+  position: absolute;
+  background: url("bg.png");
+  background-size: cover;
+  height: 50%;
+  opacity: 0.6;
+} */
+
+button {
+  /* all: unset; */
+  cursor: pointer;
+}
+
+/* 
+.investment-holder:hover,
+.investment-holder:focus {
+  background: #0053ba;
+}
+
+.investment-holder:focus {
+  outline: 1px solid #fff;
+  outline-offset: -4px;
+}
+
+.investment-holder:active {
+  transform: scale(0.99);
+} */
+
+a {
+  color: inherit;
+}
+
+a:hover 
+{ 
+  color: inherit;
+}
+
+
+@media screen and (max-width: 640px){
+  .search-bar-center{
+     padding: 70px 0;
+    text-align: center;
+  } 
+  .search-bar{
+    width: 80%;
+    align-content: right;
+  }
+
+  .investments-body-name {
+    display: none;
+  }
+  
+  .investments-head-name {
+    display: none;
+  }
+ 
+  table{
+    width: 80%;
+    padding-left: 0%;
+  }
+
+}
+

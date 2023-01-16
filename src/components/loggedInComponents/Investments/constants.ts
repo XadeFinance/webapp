@@ -2,35 +2,35 @@ let contracts = [
     {
         id: '1',
         symbol: 'BTC',
-        ticker: 'bitcoin.png',
+        name: 'Bitcoin',
         chart: 'BITSTAMP:BTCUSD', 
-        address: '0x'
+        address: '0x',
     },
         {
         id: '2',
         symbol: 'TSLA',
-        ticker: 'tesla.png',
+        name: 'Tesla',
         chart: 'TSLA',
         address: '0x'
     },
         {
         id: '3',
         symbol: 'XAU',
-        ticker: 'gold.png',
+        name: 'Gold',
         chart: 'FOREXCOM:XAUUSD',
         address: '0x'
     },
         {
         id: '4',
         symbol: 'ETH',
-        ticker: 'ethereum.png',
+        name: 'Ethereum',
         chart: 'BITSTAMP:ETHUSD',
         address: '0x'
     },
         {
         id: '5',
         symbol: 'EURO',
-        ticker: 'Euro.png',
+        name: 'Euro',
         chart: 'HUOBI:EUROCUSDC',
         address: '0x'
     }

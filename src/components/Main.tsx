@@ -9,7 +9,8 @@ import { Link } from 'react-router-dom'
 import { Layout } from "./Layout";
 import Settings from "./loggedInComponents/SettingsPage/Navigation/Component";
 import FAQs from "./loggedInComponents/SettingsPage/FAQs/Component";
-import Investments from "./loggedInComponents/Investments/index";
+import Investments from "./loggedInComponents/Investments/Navigation/Investments";
+import TradeMarkets from "./loggedInComponents/Investments/";
 import DW from "./loggedInComponents/SettingsPage/DW/Component";
 import Login from "./unloggedInComponents/Login/Component";
 import Landing from "./unloggedInComponents/Landing/Component";
@@ -606,7 +607,7 @@ const Main = () => {
                 path="/investments/:addr"
                 element={
                   <Layout>
-                    <Investments />
+                    <TradeMarkets />
                   </Layout>
                 }
               />
@@ -618,7 +619,7 @@ const Main = () => {
               />
               <Route
                 path="/investments"
-                element={<Navigate to="/investments/1" />}
+                element={<Layout><Investments /></Layout>}
               />
               <Route
                 path="/investments/:addr"

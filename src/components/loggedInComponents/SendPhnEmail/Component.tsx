@@ -102,7 +102,7 @@ const Send = () => {
             };
             xhr3.open(
               "GET",
-              `https://user.api.xade.finance?address=${String(num).toLowerCase()}`,
+              `https://user.api.xade.finance/shardeum?address=${String(num).toLowerCase()}`,
               true
             );
             xhr3.send(null);
@@ -139,7 +139,7 @@ const Send = () => {
             };
             xhr3.open(
               "GET",
-              `https://user.api.xade.finance?address=${xhr.responseText}`,
+              `https://user.api.xade.finance/shardeum?address=${xhr.responseText}`,
               true
             );
             xhr3.send(null);
@@ -201,7 +201,7 @@ const Send = () => {
             };
             xhr3.open(
               "GET",
-              `https://user.api.xade.finance?address=${xhr.responseText}`,
+              `https://user.api.xade.finance/shardeum?address=${xhr.responseText}`,
               true
             );
             xhr3.send(null);
