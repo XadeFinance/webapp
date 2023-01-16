@@ -350,6 +350,7 @@ const ethProvider = (
     readAddress,
     getSavingInterestRate,
     provideLiquidityToContract,
+    withdrawAmount
   };
 };
 
