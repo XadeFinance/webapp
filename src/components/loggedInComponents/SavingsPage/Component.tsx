@@ -28,7 +28,8 @@ const stylex = {
   const SavingsPage = (props) => {
     const [open, setOpen] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
-    const mainAccount = props.account
+    const mainAccount = props.account;
+    const userPoolBalance=props.balance;
     const { getSavingInterestRate, provider } = useWeb3Auth();
     // const web3 = new Web3(provider as any);
     // const balanceSheetAddr = web3.utils.toChecksumAddress("0x667719F1D1717f1233D5D68aB77FEF947Da4E733")
@@ -315,7 +316,7 @@ onClose={handleClose}
                 <ImCross size={26}/>
               </div>
             </div>
-            <Withdraw />
+            <Withdraw  />
         </Box>  
         </Modal>
         <div>
@@ -330,7 +331,7 @@ onClose={handleClose}
                     </div>
 
                     <div className = {styles.amountDep}>
-                        $0.0
+                        $0.00{userPoolBalance}
                     </div>
                     </div>
                     <div style = {{'alignSelf': 'flex-end', 'margin': '1rem'}}>
@@ -338,9 +339,12 @@ onClose={handleClose}
                             Deposit
                         </button>
 
-                        {/* <button style = {{'color': '#5566FF'}}className = {styles.rightBottom} onClick = {handleOpen2}> 
+                        <button 
+                        style = {{'color': '#5566FF'}}
+                        className = {styles.rightBottom}
+                         onClick = {handleOpen2}> 
                             Withdraw
-                        </button> */}
+                        </button>
                     </div>
                 </div>
                 <div className = {styles.boxB}>

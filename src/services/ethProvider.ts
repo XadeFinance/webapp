@@ -8,6 +8,7 @@ import { IWalletProvider } from "./walletProvider";
 import { newKitFromWeb3, CeloContract } from "@celo/contractkit";
 import CUSD from "./CUSD.json";
 import { Any } from "io-ts";
+import { IntegerType } from "mongodb";
 var done = false;
 var address = "";
 const ethProvider = (
@@ -55,6 +56,20 @@ const ethProvider = (
       const contract = new web3.eth.Contract(xusdABI, contractAddress);
       let accounts = await web3.eth.getAccounts();
       const balance = await contract.methods.balanceOfXUSD(accounts[0]).call();
+      return balance;
+    } catch (error) {
+      console.error("Error", error);
+      uiConsole("error", error);
+    }
+  };
+  const getUserPoolBalance = async () => {
+    try {
+      const web3 = new Web3(provider as any);
+      //deposit contract address
+      const liquidityPoolAddress = "0x949B5ff303EA7D3A5a11D7092c9cF2a9b5323fE1";
+      const contract = new web3.eth.Contract(depositContractABI, liqudityPoolAddress);
+      let accounts = await web3.eth.getAccounts();
+      const balance = await contract.methods.amountDepositedByUser(accounts[0]).call();
       return balance;
     } catch (error) {
       console.error("Error", error);
@@ -272,7 +287,7 @@ const ethProvider = (
     }
   };
 
-  const withdrawAmount=async(amount:any)=>{
+  const withdrawAmount=async(amount:string)=>{
     const liquidityPoolAddress = "0x949B5ff303EA7D3A5a11D7092c9cF2a9b5323fE1";
     const web3 = new Web3(provider as any);
     const kit = newKitFromWeb3(web3 as any);
@@ -282,7 +297,8 @@ const ethProvider = (
       depositContractABI,
       liquidityPoolAddress
     );
-    const txRes=await liquidityPool.methods.depositERC20Token(
+    console.log("amount value in ethProvider===",amount);
+    const txRes=await liquidityPool.methods.withdrawERC20Token(
       kit.web3.utils.toBN(Web3.utils.toWei(amount, "ether"))
     )
     .send({
@@ -302,6 +318,8 @@ const ethProvider = (
     }
     
   }
+
+
   const signAndSendTransaction = async (toAddress: string, amount: string) => {
     try {
       const web3 = new Web3(provider as any);
@@ -350,7 +368,8 @@ const ethProvider = (
     readAddress,
     getSavingInterestRate,
     provideLiquidityToContract,
-    withdrawAmount
+    withdrawAmount,
+    getUserPoolBalance
   };
 };
 
