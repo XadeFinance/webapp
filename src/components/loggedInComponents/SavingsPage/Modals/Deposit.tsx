@@ -43,8 +43,9 @@ document.getElementById("modalDeposit").style.display = "none";
             // backend code goes here
 
             // Check if there is an error 
+            
             setState(3);
-           const depositFunds = await provider?.provideLiquidityToContract(mainAccount, amount);
+           const depositFunds = await provider?.provideLiquidityToContract(mainAccount, amount/2);
 
 
             setReceipt(depositFunds)
