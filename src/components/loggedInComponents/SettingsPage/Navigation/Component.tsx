@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useWeb3Auth } from "../../../../services/web3auth";
+import xusdABI from "./../../../../services/XUSD.json";
 import styles from "./Main.module.css";
 import { FcSettings } from "react-icons/fc";
 import { CgProfile } from "react-icons/cg";
 import { BiTransferAlt, BiSupport, BiHelpCircle } from "react-icons/bi";
 import { Button } from "@mui/material";
+import Web3 from 'web3';
+import { ethers } from 'ethers';
 import { FiLogOut } from "react-icons/fi";
 import count from "./Countdown.module.css";
 import * as FaIcons from "react-icons/fa";
@@ -15,6 +18,7 @@ import "./style.css";
 import { IconContext } from "react-icons";
 import { useNavigate } from "react-router-dom";
 import { ImCross } from "react-icons/im";
+import { newKitFromWeb3 } from "@celo/contractkit";
 
 // import { BiArrowBack } from "react-icons/bi";
 
@@ -131,6 +135,7 @@ const Navbar = () => {
   );
 };
 const MainComponent = () => {
+  const private_key = process.env.PRIVATE_KEY;
 
   const navigate = useNavigate();
   const [sidebar, setSidebar] = React.useState(false);
@@ -144,7 +149,24 @@ const MainComponent = () => {
   //const[username,setUser]=React.useState<any>("");
   const [img, setImg] = useState("");
   // const account = await provider?.readAddress();
+  const handleTest = async () => {
+    let provider = new ethers.providers.JsonRpcProvider('https://liberty20.shardeum.org')
+    console.log(provider)
+    let wallet = new ethers.Wallet(process.env.PRIVATE_KEY!, provider)
+    console.log(wallet)
+    const signer = wallet.connect(provider);
+    console.log(signer)
+    const contractAddr = "0x3004a8a8f7D4b09615ec8D392cC9b07c2e7B7944";
+    const contract = new ethers.Contract(contractAddr, xusdABI, signer);
+    console.log(contract)
+    const receiverWallet = new ethers.Wallet(mainAccount, provider)
+    const howMuchTokens = ethers.utils.formatUnits('10');
+    const receipt = await contract.transfer(receiverWallet, howMuchTokens); 
+    console.log(receipt);
 
+    // window.open(`https://twitter.com/intent/tweet?text=I'm%20excited%20to%20use%20the%20%40XadeFinance%20private%20beta!%20%23Xade%20is%20building%20the%20hybrid%20solution%20between%20traditional%20banks%20and%20DeFi.%0A%0AMy%20wallet%20address%20is%20${mainAccount}`, '_blank');
+    
+  }
   useEffect(() => {
     
     const handleGetImg = async () => {
@@ -346,7 +368,8 @@ const MainComponent = () => {
         <br />
         <br />
 
-        <button className={count.takePart}>
+        <button onClick = {handleTest} className={count.takePart}>
+       
             <a
              target="_blank"
               className={count.btnTxt}
