@@ -330,7 +330,7 @@ onClose={handleClose}
                     </div>
 
                     <div className = {styles.amountDep}>
-                        ${deposited}
+                       $${deposited}
                     </div>
                     </div>
                     <div style = {{'alignSelf': 'flex-end', 'margin': '1rem'}}>
