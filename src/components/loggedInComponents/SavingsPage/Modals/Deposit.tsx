@@ -42,7 +42,7 @@ export default function Deposit() {
 
     // Check if there is an error
     setState(3);
-    const depositFunds = await provider?.provideLiquidityToContract(amount/2);
+    const depositFunds = await provider?.provideLiquidityToContract(amount);
 
     setReceipt(depositFunds);
 
