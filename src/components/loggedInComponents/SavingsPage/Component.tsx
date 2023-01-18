@@ -331,7 +331,7 @@ onClose={handleClose}
                     </div>
 
                     <div className = {styles.amountDep}>
-                        $0.00{userPoolBalance}
+                        {deposited}
                     </div>
                     </div>
                     <div style = {{'alignSelf': 'flex-end', 'margin': '1rem'}}>
