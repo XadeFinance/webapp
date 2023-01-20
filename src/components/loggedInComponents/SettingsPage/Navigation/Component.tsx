@@ -19,6 +19,9 @@ import { IconContext } from "react-icons";
 import { useNavigate } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 import { newKitFromWeb3 } from "@celo/contractkit";
+import { FaPeopleArrows } from 'react-icons/fa'
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
 
 // import { BiArrowBack } from "react-icons/bi";
 
@@ -56,7 +59,7 @@ const Navbar = () => {
   
   const [click, setClick] = useState(false);
   function copyAddr() {
-    navigator.clipboard.writeText("0xabcd...123");
+    navigator.clipboard.writeText('');
     alert("Address copied");
   }
   const showSidebar = () => setSidebar(!sidebar);
@@ -135,14 +138,31 @@ const Navbar = () => {
   );
 };
 const MainComponent = () => {
+  const stylex = {
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 470,
+    bgcolor: '#000',
+    border: '0px solid #000',
+    boxShadow: 24,
+    p: 4,
+    height:"90%"
+  };
+
+
+  const [referrals, setReferrals] = React.useState(0);
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => setOpen(false);
   const private_key = process.env.PRIVATE_KEY;
 
   const navigate = useNavigate();
   const [sidebar, setSidebar] = React.useState(false);
-  function copyAddr() {
-    navigator.clipboard.writeText("0xabcd...123");
-    alert("Address copied");
-  }
+  // function copyAddr() {
+  //   navigator.clipboard.writeText("0xabcd...123");
+  //   alert("Address copied");
+  // }
   const showSidebar = () => setSidebar(!sidebar);
   const { provider, logout, userPic, readAddress, userData, userEmail } =
     useWeb3Auth();
@@ -150,21 +170,21 @@ const MainComponent = () => {
   const [img, setImg] = useState("");
   // const account = await provider?.readAddress();
   const handleTest = async () => {
-    let provider = new ethers.providers.JsonRpcProvider('https://liberty20.shardeum.org')
-    console.log(provider)
-    let wallet = new ethers.Wallet(process.env.PRIVATE_KEY!, provider)
-    console.log(wallet)
-    const signer = wallet.connect(provider);
-    console.log(signer)
-    const contractAddr = "0x3004a8a8f7D4b09615ec8D392cC9b07c2e7B7944";
-    const contract = new ethers.Contract(contractAddr, xusdABI, signer);
-    console.log(contract)
-    const receiverWallet = new ethers.Wallet(mainAccount, provider)
-    const howMuchTokens = ethers.utils.formatUnits('10');
-    const receipt = await contract.transfer(receiverWallet, howMuchTokens); 
-    console.log(receipt);
+    // let provider = new ethers.providers.JsonRpcProvider('https://liberty20.shardeum.org')
+    // console.log(provider)
+    // let wallet = new ethers.Wallet(process.env.PRIVATE_KEY!, provider)
+    // console.log(wallet)
+    // const signer = wallet.connect(provider);
+    // console.log(signer)
+    // const contractAddr = "0x3004a8a8f7D4b09615ec8D392cC9b07c2e7B7944";
+    // const contract = new ethers.Contract(contractAddr, xusdABI, signer);
+    // console.log(contract)
+    // const receiverWallet = new ethers.Wallet(mainAccount, provider)
+    // const howMuchTokens = ethers.utils.formatUnits('10');
+    // const receipt = await contract.transfer(receiverWallet, howMuchTokens); 
+    // console.log(receipt);
 
-    // window.open(`https://twitter.com/intent/tweet?text=I'm%20excited%20to%20use%20the%20%40XadeFinance%20private%20beta!%20%23Xade%20is%20building%20the%20hybrid%20solution%20between%20traditional%20banks%20and%20DeFi.%0A%0AMy%20wallet%20address%20is%20${mainAccount}`, '_blank');
+    window.open(`https://twitter.com/intent/tweet?text=I'm%20excited%20to%20use%20the%20%40XadeFinance%20private%20beta!%20%23Xade%20is%20building%20the%20hybrid%20solution%20between%20traditional%20banks%20and%20DeFi.%0A%0AMy%20wallet%20address%20is%20${mainAccount}`, '_blank');
     
   }
   useEffect(() => {
@@ -203,18 +223,20 @@ const MainComponent = () => {
   }, [provider, username]);
 
   const [mainAccount, setMainAccount] = useState("");
+  const [refer, setRefer] = useState('');
 
   useEffect(() => {
     const handleGetAccount = async () => {
       const account = await provider?.readAddress();
       setMainAccount(account);
+      setRefer(`https://refer.xade.finance/${account}`);
     };
     if (provider) {
       handleGetAccount();
     }
   }, [provider, mainAccount]);
   function copyAddr() {
-    navigator.clipboard.writeText(mainAccount);
+    navigator.clipboard.writeText(refer);
     alert("Address copied");
     console.log(email);
   }
@@ -227,6 +249,48 @@ const MainComponent = () => {
   }
   return (
     <>
+    <Modal
+            id = "paymentsModal"
+            open = {open}
+            onClose={handleClose}
+            >
+        <Box sx={stylex}>
+        <div onClick = {() => setOpen(false)}>
+          <div  style={{ marginTop: "0", color: "#fff", height: "100%" }}>
+            <br />
+            <ImCross size={26}/>
+          </div>
+        </div>
+          <div className="contentWrapper" style = {{'height': '30%'}} >
+            <div>
+              <button className="blackBtn" onClick={copyAddr}>
+              <h4 className="vela" style={{ fontSize: "20px", color:"#d9d9d9"}}>
+                  Your referral link is below
+                  <br />
+                  {/* {refer.substring(refer.length - 3)} */}
+                </h4>
+                <h4 className="vela" style={{ fontSize: "20px", color:"#d9d9d9"}}>
+                  {refer.substring(0, 10)}...
+                  <button className="blackBtn">
+                <FaCopy />
+              </button>
+              <br>
+              </br>
+              <br />
+                </h4>
+                <h4 className="vela" style={{ fontSize: "20px", color:"#d9d9d9"}}>
+                    {(referrals > 0)?
+                   <>Congratulations on getting {referrals} {(referrals > 0)?"referral" :"referrals"}</>:
+                    ""}
+                  <br />
+                  {/* {refer.substring(refer.length - 3)} */}
+                </h4>
+              </button>
+              
+            </div>   
+          </div>
+        </Box>  
+        </Modal>
       <IconContext.Provider value={{ color: "undefined" }}>
         <nav
 
@@ -361,6 +425,30 @@ const MainComponent = () => {
 
             <p className={styles.content}>
               Customer support and answers to Frequently Asked Questions
+            </p>
+          </div>
+        </div>
+        <hr className={styles.hr}></hr>
+        <div
+        
+          className={styles.component + " " + styles.B}
+          onClick={() => {
+            setOpen(true);
+          }
+          }
+        > 
+          
+          <p className={styles.logo}>
+            <FaPeopleArrows style={{ color: "white" }} />
+          </p>
+
+          <div>
+            <p style={{ color: "white" }} className={styles.heading}>
+              Referrals
+            </p>
+
+            <p className={styles.content}>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio, laudantium?
             </p>
           </div>
         </div>

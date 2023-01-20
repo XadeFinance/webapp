@@ -619,7 +619,7 @@ const Main = () => {
               />
               <Route
                 path="/investments"
-                element={<Layout><Investments /></Layout>}
+                element={<Layout><TradeMarkets /></Layout>}
               />
               <Route
                 path="/investments/:addr"
