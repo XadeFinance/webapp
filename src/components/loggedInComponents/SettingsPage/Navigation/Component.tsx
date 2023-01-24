@@ -60,7 +60,7 @@ const Navbar = () => {
   const [click, setClick] = useState(false);
   function copyAddr() {
     navigator.clipboard.writeText('');
-    alert("Address copied");
+    alert("Link copied");
   }
   const showSidebar = () => setSidebar(!sidebar);
 
@@ -237,7 +237,7 @@ const MainComponent = () => {
   }, [provider, mainAccount]);
   function copyAddr() {
     navigator.clipboard.writeText(refer);
-    alert("Address copied");
+    alert("Link copied");
     console.log(email);
   }
   function logoutUser() {
@@ -264,12 +264,12 @@ const MainComponent = () => {
           <div className="contentWrapper" style = {{'height': '30%'}} >
             <div>
               <button className="blackBtn" onClick={copyAddr}>
-              <h4 className="vela" style={{ fontSize: "20px", color:"#d9d9d9"}}>
+              <h4 className="vela blackHover" style={{ fontSize: "20px", color:"#d9d9d9"}}>
                   Your referral link is below
                   <br />
                   {/* {refer.substring(refer.length - 3)} */}
                 </h4>
-                <h4 className="vela" style={{ fontSize: "20px", color:"#d9d9d9"}}>
+                <h4 className="vela blackHover" style={{ fontSize: "20px", color:"#d9d9d9"}}>
                   {refer.substring(0, 10)}...
                   <button className="blackBtn">
                 <FaCopy />
