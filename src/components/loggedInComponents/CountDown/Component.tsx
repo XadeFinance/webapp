@@ -8,7 +8,7 @@ const CountDown = () => {
     return a.toString();
   }
 
-  const endDate = new Date(Date.UTC(2023, 0, 5, 22));
+  const endDate = new Date(Date.UTC(2023, 1, 10, 22));
 
   const [brokenUp, setBrokenUp] = React.useState({
     days: 19,
@@ -48,7 +48,7 @@ const CountDown = () => {
     <>
       <div className={count.center}>
         <div className={count.heading}>
-          Xade Mainnet V1 is launching on 5th January 2023 at 10 PM UTC
+          Xade Mainnet V1 is launching on 10th February 2023 at 10 PM UTC
 <br />
           <br />
         </div>
