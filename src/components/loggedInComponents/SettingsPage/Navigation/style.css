@@ -6,6 +6,9 @@
   border-top: 0.5px solid #bbb;
   width: 85%;
 }
+.blackHover:hover{
+  background-color:black;
+}
 .username {
   font-size: 30px;
   text-align: center;
