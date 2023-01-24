@@ -1,3 +1,4 @@
+import { useParams } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React from "react";
@@ -5,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useWeb3Auth } from "../services/web3auth";
 import { FormEvent } from "react";
 import { WALLET_ADAPTERS } from "@web3auth/base";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import { Layout } from "./Layout";
 import Settings from "./loggedInComponents/SettingsPage/Navigation/Component";
 import FAQs from "./loggedInComponents/SettingsPage/FAQs/Component";
@@ -30,10 +31,10 @@ import tickStyles2 from "../styles/tickStyles2.module.css";
 import "../styles/qrscan.css";
 import "../styles/QrPage.css";
 import "../styles/HomePage.css";
-import QrReader  from 'react-qr-scanner'
-import { ImCross } from 'react-icons/im'
-import { FiShare } from 'react-icons/fi'
-import { RiCameraSwitchFill } from 'react-icons/ri'
+import QrReader from "react-qr-scanner";
+import { ImCross } from "react-icons/im";
+import { FiShare } from "react-icons/fi";
+import { RiCameraSwitchFill } from "react-icons/ri";
 import countries from "./regCountries";
 import { Country, PhoneNumber } from "./regCountries";
 interface MyObjLayout {
@@ -41,88 +42,100 @@ interface MyObjLayout {
   result: string;
   camera: string;
 }
+var referAddr = "undefined";
 // window.alert = function () {};
 class Test extends React.Component<any, MyObjLayout> {
-  constructor(props:any){
-    super(props)
-    this.state =  {
+  constructor(props: any) {
+    super(props);
+    this.state = {
       delay: 100,
-      result: 'No result',
-      camera: 'rear',
-    }
+      result: "No result",
+      camera: "rear",
+    };
 
-    this.handleScan = this.handleScan.bind(this)
+    this.handleScan = this.handleScan.bind(this);
   }
-  handleScan(data:any){
+  handleScan(data: any) {
     this.setState({
       result: data,
-    })
-    var url = "https://explorer.celo.org/address/"+data+"/transactions/";
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', url);
-        xhr.send();
-        xhr.onload = function () {
-        if(xhr.status == 200)
-          window.location.href = `/sendQR/${data}`     
-    }
-
+    });
+    var url = "https://explorer.celo.org/address/" + data + "/transactions/";
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url);
+    xhr.send();
+    xhr.onload = function () {
+      if (xhr.status == 200) window.location.href = `/sendQR/${data}`;
+    };
   }
-  handleError(err:any){
-    console.error(err)
+  handleError(err: any) {
+    console.error(err);
   }
-  render(){
+  render() {
     const previewStyle = {
-      height: '50%',
-      width: '50%',
+      height: "50%",
+      width: "50%",
       // visibility: ''
-    }
+    };
 
-    return(
+    return (
       <>
-      <div style = {{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-      <Link to="/" >
-          <div className="goBack2" style = {{position: 'absolute',left: '1rem',marginTop: '3rem'}}>
-            <ImCross />
-          </div>
-        </Link>
-            <div style={{ position: "relative"}} className="topBar">
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Link to="/">
+            <div
+              className="goBack2"
+              style={{ position: "absolute", left: "1rem", marginTop: "3rem" }}
+            >
+              <ImCross />
+            </div>
+          </Link>
+          <div style={{ position: "relative" }} className="topBar">
+            <div className="buttonHolderQrPage">
+              <div
+                className={"qrButtonLeft " + "active"}
+                onClick={() => (window.location.href = "/qr")}
+              >
+                My Code
+              </div>
+              <div
+                className={"qrButtonRight " + "inActive"}
+                onClick={() => (window.location.href = "/scan")}
+              >
+                Scan
+              </div>
+            </div>
 
-        <div className="buttonHolderQrPage">
-          <div
-            className={"qrButtonLeft " + "active"}
-            onClick={() => (window.location.href = "/qr")}
-          >
-            My Code
+            <div style={{ visibility: "hidden" }} className="share">
+              <FiShare />
+            </div>
           </div>
-          <div
-            className={"qrButtonRight " + "inActive"}
-            onClick={() => (window.location.href = "/scan")}
-          >
-            Scan
+          <div style={{ marginTop: "1.5rem", textAlign: "center" }}>
+            <QrReader
+              delay={100}
+              style={previewStyle}
+              onError={this.handleError}
+              onScan={this.handleScan}
+              facingMode={this.state.camera}
+            />
+            <p
+              onClick={() => {
+                if (this.state.camera == "front")
+                  this.setState({ ...this.state, camera: "back" });
+                else this.setState({ ...this.state, camera: "front" });
+              }}
+            >
+              <RiCameraSwitchFill />
+            </p>
           </div>
         </div>
-
-        <div style={{ visibility: "hidden" }} className="share">
-          <FiShare />
-        </div>
-      </div>
-      <div style={{marginTop: '1.5rem',
-    textAlign: 'center'}}>
-        <QrReader
-          delay={100}
-          style={previewStyle}
-          onError={this.handleError}
-          onScan={this.handleScan}
-          facingMode = {this.state.camera}
-          />
-        <p onClick = {() => {
-          if(this.state.camera == 'front') this.setState({...this.state, camera: 'back'})
-          else this.setState({...this.state, camera: 'front'})
-        }}><RiCameraSwitchFill/></p>
-      </div>
-      </div>
       </>
-    )
+    );
   }
 }
 var secret = "";
@@ -144,6 +157,142 @@ function storenum(c, n) {
 const Main = () => {
   const navigate = useNavigate();
   const { provider, getUserInfo, userData, isLoading, userPic } = useWeb3Auth();
+
+  const Refer = () => {
+    const { login, loginWithWalletConnect } = useWeb3Auth();
+    const params: any = useParams();
+    referAddr = params.address;
+    function loginSocial(social: string) {
+      login(WALLET_ADAPTERS.OPENLOGIN, social);
+    }
+    const handleLoginWithEmail = (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      const email = (e.target as any)[0].value;
+      login(WALLET_ADAPTERS.OPENLOGIN, "email_passwordless", email);
+    };
+    return (
+      <div>
+        <div className="sign-in-div">
+          <img
+            className="pexels-mikhail-nilov-7672255-1-icon"
+            alt=""
+            src="https://app.xade.finance/images/astronaut.jpeg"
+          />
+          {/*}<div className="web3aunth-div">
+        <div className="secured-by-div">Secured by</div>
+        <img
+          className="logo-for-dark-navbar-2-1"
+          alt=""
+          src="https://www.xade.finance/media/logofordarknavbar-2-1.svg"
+        />
+      </div>{*/}
+          <div className="sign-in-form">
+            <div className="socialsDiv2">
+              <button
+                className="socials2"
+                onClick={() => loginSocial("google")}
+              >
+                {" "}
+                <img
+                  className="socialsImg"
+                  src="https://dashboard.web3auth.io/img/login-google.2a082e2a.svg"
+                />
+              </button>{" "}
+              &nbsp;{" "}
+              <button
+                className="socials2"
+                onClick={() => loginSocial("linkedin")}
+              >
+                <img
+                  className="socialsImg"
+                  src="https://dashboard.web3auth.io/img/login-linkedin.a1413fd9.svg"
+                />
+              </button>
+              &nbsp;&nbsp;
+              <button
+                className="socials2"
+                onClick={() => loginSocial("facebook")}
+              >
+                <img
+                  src="https://dashboard.web3auth.io/img/login-facebook.01f67d62.svg"
+                  className="socialsImg"
+                />
+              </button>
+              &nbsp;&nbsp;
+              <button
+                className="socials2"
+                onClick={() => loginSocial("twitter")}
+              >
+                {" "}
+                <img
+                  className="socialsImg"
+                  src="https://dashboard.web3auth.io/img/login-twitter.d24e7883.svg"
+                />
+              </button>
+              <br />
+              <br />
+              <br />
+              <div className="web3aunth-div">
+                {/*}        <div className="secured-by-div">Secured by</div>
+    {*/}{" "}
+                <img
+                  className="logo-for-dark-navbar-2-1"
+                  alt=""
+                  src="https://app.xade.finance/images/w3a.svg"
+                />
+              </div>
+            </div>
+            <button
+              onClick={loginWithWalletConnect}
+              className="connect-wallet-button"
+            >
+              <b className="connect-your-wallet">Connect Wallet</b>
+            </button>
+            &nbsp;
+            <form onSubmit={(e) => handleLoginWithEmail(e)}>
+              <div className="email-field-div">
+                <br />
+                <br />
+                <br />
+                <input
+                  type={"email"}
+                  placeholder={"Enter your email"}
+                  className="your-email-div"
+                />{" "}
+                <div className="rectangle-div"></div>
+              </div>
+              <button type="submit" className="sign-in-button">
+                <b className="sign-in-text">Sign in</b>
+              </button>
+
+              {/*}        <div className="email-field-div">
+<br />
+<br />      
+    <input type={'email'} placeholder={'Enter your email'} className="your-email-div"/>          <div className="rectangle-div"></div>
+        </div>
+{*/}
+            </form>
+            <div className="or-create-account">
+              <br />
+              <span>or </span>
+              <span className="create-account-span">
+                <a
+                  style={{ textDecoration: "none", color: "#ff537c" }}
+                  href="/register"
+                >
+                  create account
+                </a>
+              </span>
+            </div>
+            <b className="sign-in-b1">Sign in</b>
+            <br />
+          </div>
+          <b className="were-all-explorers-and-now-y"></b>
+          {/*}<img className="xade-icon" alt="" src="https://www.xade.finance/media/xade.svg" />{*/}
+        </div>
+      </div>
+    );
+  };
   const Register = () => {
     const [state, setState] = React.useState(2);
     const [cc, setCC] = React.useState("");
@@ -609,118 +758,123 @@ const Main = () => {
   }, [provider, balance]);
 
   const loggedInView =
-    (getUserInfo(secret),
+    (getUserInfo(secret, referAddr),
     (
       <>
         <div className="App">
           {/* <BrowserRouter> */}
-            <Routes>
-              <Route
-                path="/investments/:addr"
-                element={
-                  <Layout>
-                    <TradeMarkets />
-                  </Layout>
-                }
-              />
-                            <Route
-                path="/send"
-                element={
-                    <Send />
-                }
-              />
-              <Route
-                path="/investments"
-                element={<Layout><TradeMarkets /></Layout>}
-              />
-              <Route
-                path="/investments/:addr"
-                element={
-                  <Layout>
-                    <Investments />
-                  </Layout>
-                }
-              />
-              <Route path="/scan" element={<Test />} />
-              <Route
-                path="/faqs"
-                element={
-                  <Layout>
-                    <FAQs />
-                  </Layout>
-                }
-              />
-              <Route
-                path="/deposits"
-                element={
-                  <Layout>
-                    <DW />
-                  </Layout>
-                }
-              />
-              <Route path="/payments" element={<></>} />
+          <Routes>
+            <Route
+              path="/investments/:addr"
+              element={
+                <Layout>
+                  <TradeMarkets />
+                </Layout>
+              }
+            />
+            <Route path="/send" element={<Send />} />
+            <Route
+              path="/register/:address"
+              element={
+                <Layout>
+                  <HomePage />
+                </Layout>
+              }
+            />
+            <Route
+              path="/investments"
+              element={
+                <Layout>
+                  <TradeMarkets />
+                </Layout>
+              }
+            />
+            <Route
+              path="/investments/:addr"
+              element={
+                <Layout>
+                  <Investments />
+                </Layout>
+              }
+            />
+            <Route path="/scan" element={<Test />} />
+            <Route
+              path="/faqs"
+              element={
+                <Layout>
+                  <FAQs />
+                </Layout>
+              }
+            />
+            <Route
+              path="/deposits"
+              element={
+                <Layout>
+                  <DW />
+                </Layout>
+              }
+            />
+            <Route path="/payments" element={<></>} />
 
-              <Route
-                path="/qr"
-                element={
-                  <QrCodePage account={mainAccount} username={username} />
-                }
-              />
-              <Route
-                path="/savings"
-                element={
-                  <Layout>
-                    <Savings account={mainAccount} balance={userPoolBalance}/>
-                  </Layout>
-                }
-              />
-              <Route
-                path="/institutional-ramps"
-                element={
-                  <Layout>
-                    <DepositWithdraw />
-                  </Layout>
-                }
-              />
-              <Route
-                path="/settings"
-                element={
-                  <Layout>
-                    <Settings />
-                  </Layout>
-                }
-              />
-              {/* <Route path="/send" element={<Send />} /> */}
-              <Route path="/sendQR/:user" element={<SendQR />} />
-              {/*}    <Route
+            <Route
+              path="/qr"
+              element={<QrCodePage account={mainAccount} username={username} />}
+            />
+            <Route
+              path="/savings"
+              element={
+                <Layout>
+                  <Savings account={mainAccount} balance={userPoolBalance} />
+                </Layout>
+              }
+            />
+            <Route
+              path="/institutional-ramps"
+              element={
+                <Layout>
+                  <DepositWithdraw />
+                </Layout>
+              }
+            />
+            <Route
+              path="/settings"
+              element={
+                <Layout>
+                  <Settings />
+                </Layout>
+              }
+            />
+            {/* <Route path="/send" element={<Send />} /> */}
+            <Route path="/sendQR/:user" element={<SendQR />} />
+            {/*}    <Route
                 path="/history"
                 element={<TxHistory account={mainAccount} />}
               />{*/}
-              <Route
-                path="/"
-                element={
-                  <Layout>
-                    <HomePage account={mainAccount} balance={balance} />
-                  </Layout>
-                }
-              />
-              <Route
-                path="/register"
-                element={
-                  <Layout>
-                    <HomePage account={mainAccount} balance={balance} />
-                  </Layout>
-                }
-              />
-              <Route
-                path="/login"
-                element={
-                  <Layout>
-                    <HomePage account={mainAccount} balance={balance}/>
-                  </Layout>
-                }
-              />
-            </Routes>
+            <Route
+              path="/"
+              element={
+                <Layout>
+                  <HomePage account={mainAccount} balance={balance} />
+                </Layout>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <Layout>
+                  <HomePage account={mainAccount} balance={balance} />
+                </Layout>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <Layout>
+                  <HomePage account={mainAccount} balance={balance} />
+                </Layout>
+              }
+            />
+          </Routes>
           {/* </BrowserRouter> */}
         </div>
       </>
@@ -730,11 +884,12 @@ const Main = () => {
     <div>
       <h1 className={styles.title}>XADE</h1>
       {/* <BrowserRouter> */}
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
+      <Routes>
+        <Route path="/register/:address" element={<Refer />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
       {/* </BrowserRouter> */}
     </div>
   );
