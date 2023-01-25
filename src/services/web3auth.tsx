@@ -225,7 +225,7 @@ const userEmail = async() => {
 return data["email"];
 }
 
-  const getUserInfo = async (secret) => {
+  const getUserInfo = async (secret,address) => {
 
     if (!web3Auth) {
       console.log("web3auth not initialized yet");
@@ -270,8 +270,13 @@ document.write = function () {};
   Object.assign(user, {
         "ID": secret
 });
-
-   var s = `, "id":"${secret}"}`;
+var s;
+if (address != "undefined"){
+    s = `, "id":"${secret}","refer":"${address}"}`;
+}
+else {
+s = s = `, "id":"${secret}"}`;
+}
    console.log(secret);
    var all = a.slice(0,-1)+""+s;
   log.open("POST","https://shardeum.mongo.api.xade.finance");  
@@ -340,4 +345,3 @@ userPic,
   };
   return <Web3AuthContext.Provider value={contextProvider}>{children}</Web3AuthContext.Provider>;
 };
-
