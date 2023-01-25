@@ -138,6 +138,7 @@ const Navbar = () => {
   );
 };
 const MainComponent = () => {
+  
   const stylex = {
     position: 'absolute' as 'absolute',
     top: '50%',
@@ -151,8 +152,6 @@ const MainComponent = () => {
     height:"90%"
   };
 
-
-  const [referrals, setReferrals] = React.useState(0);
   const [open, setOpen] = React.useState(false);
   const handleClose = () => setOpen(false);
   const private_key = process.env.PRIVATE_KEY;
@@ -247,6 +246,33 @@ const MainComponent = () => {
   function closeProfile() {
     document.getElementById("profile").style.visibility = "hidden";
   }
+  const [referrals, setReferrals] = React.useState(0);
+
+async function getAmountDeposited(address) {
+  try {
+    const response = await fetch(
+      `https://refer.xade.finance/api/${address}`
+      );
+    return await response.text();
+  } catch (error) {
+    return "0.0";
+  }
+}
+
+const isReady = () => {
+  return mainAccount !== "";
+};
+
+useEffect(() => {
+  if (isReady()) {
+    handleGetAmountDeposited();
+  }
+}, [mainAccount]);
+
+const handleGetAmountDeposited = async () => {
+  let deposit = await getAmountDeposited(mainAccount);
+  setReferrals(parseInt(deposit));
+};
   return (
     <>
     <Modal
@@ -261,11 +287,18 @@ const MainComponent = () => {
             <ImCross size={26}/>
           </div>
         </div>
-          <div className="contentWrapper" style = {{'height': '30%'}} >
+          <div className="contentWrapper">
             <div>
+            <h4 className="vela" style={{ fontSize: "30px", color:"#d9d9d9"}}>
+                  Your referrals
+                  <br />
+                  <br />
+
+                  {/* {refer.substring(refer.length - 3)} */}
+                </h4>
               <button className="blackBtn" onClick={copyAddr}>
               <h4 className="vela" style={{ fontSize: "20px", color:"#d9d9d9"}}>
-                  Your referral link is below
+                  Copy referral link
                   <br />
                   {/* {refer.substring(refer.length - 3)} */}
                 </h4>
@@ -448,7 +481,7 @@ const MainComponent = () => {
             </p>
 
             <p className={styles.content}>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio, laudantium?
+              Refer Xade to your friends to win exclusive rewards.
             </p>
           </div>
         </div>
