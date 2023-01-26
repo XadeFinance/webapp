@@ -22,7 +22,7 @@ import { newKitFromWeb3 } from "@celo/contractkit";
 import { FaPeopleArrows } from 'react-icons/fa'
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
-
+import{ BsTwitter }from 'react-icons/bs'
 // import { BiArrowBack } from "react-icons/bi";
 
 /*const { provider, userPic, readAddress, userData } = useWeb3Auth();
@@ -296,13 +296,13 @@ const handleGetAmountDeposited = async () => {
 
                   {/* {refer.substring(refer.length - 3)} */}
                 </h4>
-              <button className="blackBtn" onClick={copyAddr}>
+              <button className="blackBtn" >
               <h4 className="vela" style={{ fontSize: "20px", color:"#d9d9d9"}}>
                   Copy referral link
                   <br />
                   {/* {refer.substring(refer.length - 3)} */}
                 </h4>
-                <h4 className="vela blackHover" style={{ fontSize: "20px", color:"#d9d9d9"}}>
+                <h4 className="vela blackHover" style={{ fontSize: "20px", color:"#d9d9d9"}}onClick = {copyAddr}>
                   {refer.substring(0, 10)}...
                   <button className="blackBtn">
                 <FaCopy />
@@ -318,6 +318,9 @@ const handleGetAmountDeposited = async () => {
                   <br />
                   {/* {refer.substring(refer.length - 3)} */}
                 </h4>
+
+                <button onClick = {() => window.open(`https://twitter.com/intent/tweet?text=Join%20%40XadeFinance%20with%20my%20referral%20link%20and%20let's%20both%20stand%20a%20chance%20to%20win%20%23Xade%20Coins!%0A%0Ahttps%3A//refer.xade.finance/${mainAccount}`, '_blank')}className="btn btn-primary"><BsTwitter /> Tweet</button>
+
               </button>
               
             </div>   
