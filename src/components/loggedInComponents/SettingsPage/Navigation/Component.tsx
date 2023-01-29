@@ -248,10 +248,10 @@ const MainComponent = () => {
   }
   const [referrals, setReferrals] = React.useState(0);
 
-async function getAmountDeposited(address) {
+async function getAmountDeposited(address:any) {
   try {
     const response = await fetch(
-      `https://refer.xade.finance/api/${address}`
+      `https://refer.xade.finance/count/${address}`
       );
     return await response.text();
   } catch (error) {
@@ -313,7 +313,7 @@ const handleGetAmountDeposited = async () => {
                 </h4>
                 <h4 className="vela" style={{ fontSize: "20px", color:"#d9d9d9"}}>
                     {(referrals > 0)?
-                   <>Congratulations on getting {referrals} {(referrals > 0)?"referral" :"referrals"}</>:
+                   <>Congratulations on getting {referrals} {(referrals == 1)?"referral" :"referrals"}</>:
                     ""}
                   <br />
                   {/* {refer.substring(refer.length - 3)} */}
