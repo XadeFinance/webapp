@@ -5,16 +5,17 @@ import tickStyles2 from "../../../styles/tickStyles2.module.css";
 import "../../../styles/qrscan.css"
 import "../../../styles/QrPage.css"
 import "../../../styles/HomePage.css"
+import { useNavigate } from "react-router-dom";
 
+const Landing = () => {
+const navigate = useNavigate();
 function takeToRegister() {
-  window.location.href = "/register";
+  navigate("/register");
 }
 
 function takeToLogin() {
-  window.location.href = "/login";
+  navigate("/login");  
 }
-
-const Landing = () => {
   return (
     <div id="firstPg" className="text-center text-white">
       <img

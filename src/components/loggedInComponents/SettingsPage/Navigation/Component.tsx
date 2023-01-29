@@ -273,6 +273,8 @@ const handleGetAmountDeposited = async () => {
   let deposit = await getAmountDeposited(mainAccount);
   setReferrals(parseInt(deposit));
 };
+
+const [state, setState] = React.useState(true);
   return (
     <>
     <Modal
@@ -281,12 +283,23 @@ const handleGetAmountDeposited = async () => {
             onClose={handleClose}
             >
         <Box sx={stylex}>
-        <div onClick = {() => setOpen(false)}>
+        <div className = {styles.container}>
+                     <div className = {styles.toggleBar}>
+                        <button onClick = {() => setState(true)} className = {styles.overviewClick + "  " + (state?styles.highlight:'')}>Trade</button>
+                        <button onClick = {() => setState(false)} className = {styles.tradeClick + "  " + ((!state)?styles.highlight:'')}>Portfolio</button>
+                     </div>
+            </div>
+            <div onClick = {() => setOpen(false)}>
           <div  style={{ marginTop: "0", color: "#fff", height: "100%" }}>
             <br />
             <ImCross size={26}/>
           </div>
         </div>
+          {state?
+          <>
+          
+          </>:<></>}
+        
           <div className="contentWrapper">
             <div>
             <h4 className="vela" style={{ fontSize: "30px", color:"#d9d9d9"}}>
@@ -307,7 +320,7 @@ const handleGetAmountDeposited = async () => {
                   <button className="blackBtn">
                 <FaCopy />
               </button>
-              <br>
+              <br>   
               </br>
               <br />
                 </h4>

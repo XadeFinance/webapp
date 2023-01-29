@@ -9,7 +9,7 @@ import Main from "./components/Main";
 import { BrowserRouter } from "react-router-dom";
 
 function App() {
-  const [web3AuthNetwork, setWeb3AuthNetwork] = useState<WEB3AUTH_NETWORK_TYPE>("mainnet");
+  const [web3AuthNetwork, setWeb3AuthNetwork] = useState<WEB3AUTH_NETWORK_TYPE>("testnet");
   const [chain, setChain] = useState<CHAIN_CONFIG_TYPE>("chain");
 
   return (
