@@ -6,8 +6,8 @@ import { FcSettings } from "react-icons/fc";
 import { CgProfile } from "react-icons/cg";
 import { BiTransferAlt, BiSupport, BiHelpCircle } from "react-icons/bi";
 import { Button } from "@mui/material";
-import Web3 from 'web3';
-import { ethers } from 'ethers';
+import Web3 from "web3";
+import { ethers } from "ethers";
 import { FiLogOut } from "react-icons/fi";
 import count from "./Countdown.module.css";
 import * as FaIcons from "react-icons/fa";
@@ -19,10 +19,10 @@ import { IconContext } from "react-icons";
 import { useNavigate } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 import { newKitFromWeb3 } from "@celo/contractkit";
-import { FaPeopleArrows } from 'react-icons/fa'
-import Modal from '@mui/material/Modal';
-import Box from '@mui/material/Box';
-import{ BsTwitter }from 'react-icons/bs'
+import { FaPeopleArrows } from "react-icons/fa";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import { BsTwitter } from "react-icons/bs";
 // import { BiArrowBack } from "react-icons/bi";
 
 /*const { provider, userPic, readAddress, userData } = useWeb3Auth();
@@ -56,10 +56,10 @@ const [mainAccount, setMainAccount] = useState("");
 const Navbar = () => {
   const [sidebar, setSidebar] = React.useState(false);
   const { provider } = useWeb3Auth();
-  
+
   const [click, setClick] = useState(false);
   function copyAddr() {
-    navigator.clipboard.writeText('');
+    navigator.clipboard.writeText("");
     alert("Link copied");
   }
   const showSidebar = () => setSidebar(!sidebar);
@@ -138,18 +138,17 @@ const Navbar = () => {
   );
 };
 const MainComponent = () => {
-  
   const stylex = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
+    position: "absolute" as "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
     width: 470,
-    bgcolor: '#000',
-    border: '0px solid #000',
+    bgcolor: "#000",
+    border: "0px solid #000",
     boxShadow: 24,
     p: 4,
-    height:"90%"
+    height: "90%",
   };
 
   const [open, setOpen] = React.useState(false);
@@ -180,14 +179,15 @@ const MainComponent = () => {
     // console.log(contract)
     // const receiverWallet = new ethers.Wallet(mainAccount, provider)
     // const howMuchTokens = ethers.utils.formatUnits('10');
-    // const receipt = await contract.transfer(receiverWallet, howMuchTokens); 
+    // const receipt = await contract.transfer(receiverWallet, howMuchTokens);
     // console.log(receipt);
 
-    window.open(`https://twitter.com/intent/tweet?text=I'm%20excited%20to%20use%20the%20%40XadeFinance%20private%20beta!%20%23Xade%20is%20building%20the%20hybrid%20solution%20between%20traditional%20banks%20and%20DeFi.%0A%0AMy%20wallet%20address%20is%20${mainAccount}`, '_blank');
-    
-  }
+    window.open(
+      `https://twitter.com/intent/tweet?text=I'm%20excited%20to%20use%20the%20%40XadeFinance%20private%20beta!%20%23Xade%20is%20building%20the%20hybrid%20solution%20between%20traditional%20banks%20and%20DeFi.%0A%0AMy%20wallet%20address%20is%20${mainAccount}`,
+      "_blank"
+    );
+  };
   useEffect(() => {
-    
     const handleGetImg = async () => {
       const pic = await userPic();
       setImg(pic);
@@ -222,7 +222,7 @@ const MainComponent = () => {
   }, [provider, username]);
 
   const [mainAccount, setMainAccount] = useState("");
-  const [refer, setRefer] = useState('');
+  const [refer, setRefer] = useState("");
 
   useEffect(() => {
     const handleGetAccount = async () => {
@@ -247,112 +247,193 @@ const MainComponent = () => {
     document.getElementById("profile").style.visibility = "hidden";
   }
   const [referrals, setReferrals] = React.useState(0);
+  const [peopleReferred, setPeopleReferred] = React.useState<Array>([""]);
 
-async function getAmountDeposited(address:any) {
-  try {
-    const response = await fetch(
-      `https://refer.xade.finance/count/${address}`
+  async function getAmountDeposited(address: any) {
+    try {
+      const response = await fetch(
+        `https://refer.xade.finance/count/${address}`
       );
-    return await response.text();
-  } catch (error) {
-    return "0.0";
+      return await response.text();
+    } catch (error) {
+      return "0.0";
+    }
   }
-}
 
-const isReady = () => {
-  return mainAccount !== "";
-};
-
-useEffect(() => {
-  if (isReady()) {
-    handleGetAmountDeposited();
+  async function getPeopleReferred(address: any) {
+    try {
+      const response = await fetch(
+        `https://refer.xade.finance/getRefers/${address}`
+      );
+      return await response.text();
+    } catch (error) {
+      return "";
+    }
   }
-}, [mainAccount]);
 
-const handleGetAmountDeposited = async () => {
-  let deposit = await getAmountDeposited(mainAccount);
-  setReferrals(parseInt(deposit));
-};
+  const isReady = () => {
+    return mainAccount !== "";
+  };
 
-const [state, setState] = React.useState(true);
+  useEffect(() => {
+    if (isReady()) {
+      handleGetAmountDeposited();
+      handleGetPeopleReferred();
+    }
+  }, [mainAccount]);
+
+  const handleGetAmountDeposited = async () => {
+    let deposit = await getAmountDeposited(mainAccount);
+    setReferrals(parseInt(deposit));
+  };
+
+  const handleGetPeopleReferred = async () => {
+    let people = await getPeopleReferred(mainAccount);
+    setPeopleReferred(people.split("\n"));
+  };
+
+  const [state, setState] = React.useState(true);
   return (
     <>
-    <Modal
-            id = "paymentsModal"
-            open = {open}
-            onClose={handleClose}
-            >
+      <Modal id="paymentsModal" open={open} onClose={handleClose}>
         <Box sx={stylex}>
-        <div className = {styles.container}>
-                     <div className = {styles.toggleBar}>
-                        <button onClick = {() => setState(true)} className = {styles.overviewClick + "  " + (state?styles.highlight:'')}>Trade</button>
-                        <button onClick = {() => setState(false)} className = {styles.tradeClick + "  " + ((!state)?styles.highlight:'')}>Portfolio</button>
-                     </div>
-            </div>
-            <div onClick = {() => setOpen(false)}>
-          <div  style={{ marginTop: "0", color: "#fff", height: "100%" }}>
-            <br />
-            <ImCross size={26}/>
-          </div>
-        </div>
-          {state?
-          <>
-          
-          </>:<></>}
-        
-          <div className="contentWrapper">
-            <div>
-            <h4 className="vela" style={{ fontSize: "30px", color:"#d9d9d9"}}>
-                  Your referrals
-                  <br />
-                  <br />
-
-                  {/* {refer.substring(refer.length - 3)} */}
-                </h4>
-              <button className="blackBtn" >
-              <h4 className="vela" style={{ fontSize: "20px", color:"#d9d9d9"}}>
-                  Copy referral link
-                  <br />
-                  {/* {refer.substring(refer.length - 3)} */}
-                </h4>
-                <h4 className="vela blackHover" style={{ fontSize: "20px", color:"#d9d9d9"}}onClick = {copyAddr}>
-                  {refer.substring(0, 10)}...
-                  <button className="blackBtn">
-                <FaCopy />
-              </button>
-              <br>   
-              </br>
+          <div onClick={() => setOpen(false)}>
+            <div style={{ marginTop: "0", color: "#fff", height: "100%" }}>
               <br />
-                </h4>
-                <h4 className="vela" style={{ fontSize: "20px", color:"#d9d9d9"}}>
-                    {(referrals > 0)?
-                   <>Congratulations on getting {referrals} {(referrals == 1)?"referral" :"referrals"}</>:
-                    ""}
-                  <br />
-                  {/* {refer.substring(refer.length - 3)} */}
-                </h4>
-
-                <button onClick = {() => window.open(`https://twitter.com/intent/tweet?text=Join%20%40XadeFinance%20with%20my%20referral%20link%20and%20let's%20both%20stand%20a%20chance%20to%20win%20%23Xade%20Coins!%0A%0Ahttps%3A//refer.xade.finance/${mainAccount}`, '_blank')}className="btn btn-primary"><BsTwitter /> Tweet</button>
-
-              </button>
-              
-            </div>   
+              <ImCross size={26} />
+            </div>
           </div>
-        </Box>  
-        </Modal>
+          <h4 className="vela" style={{ fontSize: "30px", color: "#d9d9d9" }}>
+            Your referrals
+            {/* {refer.substring(refer.length - 3)} */}
+          </h4>
+          <div className={styles.container}>
+            <div className={styles.toggleBar}>
+              <button
+                onClick={() => setState(true)}
+                className={
+                  styles.overviewClick + "  " + (state ? styles.highlight : "")
+                }
+              >
+                Refer
+              </button>
+              <button
+                onClick={() => setState(false)}
+                className={
+                  styles.tradeClick + "  " + (!state ? styles.highlight : "")
+                }
+              >
+                Analytics
+              </button>
+            </div>
+          </div>
+          {state ? (
+            <>
+              <div
+                className="contentWrapper"
+                style={{ justifyContent: "center" }}
+              >
+                <div>
+                  <button
+                    className="blackBtn"
+                    style={{ width: "100%", marginTop: "1rem" }}
+                  >
+                    <h4
+                      className="vela"
+                      style={{ fontSize: "20px", color: "#d9d9d9" }}
+                    >
+                      Copy referral link
+                      <br />
+                      {/* {refer.substring(refer.length - 3)} */}
+                    </h4>
+                    <h4
+                      className="vela blackHover"
+                      style={{ fontSize: "20px", color: "#d9d9d9" }}
+                      onClick={copyAddr}
+                    >
+                      {refer.substring(0, 10)}...
+                      <button className="blackBtn">
+                        <FaCopy />
+                      </button>
+                      <br></br>
+                      <br />
+                    </h4>
+                    <button
+                      onClick={() =>
+                        window.open(
+                          `https://twitter.com/intent/tweet?text=Join%20%40XadeFinance%20with%20my%20referral%20link%20and%20let's%20both%20stand%20a%20chance%20to%20win%20%23Xade%20Coins!%0A%0Ahttps%3A//refer.xade.finance/${mainAccount}`,
+                          "_blank"
+                        )
+                      }
+                      className="btn btn-primary"
+                    >
+                      <BsTwitter /> Tweet
+                    </button>
+                  </button>
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <div
+                className="contentWrapper"
+                style={{ justifyContent: "center" }}
+              >
+                <div>
+                  <button
+                    className="blackBtn"
+                    style={{ width: "100%", marginTop: "1.5rem" }}
+                  >
+                    <h4
+                      className="vela"
+                      style={{ fontSize: "20px", color: "#d9d9d9" }}
+                    >
+                      {referrals > 0 ? (
+                        <>
+                          Congratulations on getting {referrals} &nbsp;
+                          {referrals == 1 ? "referral" : "referrals"}
+                          <br />
+                          <br />
+                          You have referred
+                          <ul style={{ listStyleType: "none" }}>
+                            {peopleReferred.forEach((item) => {
+                              <li>{item}</li>;
+                            })}
+                          </ul>
+                        </>
+                      ) : (
+                        ""
+                      )}
+
+                      <br />
+                      {/* {refer.substring(refer.length - 3)} */}
+                    </h4>
+                  </button>
+                </div>
+              </div>
+            </>
+          )}
+        </Box>
+      </Modal>
       <IconContext.Provider value={{ color: "undefined" }}>
         <nav
-
-          style = {{'justifyContent': 'left', 'paddingLeft': '2rem'}}
-
+          style={{ justifyContent: "left", paddingLeft: "2rem" }}
           className={sidebar ? "nav--menu active" : "nav--menu"}
           id="profile"
         >
           <ul className="nav-menu-items">
             <div onClick={showSidebar}>
-              <div style={{ position: 'absolute', top: '6rem',marginTop: "0", color: "#fff", height: "100%" }}>
+              <div
+                style={{
+                  position: "absolute",
+                  top: "6rem",
+                  marginTop: "0",
+                  color: "#fff",
+                  height: "100%",
+                }}
+              >
                 <br />
-                <ImCross size={26}/>
+                <ImCross size={26} />
               </div>
             </div>
 
@@ -479,14 +560,11 @@ const [state, setState] = React.useState(true);
         </div>
         <hr className={styles.hr}></hr>
         <div
-        
           className={styles.component + " " + styles.B}
           onClick={() => {
             setOpen(true);
-          }
-          }
-        > 
-          
+          }}
+        >
           <p className={styles.logo}>
             <FaPeopleArrows style={{ color: "white" }} />
           </p>
@@ -504,17 +582,15 @@ const [state, setState] = React.useState(true);
         <hr className={styles.hr}></hr>
         <br />
         <br />
-
-        <button onClick = {handleTest} className={count.takePart}>
-       
-            <a
-             target="_blank"
-              className={count.btnTxt}
-             href={`https://twitter.com/intent/tweet?text=I'm%20excited%20to%20use%20the%20%40XadeFinance%20private%20beta!%20%23Xade%20is%20building%20the%20hybrid%20solution%20between%20traditional%20banks%20and%20DeFi.%0A%0AMy%20wallet%20address%20is%20${mainAccount}`}
-            >
-              Request Test Money
-            </a>
-          </button>
+        <button onClick={handleTest} className={count.takePart}>
+          <a
+            target="_blank"
+            className={count.btnTxt}
+            href={`https://twitter.com/intent/tweet?text=I'm%20excited%20to%20use%20the%20%40XadeFinance%20private%20beta!%20%23Xade%20is%20building%20the%20hybrid%20solution%20between%20traditional%20banks%20and%20DeFi.%0A%0AMy%20wallet%20address%20is%20${mainAccount}`}
+          >
+            Request Test Money
+          </a>
+        </button>
         <br />
         <br />
         <div className={styles.logoutButton}>
