@@ -8,10 +8,10 @@ const CountDown = () => {
     return a.toString();
   }
 
-  const endDate = new Date(Date.UTC(2023, 1, 10, 22));
+  const endDate = new Date(Date.UTC(2023, 3, 1, 22));
 
   const [brokenUp, setBrokenUp] = React.useState({
-    days: 19,
+    days: ,
     hours: 0,
     minutes: 0,
     seconds: 0,
