@@ -11,7 +11,7 @@ const CountDown = () => {
   const endDate = new Date(Date.UTC(2023, 3, 1, 22));
 
   const [brokenUp, setBrokenUp] = React.useState({
-    days: ,
+    days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0,
