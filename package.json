@@ -23,7 +23,7 @@
     "@web3auth/openlogin-adapter": "^0.8.2",
     "@web3auth/ui": "^3.0.3",
     "@web3auth/web3auth": "^0.8.2",
-    "axios": "^0.27.2",
+    "axios": "^1.6.0",
     "browserify-zlib": "^0.2.0",
     "express": "^4.17.3",
     "html5-qrcode": "^2.2.1",
