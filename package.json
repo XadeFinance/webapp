@@ -5,7 +5,7 @@
   "dependencies": {
     "@biconomy/mexa": "^3.0.5",
     "@biconomy/smart-account": "^0.0.2",
-    "@celo/contractkit": "^3.0.1",
+    "@celo/contractkit": "^5.1.0",
     "@craco/craco": "^7.0.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
