@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@biconomy/mexa": "^3.0.5",
-    "@biconomy/smart-account": "^0.0.2",
+    "@biconomy/smart-account": "^2.0.2",
     "@celo/contractkit": "^3.0.1",
     "@craco/craco": "^7.0.0",
     "@emotion/react": "^11.10.5",
@@ -43,7 +43,7 @@
     "redstone-api": "^0.4.11",
     "slick-carousel": "^1.8.1",
     "util": "^0.12.5",
-    "web3": "^1.8.1"
+    "web3": "^4.0.1"
   },
   "browser": {
     "fs": false,
