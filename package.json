@@ -40,7 +40,7 @@
     "react-slick": "^0.29.0",
     "react-ts-tradingview-widgets": "^1.0.11",
     "reactjs-popup": "^2.0.5",
-    "redstone-api": "^0.4.11",
+    "redstone-api": "^0.4.12",
     "slick-carousel": "^1.8.1",
     "util": "^0.12.5",
     "web3": "^1.8.1"
