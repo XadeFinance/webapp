@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@biconomy/mexa": "^3.0.5",
-    "@biconomy/smart-account": "^0.0.2",
+    "@biconomy/smart-account": "^2.0.2",
     "@celo/contractkit": "^3.0.1",
     "@craco/craco": "^7.0.0",
     "@emotion/react": "^11.10.5",
